@@ -1,7 +1,5 @@
 extends KinematicBody2D
 
-onready var shot_spawner: Node2D = $ShotSpawner
-
 export var speed_walking: int = 200
 export var speed_running: int = 250
 export var friction: float = 0.01
@@ -11,7 +9,13 @@ export var has_blessed_water: bool = true
 var BlessedShot: PackedScene = preload("res://Entities/BlessedWaterShot/BlessedShot.tscn")
 var velocity: Vector2 = Vector2()
 var current_speed: int = speed_walking
-var shot_rotation: float
+var spawn_point: Vector2 = Vector2()
+
+onready var shot_spawner: Node2D = $ShotSpawner
+onready var animated_sprite: AnimatedSprite = $AnimatedSprite;
+
+func _ready():
+	spawn_point = global_position # when banished, lerp to this point
 
 func _input(_event) -> void:
 	if Input.is_action_pressed("sprint"):
@@ -46,11 +50,22 @@ func handle_movement() -> Vector2:
 
 	if Input.is_action_pressed("walk_up"):
 		input.y -= 1
-	if Input.is_action_pressed("walk_down"):
+	elif Input.is_action_pressed("walk_down"):
 		input.y += 1
-	if Input.is_action_pressed("walk_right"):
+		animated_sprite.play("walking_forward")
+	elif Input.is_action_pressed("walk_right"):
 		input.x += 1
-	if Input.is_action_pressed("walk_left"):
+		animated_sprite.play("walking_left")
+		animated_sprite.flip_h = true
+	elif Input.is_action_pressed("walk_left"):
 		input.x -= 1
-	
+		animated_sprite.play("walking_left")
+		animated_sprite.flip_h = false
+	else:
+		animated_sprite.play("default")
 	return input
+
+# when hit by cultist, move to spawn point
+func banish():
+	pass
+
