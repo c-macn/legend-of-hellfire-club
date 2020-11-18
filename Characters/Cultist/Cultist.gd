@@ -16,6 +16,7 @@ var player_position: Vector2 = Vector2.ZERO
 onready var stun_timer: Timer = $StunnedTimer
 onready var detection_timer: Timer = $DetectionArea/DetectionTimer
 onready var detection_radius: Area2D = $DetectionArea
+onready var banishment_area: Area2D = $BanishmentArea
 
 func _ready():
 	add_to_group("cultists")
@@ -24,6 +25,7 @@ func _ready():
 	detection_timer.connect("timeout", self, "_on_Detection_timeout")
 	detection_radius.connect("body_entered", self, "_on_Body_entered")
 	detection_radius.connect("body_exited", self, "_on_Body_exited")
+	banishment_area.connect("body_entered", self, "_on_Banish_entered")
 
 	if path_to_follow:
 		patrol_points = get_node(path_to_follow).curve.get_baked_points()
@@ -84,6 +86,11 @@ func _on_Body_exited(body: KinematicBody2D):
 	if not is_chasing:
 		if is_body_Saoirse(body.name):
 			detection_timer.stop()
+
+func _on_Banish_entered(body: KinematicBody2D):
+	if is_chasing:
+		if is_body_Saoirse(body.name):
+			body.banish()
 
 func _on_Detection_timeout():
 	print("Going to chase Saoirse at position: ", player_position)
