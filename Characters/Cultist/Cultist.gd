@@ -45,7 +45,7 @@ func _physics_process(_delta):
 
 func get_target():
 	if is_chasing:
-		return player_position
+		return get_player_position()
 	else:
 		return get_path_target(patrol_points, patrol_index)
 
@@ -58,40 +58,46 @@ func stun():
 			player_position = Vector2.ZERO
 		$AnimationPlayer.play("stunned")
 
-func get_path_target(points: Array, index: int):
+func get_player_position() -> Vector2: 
+	return get_parent().get_node("Saoirse").position
+
+func get_path_target(points: Array, index: int) -> Vector2:
 	var target = points[index]
 
-	if position.distance_to(target) < 5:
-		index = wrapi(index + 1, 0, points.size())
-		target = points[index]
+	if position.distance_to(target) < 2:
+		var new_index = randi() % points.size() - 1
+		target = points[new_index]
 
 	return target
 	
 func is_body_Saoirse(name: String) -> bool:
 	return name == "Saoirse"
 
-func _on_Stun_timeout():
+func _on_Stun_timeout() -> void:
 	$AnimationPlayer.stop()
 	$AnimatedSprite.visible = true
 	speed = SPEED_PATROLLING
 	is_stunned = false
 
-func _on_Body_entered(body: KinematicBody2D):
+# detection radius entered
+func _on_Body_entered(body: KinematicBody2D) -> void:
 	if not is_chasing:
 		if is_body_Saoirse(body.name):
-			player_position = body.global_position
-			detection_timer.start()
-			
-func _on_Body_exited(body: KinematicBody2D):
-	if not is_chasing:
-		if is_body_Saoirse(body.name):
-			detection_timer.stop()
+			detection_timer.start() 
 
-func _on_Banish_entered(body: KinematicBody2D):
+# detection radius exited
+func _on_Body_exited(body: KinematicBody2D) -> void:
+	if is_body_Saoirse(body.name):
+		if not is_chasing:
+			detection_timer.stop()
+		else:
+			is_chasing = false
+
+func _on_Banish_entered(body: KinematicBody2D) -> void:
 	if is_chasing:
 		if is_body_Saoirse(body.name):
 			body.banish()
 
-func _on_Detection_timeout():
-	print("Going to chase Saoirse at position: ", player_position)
+func _on_Detection_timeout() -> void:
 	is_chasing = true
+	detection_timer.stop()

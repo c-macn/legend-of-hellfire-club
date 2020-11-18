@@ -7,7 +7,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 35.3953, -113.265, -35.3953, 113.265, -113.467, 186.148, 0, 1.88775, 0, -1.88775, 21.5074, 212.576, 0, 0, 0, 0, 60.846, 145.608, 0, 0, 0, 0, 136.85, 141.547, 0, 0, 0, 0, 184.236, 186.265, 0, 0, 0, 0, 140.854, 297.724, 0, 0, 0, 0, 103.891, 336.239, 0, 0, 0, 0, 106.751, 391.795, 0, 0, 0, 0, 448.216, 384.974, 0, 0, 0, 0, 472.562, 106.174, 0, 0, 0, 0, 290.235, -29.703, 3.7755, -7.07906, -3.7755, 7.07906, -90.1833, 144.716, 0, 0, 0, 0, -113.467, 186.148 )
+"points": PoolVector2Array( 0, 0, 0, 0, -299.355, -116.152, 0, 0, 0, 0, -159.505, -178.66, 0, 0, 0, 0, -50.3807, -226.336, 0, 0, 0, 0, 11.0681, -125.687, 0, 0, 0, 0, 64.0413, -68.4764, 0, 0, 0, 0, -274.987, -3.84912, 0, 0, 0, 0, -299.355, -116.152 )
 }
 
 [node name="Node2D" type="Node"]
@@ -19,8 +19,7 @@ texture = ExtResource( 1 )
 
 [node name="Paths" type="Node" parent="."]
 
-[node name="TestPath" type="Path2D" parent="Paths"]
-position = Vector2( -312.601, -255.331 )
+[node name="Path2D" type="Path2D" parent="Paths"]
 curve = SubResource( 1 )
 
 [node name="Saoirse" parent="." instance=ExtResource( 2 )]
@@ -33,6 +32,6 @@ current = true
 [node name="Cultists" parent="." instance=ExtResource( 3 )]
 position = Vector2( -251.061, 124.312 )
 scale = Vector2( 0.7, 0.7 )
-path_to_follow = NodePath("../Paths/TestPath")
+path_to_follow = NodePath("../Paths/Path2D")
 
 [node name="UI" parent="." instance=ExtResource( 4 )]

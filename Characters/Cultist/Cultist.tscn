@@ -33,7 +33,7 @@ radius = 15.4227
 height = 48.0834
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 86.8241
+radius = 157.25
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 34.161, 49.3639 )
@@ -57,7 +57,7 @@ one_shot = true
 [node name="DetectionArea" type="Area2D" parent="."]
 
 [node name="DetectionTimer" type="Timer" parent="DetectionArea"]
-wait_time = 2.0
+wait_time = 0.8
 
 [node name="DetectionRadius" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource( 4 )
