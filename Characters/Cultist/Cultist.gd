@@ -61,7 +61,7 @@ func stun():
 func get_path_target(points: Array, index: int):
 	var target = points[index]
 
-	if position.distance_to(target) < 1:
+	if position.distance_to(target) < 5:
 		index = wrapi(index + 1, 0, points.size())
 		target = points[index]
 

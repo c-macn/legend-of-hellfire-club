@@ -50,6 +50,7 @@ func _physics_process(_delta) -> void:
 		else:
 			is_banished = false
 			animated_sprite.visible = !is_banished
+			get_tree().call_group("interface", "add_banishment_token", banish_count)
 
 	shot_spawner.look_at(get_global_mouse_position())
 	velocity = move_and_slide(velocity)
@@ -85,10 +86,9 @@ func handle_movement() -> Vector2:
 
 # when hit by cultist, move to spawn point
 func banish():
+	banish_count += 1
 	if banish_count < MAX_BANISHMENTS:
-		banish_count += 1
 		is_banished = true
 		animated_sprite.visible = !is_banished
-		emit_signal("has_banished")
 	else:
 		get_tree().reload_current_scene()
