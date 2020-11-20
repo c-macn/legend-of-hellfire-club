@@ -17,6 +17,8 @@ onready var stun_timer: Timer = $StunnedTimer
 onready var detection_timer: Timer = $DetectionArea/DetectionTimer
 onready var detection_radius: Area2D = $DetectionArea
 onready var banishment_area: Area2D = $BanishmentArea
+onready var animation_player: AnimationPlayer = $AnimationPlayer
+onready var animated_sprite: AnimatedSprite = $AnimatedSprite
 
 func _ready():
 	add_to_group("cultists")
@@ -47,7 +49,7 @@ func get_target():
 	if is_chasing:
 		return get_player_position()
 	else:
-		return get_path_target(patrol_points, patrol_index)
+		return get_path_target(patrol_points)
 
 func stun():
 	if not is_stunned:
@@ -56,17 +58,18 @@ func stun():
 		if is_chasing:
 			is_chasing = false
 			player_position = Vector2.ZERO
-		$AnimationPlayer.play("stunned")
+		animation_player.play("stunned")
 
 func get_player_position() -> Vector2: 
 	return get_parent().get_node("Saoirse").position
 
-func get_path_target(points: Array, index: int) -> Vector2:
-	var target = points[index]
+func get_path_target(points: Array) -> Vector2:
+	var target = points[patrol_index]
 
-	if position.distance_to(target) < 2:
+	if position.distance_to(target) <= 1:
 		var new_index = randi() % points.size() - 1
 		target = points[new_index]
+		patrol_index = new_index
 
 	return target
 	
@@ -74,8 +77,8 @@ func is_body_Saoirse(name: String) -> bool:
 	return name == "Saoirse"
 
 func _on_Stun_timeout() -> void:
-	$AnimationPlayer.stop()
-	$AnimatedSprite.visible = true
+	animation_player.stop()
+	animated_sprite.visible = true
 	speed = SPEED_PATROLLING
 	is_stunned = false
 
@@ -94,9 +97,8 @@ func _on_Body_exited(body: KinematicBody2D) -> void:
 			is_chasing = false
 
 func _on_Banish_entered(body: KinematicBody2D) -> void:
-	if is_chasing:
-		if is_body_Saoirse(body.name):
-			body.banish()
+	if is_body_Saoirse(body.name):
+		body.banish()
 
 func _on_Detection_timeout() -> void:
 	is_chasing = true

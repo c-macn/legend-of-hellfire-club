@@ -1,7 +1,5 @@
 extends KinematicBody2D
 
-signal has_banished
-
 const MAX_BANISHMENTS: int = 3
 
 export var speed_walking: int = 200
@@ -69,6 +67,7 @@ func handle_movement() -> Vector2:
 	if not is_banished:
 		if Input.is_action_pressed("walk_up"):
 			input.y -= 1
+			animated_sprite.play("walking_backward")
 		elif Input.is_action_pressed("walk_down"):
 			input.y += 1
 			animated_sprite.play("walking_forward")
@@ -85,7 +84,7 @@ func handle_movement() -> Vector2:
 	return input
 
 # when hit by cultist, move to spawn point
-func banish():
+func banish() -> void:
 	banish_count += 1
 	if banish_count < MAX_BANISHMENTS:
 		is_banished = true

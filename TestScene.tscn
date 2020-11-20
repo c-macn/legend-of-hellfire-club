@@ -6,8 +6,9 @@
 [ext_resource path="res://Interface/UI.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Curve2D" id=1]
+bake_interval = 10.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -299.355, -116.152, 0, 0, 0, 0, -159.505, -178.66, 0, 0, 0, 0, -50.3807, -226.336, 0, 0, 0, 0, 11.0681, -125.687, 0, 0, 0, 0, 64.0413, -68.4764, 0, 0, 0, 0, -274.987, -3.84912, 0, 0, 0, 0, -299.355, -116.152 )
+"points": PoolVector2Array( 8.01809, 147.889, -8.01809, -147.889, -497.403, -385.997, -48.1085, -11.5817, 48.1085, 11.5817, -159.505, -178.66, -31.1815, 76.6173, 31.1815, -76.6173, -50.3807, -226.336, 124.726, -67.7083, -124.726, 67.7083, 11.0681, -125.687, 0, 0, 0, 0, 64.0413, -68.4764, 222.725, 44.5449, -222.725, -44.5449, -274.987, -3.84912, -350.123, -144.326, 350.123, 144.326, -299.355, -116.152, 0, 0, 0, 0, -497.403, -385.997 )
 }
 
 [node name="Node2D" type="Node"]
@@ -17,10 +18,15 @@ position = Vector2( 1.08853, 0.849014 )
 scale = Vector2( 17.7646, 11.2848 )
 texture = ExtResource( 1 )
 
-[node name="Paths" type="Node" parent="."]
-
-[node name="Path2D" type="Path2D" parent="Paths"]
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2( 121.162, -39.1996 )
 curve = SubResource( 1 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2( -497.403, -385.997 )
+rotation = -1.59609
+
+[node name="Paths" type="Node" parent="."]
 
 [node name="Saoirse" parent="." instance=ExtResource( 2 )]
 position = Vector2( 275.46, -92.1733 )
@@ -31,7 +37,6 @@ current = true
 
 [node name="Cultists" parent="." instance=ExtResource( 3 )]
 position = Vector2( -251.061, 124.312 )
-scale = Vector2( 0.7, 0.7 )
-path_to_follow = NodePath("../Paths/Path2D")
+path_to_follow = NodePath("../Path2D")
 
 [node name="UI" parent="." instance=ExtResource( 4 )]

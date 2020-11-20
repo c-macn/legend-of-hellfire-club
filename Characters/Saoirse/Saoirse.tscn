@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Characters/Saoirse/Saoirse.gd" type="Script" id=1]
 [ext_resource path="res://Characters/Saoirse/Saoirse_Front.png" type="Texture" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://Characters/Saoirse/Saoirse_LeftFoot.png" type="Texture" id=4]
 [ext_resource path="res://Characters/Saoirse/Saoirse_Left.png" type="Texture" id=5]
 [ext_resource path="res://Characters/Saoirse/Saoirse_StandingLFoot_Left.png" type="Texture" id=6]
+[ext_resource path="res://Characters/Saoirse/Saoirse_Back_RightFoor.png" type="Texture" id=7]
+[ext_resource path="res://Characters/Saoirse/Saoirse_Back_LeftFoot.png" type="Texture" id=8]
+[ext_resource path="res://Characters/Saoirse/Saoirse_Back.png" type="Texture" id=9]
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
@@ -27,6 +30,11 @@ animations = [ {
 "loop": true,
 "name": "walking_left",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 8 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "walking_backward",
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=3]
@@ -34,11 +42,12 @@ radius = 10.8994
 height = 36.5578
 
 [node name="Saoirse" type="KinematicBody2D"]
+collision_mask = 15
 script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-animation = "walking_left"
+animation = "walking_forward"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1.78381, 1.57356e-05 )
