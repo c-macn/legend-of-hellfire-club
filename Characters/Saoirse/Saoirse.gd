@@ -31,6 +31,14 @@ func _input(_event) -> void:
 			
 			if Input.is_action_just_pressed("fire") and has_blessed_water:
 				fire_water()
+			
+			if Input.is_action_just_pressed("temp_puzzle"):
+				print("Test")
+				get_tree().call_group("interface", "show_cards", "cardClubs2", "cardClubs3", "cardClubs5")
+			
+			if Input.is_action_just_pressed("temp_solve"):
+				get_tree().call_group("interface", "attempt_card", "cardClubsJ")
+
 
 func _physics_process(_delta) -> void:
 	if not is_banished:

@@ -1,0 +1,91 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Puzzles/Cards/CardPuzzle.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "AnimateAttempt"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CardContainer/CardA:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.02, 0.53, 1.01 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CardContainer/CardB:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.5, 2, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "AnimateMissing"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CardContainer/MissingCard:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="CardPuzzle" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CardContainer" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -240.0
+margin_top = -95.0
+margin_right = 240.0
+margin_bottom = 95.0
+rect_min_size = Vector2( 480, 190 )
+custom_constants/separation = 30
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CardA" type="TextureRect" parent="CardContainer"]
+margin_right = 140.0
+margin_bottom = 190.0
+rect_min_size = Vector2( 140, 190 )
+
+[node name="CardB" type="TextureRect" parent="CardContainer"]
+margin_left = 170.0
+margin_right = 310.0
+margin_bottom = 190.0
+rect_min_size = Vector2( 140, 190 )
+
+[node name="MissingCard" type="TextureRect" parent="CardContainer"]
+margin_left = 340.0
+margin_right = 480.0
+margin_bottom = 190.0
+rect_min_size = Vector2( 140, 190 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/AnimateAttempt = SubResource( 1 )
+anims/AnimateCards = SubResource( 1 )
+anims/AnimateMissing = SubResource( 2 )
