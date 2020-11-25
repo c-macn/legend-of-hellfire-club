@@ -2,6 +2,17 @@ extends KinematicBody2D
 
 const MAX_BANISHMENTS: int = 3
 
+enum FACING_VALUES {
+	UP = -90,
+	DOWN = 90,
+	LEFT = 180,
+	RIGHT = 0,
+	DIAGONAL_UP_LEFT = -135
+	DIAGONAL_UP_RIGHT = -45
+	DIAGONAL_DOWN_LEFT = 135
+	DIAGONAL_DOWN_RIGHT = 45
+}
+
 export var speed_walking: int = 200
 export var speed_running: int = 250
 export var friction: float = 0.01
@@ -59,6 +70,7 @@ func _physics_process(_delta) -> void:
 			get_tree().call_group("interface", "add_banishment_token", banish_count)
 
 	shot_spawner.look_at(get_global_mouse_position())
+	animated_sprite.play(get_animation())
 	velocity = move_and_slide(velocity)
 
 func set_current_speed(speed_value) -> void:
@@ -75,21 +87,45 @@ func handle_movement() -> Vector2:
 	if not is_banished:
 		if Input.is_action_pressed("walk_up"):
 			input.y -= 1
-			animated_sprite.play("walking_backward")
-		elif Input.is_action_pressed("walk_down"):
+		if Input.is_action_pressed("walk_down"):
 			input.y += 1
-			animated_sprite.play("walking_forward")
-		elif Input.is_action_pressed("walk_right"):
+		if Input.is_action_pressed("walk_right"):
 			input.x += 1
-			animated_sprite.play("walking_left")
 			animated_sprite.flip_h = true
-		elif Input.is_action_pressed("walk_left"):
+		if Input.is_action_pressed("walk_left"):
 			input.x -= 1
-			animated_sprite.play("walking_left")
 			animated_sprite.flip_h = false
 		else:
 			animated_sprite.play("default")
 	return input
+
+func get_animation() -> String:
+	# get the degrees of the current velocity
+	var facing_angle = rad2deg(velocity.angle())
+	# round to the nearest whole int divisble by 45
+	var facing_angle_rounded = int(round(facing_angle / 45) * 45)
+	
+	print("FACING: ", facing_angle_rounded)
+	
+	match facing_angle_rounded:
+		FACING_VALUES.DOWN:
+			return "walk_back"
+		FACING_VALUES.UP:
+			return "walk_forward"
+		FACING_VALUES.RIGHT:
+			return "walk_down_left"
+		FACING_VALUES.LEFT:
+			return "walk_down_left"
+		FACING_VALUES.DIAGONAL_DOWN_LEFT:
+			return "walk_down_left"
+		FACING_VALUES.DIAGONAL_DOWN_RIGHT:
+			return "walk_down_left"
+		FACING_VALUES.DIAGONAL_UP_RIGHT:
+			return "walk_up_right"
+		FACING_VALUES.DIAGONAL_UP_LEFT:
+			return "walk_up_right"
+			
+	return "default"
 
 # when hit by cultist, move to spawn point
 func banish() -> void:

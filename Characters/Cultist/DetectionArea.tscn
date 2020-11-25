@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 106.679
+
+[node name="DetectionArea" type="Area2D"]
+collision_layer = 8
+
+[node name="DetectionTimer" type="Timer" parent="."]
+wait_time = 0.8
+
+[node name="DetectionRadius" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

@@ -1,7 +1,18 @@
 extends KinematicBody2D
 
 const SPEED_PATROLLING: int = 100
-const SPEED_CHASING: int = 400
+const SPEED_CHASING: int = 100
+
+enum FACING_VALUES {
+	UP = -90,
+	DOWN = 90,
+	LEFT = 180,
+	RIGHT = 0,
+	DIAGONAL_UP_LEFT = -135
+	DIAGONAL_UP_RIGHT = -45
+	DIAGONAL_DOWN_LEFT = 135
+	DIAGONAL_DOWN_RIGHT = 45
+}
 
 export(NodePath) var path_to_follow = null
 
@@ -37,12 +48,13 @@ func _physics_process(_delta):
 		return
 
 	var target = get_target()
-
+		
 	if not is_stunned:
 		velocity = lerp(velocity, (target - position).normalized() * speed, 0.1)
 	else:
 		velocity = lerp(velocity, Vector2.ZERO, 0.1)
-
+	
+	animated_sprite.play(get_animation())
 	velocity = move_and_slide(velocity)
 
 func get_target():
@@ -72,7 +84,33 @@ func get_path_target(points: Array) -> Vector2:
 		patrol_index = new_index
 
 	return target
+
+func get_animation() -> String:
+	# get the degrees of the current velocity
+	var facing_angle = rad2deg(velocity.angle())
+	# round to the nearest whole int divisble by 45
+	var facing_angle_rounded = int(round(facing_angle / 45) * 45)
 	
+	match facing_angle_rounded:
+		FACING_VALUES.DOWN:
+			return "default"
+		FACING_VALUES.UP:
+			return "walk_forward"
+		FACING_VALUES.RIGHT:
+			return "walk_right"
+		FACING_VALUES.LEFT:
+			return "walk_left"
+		FACING_VALUES.DIAGONAL_DOWN_LEFT:
+			return "walk_down_left"
+		FACING_VALUES.DIAGONAL_DOWN_RIGHT:
+			return "walk_down_right"
+		FACING_VALUES.DIAGONAL_UP_RIGHT:
+			return "walk_up_right"
+		FACING_VALUES.DIAGONAL_UP_LEFT:
+			return "walk_up_left"
+
+	return "default"
+
 func is_body_Saoirse(name: String) -> bool:
 	return name == "Saoirse"
 

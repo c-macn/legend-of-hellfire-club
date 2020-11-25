@@ -26,8 +26,6 @@ curve = SubResource( 1 )
 position = Vector2( -497.403, -385.997 )
 rotation = -1.59609
 
-[node name="Paths" type="Node" parent="."]
-
 [node name="Saoirse" parent="." instance=ExtResource( 2 )]
 position = Vector2( 275.46, -92.1733 )
 friction = 0.1
@@ -36,7 +34,9 @@ friction = 0.1
 current = true
 
 [node name="Cultists" parent="." instance=ExtResource( 3 )]
-position = Vector2( -251.061, 124.312 )
+position = Vector2( 252.145, 104.073 )
 path_to_follow = NodePath("../Path2D")
+
+[node name="Paths" type="Node" parent="."]
 
 [node name="UI" parent="." instance=ExtResource( 4 )]
