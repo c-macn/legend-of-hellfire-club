@@ -108,8 +108,8 @@ func get_animation() -> String:
 			return "walk_up_right"
 		FACING_VALUES.DIAGONAL_UP_LEFT:
 			return "walk_up_left"
-
-	return "default"
+		_:
+			return "default"
 
 func is_body_Saoirse(name: String) -> bool:
 	return name == "Saoirse"

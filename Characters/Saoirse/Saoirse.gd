@@ -91,12 +91,11 @@ func handle_movement() -> Vector2:
 			input.y += 1
 		if Input.is_action_pressed("walk_right"):
 			input.x += 1
-			animated_sprite.flip_h = true
 		if Input.is_action_pressed("walk_left"):
 			input.x -= 1
-			animated_sprite.flip_h = false
-		else:
+		if input.normalized() == Vector2.ZERO:
 			animated_sprite.play("default")
+			
 	return input
 
 func get_animation() -> String:
@@ -106,26 +105,33 @@ func get_animation() -> String:
 	var facing_angle_rounded = int(round(facing_angle / 45) * 45)
 	
 	print("FACING: ", facing_angle_rounded)
+	print("VEL:", velocity)
 	
 	match facing_angle_rounded:
 		FACING_VALUES.DOWN:
 			return "walk_back"
 		FACING_VALUES.UP:
 			return "walk_forward"
-		FACING_VALUES.RIGHT:
-			return "walk_down_left"
 		FACING_VALUES.LEFT:
+			animated_sprite.flip_h = false
 			return "walk_down_left"
+		FACING_VALUES.RIGHT:
+			animated_sprite.flip_h = true
+			return "walk_down_right"
 		FACING_VALUES.DIAGONAL_DOWN_LEFT:
+			animated_sprite.flip_h = false
 			return "walk_down_left"
 		FACING_VALUES.DIAGONAL_DOWN_RIGHT:
+			animated_sprite.flip_h = true
 			return "walk_down_left"
-		FACING_VALUES.DIAGONAL_UP_RIGHT:
-			return "walk_up_right"
 		FACING_VALUES.DIAGONAL_UP_LEFT:
+			animated_sprite.flip_h = false
 			return "walk_up_right"
-			
-	return "default"
+		FACING_VALUES.DIAGONAL_UP_RIGHT:
+			animated_sprite.flip_h = true
+			return "walk_up_right"
+		_:
+			return "default"
 
 # when hit by cultist, move to spawn point
 func banish() -> void:
