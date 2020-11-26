@@ -33,7 +33,7 @@ onready var animated_sprite: AnimatedSprite = $AnimatedSprite
 
 func _ready():
 	add_to_group("cultists")
-	
+
 	stun_timer.connect("timeout", self, "_on_Stun_timeout")
 	detection_timer.connect("timeout", self, "_on_Detection_timeout")
 	detection_radius.connect("body_entered", self, "_on_Body_entered")
@@ -48,12 +48,12 @@ func _physics_process(_delta):
 		return
 
 	var target = get_target()
-		
+
 	if not is_stunned:
 		velocity = lerp(velocity, (target - position).normalized() * speed, 0.1)
 	else:
 		velocity = lerp(velocity, Vector2.ZERO, 0.1)
-	
+
 	animated_sprite.play(get_animation())
 	velocity = move_and_slide(velocity)
 
@@ -72,7 +72,7 @@ func stun():
 			player_position = Vector2.ZERO
 		animation_player.play("stunned")
 
-func get_player_position() -> Vector2: 
+func get_player_position() -> Vector2:
 	return get_parent().get_node("Saoirse").position
 
 func get_path_target(points: Array) -> Vector2:
@@ -90,7 +90,7 @@ func get_animation() -> String:
 	var facing_angle = rad2deg(velocity.angle())
 	# round to the nearest whole int divisble by 45
 	var facing_angle_rounded = int(round(facing_angle / 45) * 45)
-	
+
 	match facing_angle_rounded:
 		FACING_VALUES.DOWN:
 			return "default"
@@ -124,7 +124,7 @@ func _on_Stun_timeout() -> void:
 func _on_Body_entered(body: KinematicBody2D) -> void:
 	if not is_chasing:
 		if is_body_Saoirse(body.name):
-			detection_timer.start() 
+			detection_timer.start()
 
 # detection radius exited
 func _on_Body_exited(body: KinematicBody2D) -> void:

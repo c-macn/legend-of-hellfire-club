@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Entities/BlessedWaterShot/BlessedShot.gd" type="Script" id=1]
 [ext_resource path="res://Entities/BlessedWaterShot/shot.png" type="Texture" id=2]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 24.7677, 5.77477 )
 
 [node name="BlessedShot" type="Area2D"]
 scale = Vector2( 0.5, 0.5 )
@@ -17,6 +14,5 @@ texture = ExtResource( 2 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -30 )
-shape = SubResource( 1 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -24.0373, -21.5816, -17.4227, -27.4088, -9.86322, -30.2436, -4.35106, -31.5035, 7.93317, -31.1885, 15.1777, -29.2987, 22.7372, -24.574, 24.3121, -21.1092 )

@@ -31,8 +31,8 @@ func _set_cards_to_opaque() -> void:
 	for card in cards:
 		card.modulate.a = 0
 
-func _set_card_texture(card_node: TextureRect, texture: String) -> void: 
+func _set_card_texture(card_node: TextureRect, texture: String) -> void:
 	card_node.texture = load("res://Puzzles/Cards/" + texture + ".png")
 
-func _has_solved(winning_name: String, attempt_name: String) -> bool: 
+func _has_solved(winning_name: String, attempt_name: String) -> bool:
 	return winning_name == attempt_name
