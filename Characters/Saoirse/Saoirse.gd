@@ -104,9 +104,6 @@ func get_animation() -> String:
 	# round to the nearest whole int divisble by 45
 	var facing_angle_rounded = int(round(facing_angle / 45) * 45)
 	
-	print("FACING: ", facing_angle_rounded)
-	print("VEL:", velocity)
-	
 	match facing_angle_rounded:
 		FACING_VALUES.DOWN:
 			return "walk_back"
