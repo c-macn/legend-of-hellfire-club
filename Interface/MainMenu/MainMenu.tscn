@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Interface/MainMenu/MainMenu.gd" type="Script" id=1]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -43.0
+margin_top = -40.0
+margin_right = 43.0
+margin_bottom = 40.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="Button" parent="ButtonContainer"]
+margin_right = 86.0
+margin_bottom = 20.0
+text = "Play"
+
+[node name="Story" type="Button" parent="ButtonContainer"]
+margin_top = 30.0
+margin_right = 86.0
+margin_bottom = 50.0
+text = "Story So Far"
+
+[node name="Credits" type="Button" parent="ButtonContainer"]
+margin_top = 60.0
+margin_right = 86.0
+margin_bottom = 80.0
+text = "Credits"
+[connection signal="pressed" from="ButtonContainer/Play" to="." method="_on_Play_clicked"]
+[connection signal="pressed" from="ButtonContainer/Story" to="." method="_on_Story_clicked"]
+[connection signal="pressed" from="ButtonContainer/Credits" to="." method="_on_Credits_clicked"]

@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="legend-of-the-hellfire-club"
-run/main_scene="res://TestScene.tscn"
+run/main_scene="res://Interface/MainMenu/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [display]

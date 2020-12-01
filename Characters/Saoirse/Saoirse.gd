@@ -57,7 +57,7 @@ func _physics_process(_delta) -> void:
 	if not is_banished:
 		var direction: Vector2 = handle_movement()
 
-		if direction.length() > 0:
+		if not direction == Vector2.ZERO:
 			velocity = lerp(velocity, direction.normalized() * current_speed, acceleration)
 		else:
 			velocity = lerp(velocity, Vector2.ZERO, friction)

@@ -23,9 +23,10 @@ func lock_rotation(degrees: float) -> void:
 	collision_poly.rotation_degrees = sprite.rotation_degrees
 
 func _on_BlessedShot_body_entered(body: KinematicBody2D) -> void:
-	if body.is_in_group("cultists"):
-		body.stun()
-		queue_free()
+	if body != null:
+		if body.is_in_group("cultists"):
+			body.stun()
+	queue_free()
 
 func _on_left_bounds() -> void:
 	queue_free()
