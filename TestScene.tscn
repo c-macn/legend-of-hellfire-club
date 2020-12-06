@@ -29,7 +29,6 @@ rotation = -1.59609
 
 [node name="Saoirse" parent="." instance=ExtResource( 2 )]
 position = Vector2( 275.46, -92.1733 )
-friction = 0.1
 
 [node name="Camera2D" type="Camera2D" parent="Saoirse"]
 current = true

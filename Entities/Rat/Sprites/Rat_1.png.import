@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Saoirse_StandingLFoot_Left.png-21927836b9e08a0dc21884489f1b9883.stex"
+path="res://.import/Rat_1.png-a7923cbe4f2bc0d28897c3a8920c266a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/Saoirse/Saoirse_StandingLFoot_Left.png"
-dest_files=[ "res://.import/Saoirse_StandingLFoot_Left.png-21927836b9e08a0dc21884489f1b9883.stex" ]
+source_file="res://Entities/Rat/Sprites/Rat_1.png"
+dest_files=[ "res://.import/Rat_1.png-a7923cbe4f2bc0d28897c3a8920c266a.stex" ]
 
 [params]
 

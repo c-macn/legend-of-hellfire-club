@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/candle_lightmap.png-052c38bfa301b2d7107f834c4a87cf2e.stex"
+path="res://.import/Saoirs_Back_LS_RighttFoot.png-970078ac902a669966a7f4b36678a360.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Lights/Candles/candle_lightmap.png"
-dest_files=[ "res://.import/candle_lightmap.png-052c38bfa301b2d7107f834c4a87cf2e.stex" ]
+source_file="res://Characters/Saoirse/Sprites/Saoirs_Back_LS_RighttFoot.png"
+dest_files=[ "res://.import/Saoirs_Back_LS_RighttFoot.png-970078ac902a669966a7f4b36678a360.stex" ]
 
 [params]
 
@@ -21,8 +21,8 @@ compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
-flags/mipmaps=true
-flags/anisotropic=true
+flags/mipmaps=false
+flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

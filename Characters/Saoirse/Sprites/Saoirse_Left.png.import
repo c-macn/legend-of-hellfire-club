@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Saoirse_Back.png-3b12acd6bc80f965302e0aa2c4c17a42.stex"
+path="res://.import/Saoirse_Left.png-ca32c9cdb1daf9c22a5e91fba87f718c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/Saoirse/Saoirse_Back.png"
-dest_files=[ "res://.import/Saoirse_Back.png-3b12acd6bc80f965302e0aa2c4c17a42.stex" ]
+source_file="res://Characters/Saoirse/Sprites/Saoirse_Left.png"
+dest_files=[ "res://.import/Saoirse_Left.png-ca32c9cdb1daf9c22a5e91fba87f718c.stex" ]
 
 [params]
 

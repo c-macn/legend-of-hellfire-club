@@ -1,0 +1,36 @@
+{
+  "saoirse": {
+    "portrait": "res://Characters/Saoirse/Sprites/Saoirse_Portrait.png",
+    "intro_0": {
+      "value": "Jaysus!............ it must have been a fierce one last night",
+      "next": "intro_1"
+    },
+    "intro_1": {
+      "value": "I hope Ma and Da are alright.",
+      "next": "intro_2"
+    },
+    "intro_2": {
+      "value": "[shake rate=10 level=10]MAAAAAAAAAAAAAAAA![/shake]",
+      "next": "intro_3"
+    },
+    "intro_3": {
+      "value": "[shake rate=10 level=10]DAAAAAAAAAAAAAAAAAAAA![/shake]",
+      "next": "intro_4"
+    },
+    "intro_4": {
+      "value": "No answer... I better take a look around."
+    },
+    "cant_leave": {
+      "value": "I can't leave now! I have to make sure Ma and Da are safe."
+    }
+  },
+  "cultist": {
+    "portrait": "res://Characters/Saoirse/Cultist_Portrait.png"
+  },
+  "servant": {
+    "portrait": "res://Characters/Saoirse/Servant_Portrait.png"
+  },
+  "devil": {
+    "portrait": "res://Characters/Saoirse/Devil_Portrait.png"
+  }
+}

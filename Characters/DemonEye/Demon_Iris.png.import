@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Saoirse_LeftFoot.png-47e02f5dafc06373e402e97ee8c74b6f.stex"
+path="res://.import/Demon_Iris.png-367bcf0e8fac961c93dbee696ed7ea3b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/Saoirse/Saoirse_LeftFoot.png"
-dest_files=[ "res://.import/Saoirse_LeftFoot.png-47e02f5dafc06373e402e97ee8c74b6f.stex" ]
+source_file="res://Characters/DemonEye/Demon_Iris.png"
+dest_files=[ "res://.import/Demon_Iris.png-367bcf0e8fac961c93dbee696ed7ea3b.stex" ]
 
 [params]
 
