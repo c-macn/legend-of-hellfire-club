@@ -22,6 +22,17 @@
     },
     "cant_leave": {
       "value": "I can't leave now! I have to make sure Ma and Da are safe."
+    },
+    "the_head_0": {
+      "value": "OH FUCK!!!...",
+      "next": "the_head_1"
+    },
+    "the_head_1": {
+      "value": "I've heard of getting leggless, but this is on another level!",
+      "next": "the_head_2"
+    },
+    "the_head_2": {
+      "value": "Tough crowd..."
     }
   },
   "cultist": {
