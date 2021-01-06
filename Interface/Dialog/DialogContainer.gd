@@ -1,5 +1,8 @@
 extends Control
 
+signal dialouge_started
+signal dialouge_finished
+
 const DIALOG_BASE_URL: String = "res://DialogFiles/dialog.json"
 
 export(int) var reveal_speed: int = 15
@@ -14,7 +17,7 @@ onready var reveal_tween: Tween = $HBoxContainer/DialogContainer/RevealTween
 func _ready() -> void:
 	set_dialog_container_visibility(false)
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
 		if is_dialog_container_visible():
 			on_dialog_continue_pressed()
@@ -34,19 +37,18 @@ func on_dialog_continue_pressed() -> void:
 
 		if should_dialog_continue(dialog_set, dialog_key):
 			set_dialog_key(dialog_set.get(dialog_key).next)
-			set_dialog_text(dialog_set.get(dialog_key).value)
+			set_dialog_text(dialog_set.get(get_dialog_key()).value)
 		else:
 			get_tree().call_group("actors", "scene_over")
 			set_dialog_container_visibility(false)
+			emit_signal("dialouge_finished")
 
 func get_file_content() -> Dictionary:
 	var file = File.new()
-
 	file.open(DIALOG_BASE_URL, file.READ)
 
 	var json_data = file.get_as_text()
 	var parsed_json = JSON.parse(json_data)
-
 	file.close()
 
 	return parsed_json.result
@@ -94,3 +96,4 @@ func on_DialogReceived(chararacter: String, dialog_key: String) -> void:
 	set_dialog_text(dialog_set.get(dialog_key).value)
 	set_portrait(dialog_set.portrait)
 	set_dialog_container_visibility(true)
+	emit_signal("dialouge_started")
