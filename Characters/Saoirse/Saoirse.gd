@@ -14,21 +14,21 @@ var is_banished: bool = false
 onready var shot_spawner: Node2D = $ShotSpawner
 onready var animated_sprite: AnimatedSprite = $AnimatedSprite;
 onready var state_machine: Node = $StateMachine;
-onready var interaction_range: RayCast2D = $InteractionRange
+#onready var interaction_range: RayCast2D = $InteractionRange
 
 func _ready():
 	# TODO create a path node every time saoirse walks so the path can be retraced
 	spawn_point = global_position # when banished, lerp to this point
 
-func _input(event) -> void:
+func _input(_event) -> void:
 	if Input.is_action_just_pressed("fire") and has_blessed_water:
 		fire_water()
 
-func _physics_process(delta: float) -> void:
-	interaction_range.rotation_degrees
-	if interaction_range.is_colliding():
-		var obj = interaction_range.get_collider();
-		obj.highlight();
+#func _physics_process(_delta: float) -> void:
+	#interaction_range.rotation_degrees
+	# if interaction_range.is_colliding():
+	# 	var obj = interaction_range.get_collider();
+	# 	obj.highlight();
 
 func fire_water() -> void:
 	var shot = BlessedShot.instance()

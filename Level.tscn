@@ -186,7 +186,6 @@ flip_h = false
 [node name="Camera2D" parent="Saoirse" instance=ExtResource( 4 )]
 
 [node name="Light2D" parent="Saoirse" instance=ExtResource( 9 )]
-visible = false
 texture_scale = 9.5
 mode = 0
 increment_cycle = 0.2
