@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Tilesets/BaseTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Characters/Saoirse/Saoirse.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Entities/EntranceBlock/EntranceBlock.gd" type="Script" id=12]
 [ext_resource path="res://CutsceneTriggers/CutsceneTriggger.tscn" type="PackedScene" id=13]
 [ext_resource path="res://CutsceneTriggers/CutsceneManager.gd" type="Script" id=14]
+[ext_resource path="res://Objects/InteractableObject.tscn" type="PackedScene" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 64.3678, 15.7307 )
@@ -180,7 +181,6 @@ position = Vector2( -404.666, 1312.95 )
 has_blessed_water = false
 
 [node name="AnimatedSprite" parent="Saoirse" index="0"]
-animation = "default"
 flip_h = false
 
 [node name="Camera2D" parent="Saoirse" instance=ExtResource( 4 )]
@@ -315,5 +315,11 @@ text = "Door to shodown with the divil himself"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Interactables" type="Node" parent="."]
+
+[node name="RigidBody2D" parent="Interactables" instance=ExtResource( 15 )]
+position = Vector2( -484.649, 587.993 )
+collision_layer = 32
 
 [editable path="Saoirse"]

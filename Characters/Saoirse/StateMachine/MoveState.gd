@@ -35,6 +35,8 @@ func handle_input(event: InputEvent):
 func update(_delta: float) -> void:
 	var direction: Vector2 = handle_movement()
 
+	_update_raycast_direction(get_facing_angle())
+
 	if Input.is_action_pressed("sprint"):
 		set_current_speed(speed_running)
 	else:
@@ -104,3 +106,6 @@ func get_facing_angle() -> int:
 	var facing_angle_rounded = int(round(facing_angle / 45) * 45)
 
 	return facing_angle_rounded
+
+func _update_raycast_direction(facing_angle) -> void:
+	owner.owner.get_node("InteractionRange").rotation_degrees = facing_angle

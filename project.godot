@@ -91,6 +91,7 @@ temp_solve={
 2d_physics/layer_3="environment"
 2d_physics/layer_4="detection"
 2d_physics/layer_5="projectiles"
+2d_physics/layer_6="interactables"
 
 [rendering]
 
