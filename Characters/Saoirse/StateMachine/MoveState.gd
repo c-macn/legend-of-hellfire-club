@@ -17,7 +17,7 @@ export(float) var friction = 0.1
 export(float) var acceleration = 0.1
 
 var current_speed: int = speed_walking
-var velocity: Vector2 = Vector2()
+var velocity := Vector2()
 var animated_sprite: AnimatedSprite
 
 func enter():
@@ -34,8 +34,6 @@ func handle_input(event: InputEvent):
 
 func update(_delta: float) -> void:
 	var direction: Vector2 = handle_movement()
-
-	_update_raycast_direction(get_facing_angle())
 
 	if Input.is_action_pressed("sprint"):
 		set_current_speed(speed_running)
@@ -79,22 +77,16 @@ func get_animation() -> String:
 		FACING_VALUES.UP:
 			return "walk_forward"
 		FACING_VALUES.LEFT:
-			animated_sprite.flip_h = false
-			return "walk_down_left"
+			return "walk_left"
 		FACING_VALUES.RIGHT:
-			animated_sprite.flip_h = true
-			return "walk_down_left"
+			return "walk_right"
 		FACING_VALUES.DIAGONAL_DOWN_LEFT:
-			animated_sprite.flip_h = false
 			return "walk_down_left"
 		FACING_VALUES.DIAGONAL_DOWN_RIGHT:
-			animated_sprite.flip_h = true
-			return "walk_down_left"
+			return "walk_down_right"
 		FACING_VALUES.DIAGONAL_UP_LEFT:
-			animated_sprite.flip_h = false
-			return "walk_up_right"
+			return "walk_up_left"
 		FACING_VALUES.DIAGONAL_UP_RIGHT:
-			animated_sprite.flip_h = true
 			return "walk_up_right"
 		_:
 			return "default"
@@ -107,5 +99,5 @@ func get_facing_angle() -> int:
 
 	return facing_angle_rounded
 
-func _update_raycast_direction(facing_angle) -> void:
-	owner.owner.get_node("InteractionRange").rotation_degrees = facing_angle
+func _on_sprite_changed(current_sprite: AnimatedSprite) -> void:
+	animated_sprite = current_sprite

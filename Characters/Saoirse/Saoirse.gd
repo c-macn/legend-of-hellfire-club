@@ -5,30 +5,26 @@ const MAX_BANISHMENTS: int = 3
 export var has_blessed_water: bool = true
 
 var BlessedShot: PackedScene = preload("res://Entities/BlessedWaterShot/BlessedShot.tscn")
-var velocity: Vector2 = Vector2()
-var spawn_point: Vector2 = Vector2()
 var banish_count: int = 0
-
-var is_banished: bool = false
+var velocity := Vector2()
+var spawn_point := Vector2()
+var is_banished := false
+var default_frames := preload("res://Characters/Saoirse/Animations/Saoirse_Default_Frames.tres")
+var box_frames := preload("res://Characters/Saoirse/Animations/Saoirse_Box_Frames.tres")
 
 onready var shot_spawner: Node2D = $ShotSpawner
 onready var animated_sprite: AnimatedSprite = $AnimatedSprite;
 onready var state_machine: Node = $StateMachine;
-#onready var interaction_range: RayCast2D = $InteractionRange
+onready var cutscene_waypoints: PoolVector2Array = get_parent().get_node("CutsceneWaypoints").get_children()
 
 func _ready():
 	# TODO create a path node every time saoirse walks so the path can be retraced
 	spawn_point = global_position # when banished, lerp to this point
+	_set_active_frames(default_frames)
 
 func _input(_event) -> void:
 	if Input.is_action_just_pressed("fire") and has_blessed_water:
 		fire_water()
-
-#func _physics_process(_delta: float) -> void:
-	#interaction_range.rotation_degrees
-	# if interaction_range.is_colliding():
-	# 	var obj = interaction_range.get_collider();
-	# 	obj.highlight();
 
 func fire_water() -> void:
 	var shot = BlessedShot.instance()
@@ -48,3 +44,15 @@ func banish() -> void:
 # maybe not the best
 func start_acting() -> void:
 	state_machine._change_state("acting")
+
+func move_to_point() -> void:
+	pass
+
+func put_on_disguise() -> void:
+	_set_active_frames(box_frames)
+
+func take_off_disguise() -> void:
+	_set_active_frames(default_frames)
+
+func _set_active_frames(frames: SpriteFrames) -> void:
+	animated_sprite.frames = frames

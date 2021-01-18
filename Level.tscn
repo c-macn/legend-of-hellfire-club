@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Tilesets/BaseTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Characters/Saoirse/Saoirse.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://CutsceneTriggers/CutsceneTriggger.tscn" type="PackedScene" id=13]
 [ext_resource path="res://CutsceneTriggers/CutsceneManager.gd" type="Script" id=14]
 [ext_resource path="res://Objects/InteractableObject.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Objects/Box/Box.tscn" type="PackedScene" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 64.3678, 15.7307 )
@@ -43,54 +44,42 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1.5, 5, 5.5, 7.5, 9.5, 10.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 1.5, 2.5, 5, 5.5, 7.5, 9.5, 10, 10.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ "walk_forward", "walk_down_left", "default", "walk_down_left", "walk_forward", "walk_down_left", "default" ]
+"values": [ "walk_forward", "walk_down_right", "walk_down_left", "default", "walk_down_right", "walk_forward", "walk_down_right", "walk_down_left", "default" ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Saoirse/AnimatedSprite:flip_h")
+tracks/2/path = NodePath("Saoirse:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 1.5, 2.5, 5.5, 9.5, 10 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false, true, false, true ]
+"times": PoolRealArray( 0, 1.5, 2.5, 3.5, 4.5, 5, 5.5, 6, 7.5, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 0.8, 1, 0.5 ),
+"update": 0,
+"values": [ Vector2( -127.331, 1432.36 ), Vector2( -127.331, 1432.36 ), Vector2( 79.342, 1312.95 ), Vector2( -111.229, 1312.95 ), Vector2( -306.854, 1312.95 ), Vector2( -404.666, 1312.95 ), Vector2( -404.666, 1312.95 ), Vector2( -306.854, 1312.95 ), Vector2( -111.229, 1312.95 ), Vector2( -111.229, 928.95 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Saoirse:position")
+tracks/3/path = NodePath("Saoirse/AnimatedSprite:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 1.5, 2.5, 3.5, 4.5, 5, 5.5, 6, 7.5, 9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 0.8, 1, 0.5 ),
-"update": 0,
-"values": [ Vector2( -69.309, 1312.95 ), Vector2( -69.309, 1312.95 ), Vector2( 79.342, 1312.95 ), Vector2( -111.229, 1312.95 ), Vector2( -306.854, 1312.95 ), Vector2( -404.666, 1312.95 ), Vector2( -404.666, 1312.95 ), Vector2( -306.854, 1312.95 ), Vector2( -111.229, 1312.95 ), Vector2( -111.229, 928.95 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Saoirse/AnimatedSprite:playing")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0, 1.5, 5, 5.5, 9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ false, true, false, true, false ]
 }
-tracks/5/type = "method"
-tracks/5/path = NodePath(".")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
 "times": PoolRealArray( 5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -98,13 +87,13 @@ tracks/5/keys = {
 "method": "init_dialoge"
 } ]
 }
-tracks/6/type = "method"
-tracks/6/path = NodePath("Saoirse")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
+tracks/5/type = "method"
+tracks/5/path = NodePath("Saoirse")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -114,7 +103,52 @@ tracks/6/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "the_head"
+resource_name = "the_doomed_rat"
+length = 6.0
+tracks/0/type = "method"
+tracks/0/path = NodePath("NPCS/DoomedRat")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "rat_blast" ],
+"method": "move_to_point"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("NPCS/DemonEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ Vector2( -3.869, 8.135 ) ],
+"method": "set_iris_position"
+}, {
+"args": [ null ],
+"method": "animate_iris"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("NPCS/DemonEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
+}
+
+[sub_resource type="Animation" id=5]
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -177,11 +211,11 @@ shape = SubResource( 2 )
 
 [node name="Saoirse" parent="." instance=ExtResource( 2 )]
 pause_mode = 1
-position = Vector2( -404.666, 1312.95 )
+position = Vector2( -111.229, 928.95 )
 has_blessed_water = false
 
 [node name="AnimatedSprite" parent="Saoirse" index="0"]
-flip_h = false
+animation = "walk_down_right"
 
 [node name="Camera2D" parent="Saoirse" instance=ExtResource( 4 )]
 
@@ -200,30 +234,35 @@ tile_data = PoolIntArray( 1048572, 5, 1, 1048573, 5, 1, 1048574, 5, 1, 1048575, 
 [node name="Lights" type="Node" parent="."]
 
 [node name="Light2D" type="Light2D" parent="Lights"]
-position = Vector2( -157.736, 461.895 )
+position = Vector2( -156.861, 450.77 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 5 )
 script = ExtResource( 10 )
 increment_cycle = 1.0
 
 [node name="Light2D2" type="Light2D" parent="Lights"]
-position = Vector2( -248.736, 522.895 )
+position = Vector2( -249.367, 522.334 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 5 )
 script = ExtResource( 10 )
 
 [node name="Light2D3" type="Light2D" parent="Lights"]
-position = Vector2( -69.7356, 525.895 )
+position = Vector2( -72.4492, 522.65 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 5 )
 script = ExtResource( 10 )
 increment_cycle = 0.8
 
 [node name="Light2D4" type="Light2D" parent="Lights"]
-position = Vector2( -94.7356, 611.895 )
+position = Vector2( -87.749, 608.773 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 5 )
 script = ExtResource( 10 )
 increment_cycle = 0.7
 
 [node name="Light2D5" type="Light2D" parent="Lights"]
-position = Vector2( -227.736, 608.895 )
+position = Vector2( -229.522, 605.224 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 5 )
 script = ExtResource( 10 )
 increment_cycle = 1.0
@@ -243,6 +282,8 @@ scale = Vector2( 2, 2 )
 
 [node name="DoomedRat" parent="NPCS" instance=ExtResource( 11 )]
 position = Vector2( -912.525, 748.242 )
+cutscene_waypoints = NodePath("../../CutsceneWaypoints")
+SPEED = 200.0
 
 [node name="CutsceneTriggers" type="Node" parent="."]
 
@@ -251,9 +292,15 @@ position = Vector2( -150.262, 592.868 )
 scale = Vector2( -9.5054, 3.9825 )
 cutscene_animation_name = "the_head"
 
+[node name="TheDoomedRat" parent="CutsceneTriggers" instance=ExtResource( 13 )]
+position = Vector2( -672.462, 544.099 )
+scale = Vector2( 3, 3 )
+cutscene_animation_name = "the_doomed_rat"
+
 [node name="CutsceneManager" type="AnimationPlayer" parent="."]
 anims/intro = SubResource( 3 )
-anims/the_head = SubResource( 4 )
+anims/the_doomed_rat = SubResource( 4 )
+anims/the_head = SubResource( 5 )
 script = ExtResource( 14 )
 
 [node name="LevelDesignNotes" type="Node" parent="."]
@@ -320,5 +367,25 @@ __meta__ = {
 [node name="RigidBody2D" parent="Interactables" instance=ExtResource( 15 )]
 position = Vector2( -484.649, 587.993 )
 collision_layer = 32
+
+[node name="Box" parent="Interactables" instance=ExtResource( 16 )]
+position = Vector2( 783.263, 1315.64 )
+
+[node name="CutsceneWaypoints" type="Node" parent="."]
+
+[node name="intro_0" type="Position2D" parent="CutsceneWaypoints"]
+position = Vector2( -127.332, 1311.79 )
+
+[node name="intro_1" type="Position2D" parent="CutsceneWaypoints"]
+position = Vector2( 153.63, 1311.79 )
+
+[node name="intro_2" type="Position2D" parent="CutsceneWaypoints"]
+position = Vector2( -458.061, 1311.79 )
+
+[node name="intro_3" type="Position2D" parent="CutsceneWaypoints"]
+position = Vector2( -127.332, 931.927 )
+
+[node name="rat_blast" type="Position2D" parent="CutsceneWaypoints"]
+position = Vector2( -913.465, 520.699 )
 
 [editable path="Saoirse"]
