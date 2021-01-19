@@ -112,11 +112,23 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 3.5, 5.5, 5.6, 6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [ "rat_blast" ],
 "method": "move_to_point"
+}, {
+"args": [  ],
+"method": "play_animation"
+}, {
+"args": [  ],
+"method": "explode_bottle"
+}, {
+"args": [  ],
+"method": "explode_rat"
+}, {
+"args": [  ],
+"method": "kill_scene"
 } ]
 }
 tracks/1/type = "method"
@@ -135,17 +147,6 @@ tracks/1/keys = {
 "args": [ null ],
 "method": "animate_iris"
 } ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath("NPCS/DemonEye")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"values": [  ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -211,16 +212,17 @@ shape = SubResource( 2 )
 
 [node name="Saoirse" parent="." instance=ExtResource( 2 )]
 pause_mode = 1
-position = Vector2( -111.229, 928.95 )
+position = Vector2( -127.331, 1432.36 )
 has_blessed_water = false
 
 [node name="AnimatedSprite" parent="Saoirse" index="0"]
-animation = "walk_down_right"
+animation = "walk_forward"
 
 [node name="Camera2D" parent="Saoirse" instance=ExtResource( 4 )]
 
 [node name="Light2D" parent="Saoirse" instance=ExtResource( 9 )]
 texture_scale = 9.5
+energy = 0.0
 mode = 0
 increment_cycle = 0.2
 

@@ -8,6 +8,9 @@ var velocity: Vector2
 var target_position: Position2D
 
 onready var bottle_sprite: AnimatedSprite = $Bottle;
+onready var rat_sprite: AnimatedSprite = $Rat
+onready var animation_player := $AnimationPlayer
+onready var bottle_explode: Particles2D = $BottleExplode
 
 func _ready() -> void:
 	var waypoints_node = get_node(cutscene_waypoints)
@@ -20,7 +23,9 @@ func _process(delta: float) -> void:
 		bottle_sprite.play()
 	else:
 		velocity = Vector2.ZERO
-		bottle_sprite.stop()
+
+		if bottle_sprite != null:
+			bottle_sprite.stop()
 
 	move_and_slide(velocity)
 
@@ -38,3 +43,17 @@ func _get_waypoint(point_name: String) -> Position2D:
 
 func _is_valid_target(target: Position2D) -> bool:
 	return target != null and position.distance_to(target.position) > 3
+
+func play_animation() -> void:
+	animation_player.play("look_out")
+
+func explode_bottle() -> void:
+	bottle_sprite.queue_free()
+	bottle_explode.emitting = true
+
+func explode_rat() -> void:
+	# also blow up rat with particles
+	rat_sprite.queue_free()
+
+func kill_scene() -> void:
+	queue_free()
