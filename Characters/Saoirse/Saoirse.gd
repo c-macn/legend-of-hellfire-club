@@ -54,5 +54,8 @@ func put_on_disguise() -> void:
 func take_off_disguise() -> void:
 	_set_active_frames(default_frames)
 
+func is_disguised() -> bool:
+	return animated_sprite.frames == box_frames
+
 func _set_active_frames(frames: SpriteFrames) -> void:
 	animated_sprite.frames = frames
