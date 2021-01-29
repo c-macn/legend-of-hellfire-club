@@ -183,6 +183,10 @@ tracks/1/keys = {
 [node name="Level" type="Node2D"]
 script = ExtResource( 3 )
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogContainer" parent="CanvasLayer" instance=ExtResource( 6 )]
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
 position = Vector2( -13.6011, -9.59637 )
@@ -276,18 +280,13 @@ texture = ExtResource( 5 )
 script = ExtResource( 10 )
 increment_cycle = 1.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="DialogContainer" parent="CanvasLayer" instance=ExtResource( 6 )]
-
 [node name="NPCS" type="Node" parent="."]
 
 [node name="Servant" parent="NPCS" instance=ExtResource( 7 )]
 position = Vector2( -715.059, -902.499 )
 
 [node name="DemonEye" parent="NPCS" instance=ExtResource( 8 )]
-position = Vector2( -895.785, 306.743 )
-scale = Vector2( 2, 2 )
+position = Vector2( -901.13, 344.161 )
 
 [node name="DoomedRat" parent="NPCS" instance=ExtResource( 11 )]
 position = Vector2( -912.525, 748.242 )
@@ -305,12 +304,6 @@ cutscene_animation_name = "the_head"
 position = Vector2( -672.462, 544.099 )
 scale = Vector2( 3, 3 )
 cutscene_animation_name = "the_doomed_rat"
-
-[node name="CutsceneManager" type="AnimationPlayer" parent="."]
-anims/intro = SubResource( 3 )
-anims/the_doomed_rat = SubResource( 4 )
-anims/the_head = SubResource( 5 )
-script = ExtResource( 14 )
 
 [node name="LevelDesignNotes" type="Node" parent="."]
 
@@ -396,5 +389,11 @@ position = Vector2( -127.332, 931.927 )
 
 [node name="rat_blast" type="Position2D" parent="CutsceneWaypoints"]
 position = Vector2( -913.465, 520.699 )
+
+[node name="CutsceneManager" type="AnimationPlayer" parent="."]
+anims/intro = SubResource( 3 )
+anims/the_doomed_rat = SubResource( 4 )
+anims/the_head = SubResource( 5 )
+script = ExtResource( 14 )
 
 [editable path="Saoirse"]
