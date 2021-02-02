@@ -1,3 +1,8 @@
+"""
+game_constants.gd
+
+An autoloader script to contain common values for the game in order to avoid human created errors
+"""
 extends Node
 
 enum SCENES {
@@ -10,18 +15,7 @@ enum SCENES {
 	FINAL_ROOM = 6
 }
 
-var _scenes = ["main_room", "storage_room", "main_hallway_room", "demon_eye_room", "servants_room", "game_room", "final_room"]
+var _scenes = ["res://Rooms/MainRoom.tscn", "res://Rooms/StockRoom.tscn", "res://Rooms/MainHallwayRoom.tscn", "res://Rooms/DemoEyeRoom.tscn", "res://Rooms/ServantsRoom.tscn", "res://Rooms/GameRoom.tscn"]
 
-var _scene_spawn_points = {
-	"demon_eye_room": {},
-	"main_hallway_room": {},
-	"servants_room": {},
-	"game_room": {},
-	"storage_room": {}
-}
-
-func get_scene_name(scene_index: int) -> String:
+func get_scene(scene_index: int) -> String:
 	return _scenes[scene_index]
-
-func get_scene_spawn_point(scene_name: String, direction: String) -> String:
-	return _scene_spawn_points.get(scene_name).get(direction)

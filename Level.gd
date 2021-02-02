@@ -11,7 +11,7 @@ onready var cutscene_triggers: Array = $CutsceneTriggers.get_children()
 func _ready() -> void:
 	$CanvasModulate.visible = true
 	setup_cutscene_triggers()
-	play_cutscene("intro")
+	#play_cutscene("intro")
 
 """
 func _set_camera_bounds(tilemap_cells) -> void:

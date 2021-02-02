@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Objects/Box/Box.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tilesets/BaseRoomTileset.tres" type="TileSet" id=2]
+[ext_resource path="res://Rooms/StockRoom.gd" type="Script" id=3]
+[ext_resource path="res://Entities/SceneTranistion/SceneTransition.tscn" type="PackedScene" id=4]
 
 [node name="StockRoom" type="Node2D"]
+script = ExtResource( 3 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
@@ -14,3 +17,10 @@ tile_data = PoolIntArray( -131076, 15, 0, -131075, 15, 0, -131074, 15, 0, -13107
 
 [node name="Box" parent="." instance=ExtResource( 1 )]
 position = Vector2( 669.883, 97.8314 )
+
+[node name="SaoirseSpawnPoint" type="Position2D" parent="."]
+position = Vector2( 77.5082, 164.817 )
+
+[node name="ExitArea" parent="." instance=ExtResource( 4 )]
+position = Vector2( -32.9633, 161.253 )
+scale = Vector2( 3.01214, 2.32147 )
