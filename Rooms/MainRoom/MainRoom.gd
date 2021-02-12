@@ -19,11 +19,13 @@ onready var camera: Camera2D = $Saoirse/Camera2D
 func _ready() -> void:
 	$CanvasModulate.visible = true
 	._ready()
-	#.set_camera_bounds()
 	setup_cutscene_triggers()
 
 	if GameState.is_world_state_intro():
+		saoirse.position = DEFAULT_SPAWN_POINT
 		play_cutscene("intro")
+	else:
+		saoirse.position = determine_spawn_location()
 
 func determine_spawn_location() -> Vector2:
 	var previous_scene = GameState.get_previous_scene()

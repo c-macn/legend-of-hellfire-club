@@ -11,8 +11,7 @@ script = ExtResource( 5 )
 room_tilemap = NodePath("TileMap")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
-color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+color = Color( 0.117647, 0.117647, 0.117647, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )

@@ -104,11 +104,14 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 10 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 10, 21.9 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [ "saoirse", "intro_0" ],
 "method": "init_dialoge"
+}, {
+"args": [ 1 ],
+"method": "update_world_state"
 } ]
 }
 
@@ -182,7 +185,7 @@ room_tilemap = NodePath("Walls")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
 position = Vector2( 21.3813, 12.4726 )
-color = Color( 0.117188, 0.117188, 0.117188, 1 )
+color = Color( 0.117647, 0.117647, 0.117647, 1 )
 
 [node name="Floors" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -267,11 +270,6 @@ animation = "idle_walk_back"
 
 [node name="CollisionShape2D" parent="Saoirse" index="1"]
 visible = true
-
-[node name="Light2D" parent="Saoirse" index="5"]
-visible = true
-enabled = false
-energy = 0.0
 
 [editable path="Saoirse"]
 

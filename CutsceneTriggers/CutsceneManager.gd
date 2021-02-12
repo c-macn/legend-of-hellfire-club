@@ -7,7 +7,8 @@ func _ready() -> void:
 	dialouge_container.connect("dialouge_finished", self, "_resume_current_animation")
 
 func _pause_current_animation() -> void:
-	stop(false)
+	#stop(false)
+	pass
 
 func _resume_current_animation() -> void:
-	play(assigned_animation)
+	pass

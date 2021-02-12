@@ -52,7 +52,6 @@ anims/look_at_mouse = ExtResource( 13 )
 anims/test = SubResource( 2 )
 
 [node name="Light2D" parent="." instance=ExtResource( 3 )]
-visible = false
 
 [node name="Camera2D" parent="." instance=ExtResource( 4 )]
 offset = Vector2( 0, 0 )
