@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Characters/Saoirse/StateMachine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Characters/Saoirse/StateMachine/IdleState.gd" type="Script" id=2]
-[ext_resource path="res://Characters/Saoirse/StateMachine/MoveState.gd" type="Script" id=3]
+[ext_resource path="res://Characters/Saoirse/StateMachine/Moving.gd" type="Script" id=3]
 [ext_resource path="res://Characters/Saoirse/StateMachine/Acting.gd" type="Script" id=4]
 
 [node name="StateMachine" type="Node"]

@@ -2,7 +2,7 @@ extends Area2D
 
 var _is_active: bool = false
 
-# le hack
+# le hack?
 var player: KinematicBody2D
 
 onready var sprite: Sprite = $Sprite

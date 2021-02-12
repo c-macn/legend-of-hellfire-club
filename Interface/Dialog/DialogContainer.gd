@@ -5,7 +5,7 @@ signal dialouge_finished
 
 const DIALOG_BASE_URL: String = "res://DialogFiles/dialog.json"
 
-export(int) var reveal_speed: int = 15
+export(int) var reveal_speed: float = 15.0
 
 var current_dialog_set: Dictionary = {} setget set_dialog_set, get_dialog_set
 var current_dialog_key: String = "" setget set_dialog_key, get_dialog_key

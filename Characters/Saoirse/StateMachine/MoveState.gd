@@ -1,3 +1,8 @@
+"""
+	MoveState.gd
+
+	The base state for all common movement needs
+"""
 extends "res://Characters/StateMachine/State.gd"
 
 enum FACING_VALUES {
@@ -17,55 +22,25 @@ export(float) var friction = 0.1
 export(float) var acceleration = 0.1
 
 var current_speed: int = speed_walking
-var velocity := Vector2()
+var velocity := Vector2.ZERO
 var animated_sprite: AnimatedSprite
-
-func enter():
-	set_current_speed(speed_walking)
-	velocity = Vector2()
-	animated_sprite = owner.owner.get_node("AnimatedSprite")
 
 func exit():
 	set_current_speed(speed_walking)
-	velocity = Vector2()
+	velocity = Vector2.ZERO
 
 func handle_input(event: InputEvent):
 	return .handle_input(event)
 
-func update(_delta: float) -> void:
-	var direction: Vector2 = handle_movement()
-
-	if Input.is_action_pressed("sprint"):
-		set_current_speed(speed_running)
-	else:
-		set_current_speed(speed_walking)
-
-	if not direction == Vector2.ZERO:
-		velocity = lerp(velocity, direction * current_speed, acceleration)
-		animated_sprite.play(get_animation())
-		owner.owner.move_and_slide(velocity)
-	else:
-		emit_signal("transition_to_state", "idle")
+# move to subclass
+func update(delta: float) -> void:
+	.update(delta)
 
 func set_current_speed(speed_value) -> void:
 	current_speed = speed_value
 
-func handle_movement() -> Vector2:
-	var input: Vector2 = Vector2()
-
-	if Input.is_action_pressed("walk_up"):
-		input.y -= 1
-	if Input.is_action_pressed("walk_down"):
-		input.y += 1
-	if Input.is_action_pressed("walk_right"):
-		input.x += 1
-	if Input.is_action_pressed("walk_left"):
-		input.x -= 1
-
-	return input.normalized()
-
 func get_animation() -> String:
-	var facing_angle = get_facing_angle()
+	var facing_angle = _get_facing_angle()
 
 	# always convert to positive, TODO investigate why this is sometimes NEGATIVE
 	if facing_angle == -FACING_VALUES.LEFT:
@@ -91,7 +66,7 @@ func get_animation() -> String:
 		_:
 			return "default"
 
-func get_facing_angle() -> int:
+func _get_facing_angle() -> int:
 	# get the degrees of the current velocity
 	var facing_angle = rad2deg(velocity.angle())
 	# round to the nearest whole int divisble by 45

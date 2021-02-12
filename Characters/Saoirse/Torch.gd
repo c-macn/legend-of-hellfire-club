@@ -14,7 +14,7 @@ func _ready() -> void:
 	value = randi() % MAX_VALUE
 	noise.period = 12
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	value += increment_cycle
 
 	if value > MAX_VALUE:

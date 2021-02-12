@@ -1,4 +1,4 @@
-extends Node2D
+extends "res://Rooms/Room.gd"
 
 const TILE_SIZE: int = 64
 
@@ -9,6 +9,7 @@ onready var dialouge_container: Control = $CanvasLayer/DialogContainer
 onready var cutscene_triggers: Array = $CutsceneTriggers.get_children()
 
 func _ready() -> void:
+	._ready()
 	$CanvasModulate.visible = true
 	setup_cutscene_triggers()
 	#play_cutscene("intro")

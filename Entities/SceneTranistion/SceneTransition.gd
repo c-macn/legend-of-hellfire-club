@@ -9,7 +9,6 @@ func _ready() -> void:
 	
 func _on_Saoirse_entered(body: KinematicBody2D) -> void:
 	if _is_Body_Saoirse(body):
-		print(scene_to)
 		GameState.update_current_scene(GameConstants.get_scene(scene_to))
 		get_tree().change_scene(GameConstants.get_scene(scene_to))
 

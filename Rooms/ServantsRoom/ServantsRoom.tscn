@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Tilesets/BaseRoomTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Entities/SceneTranistion/SceneTransition.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Rooms/ServantsRoom.gd" type="Script" id=3]
+[ext_resource path="res://Rooms/ServantsRoom/ServantsRoom.gd" type="Script" id=3]
 
 [node name="ServantsRoom" type="Node2D"]
 script = ExtResource( 3 )
