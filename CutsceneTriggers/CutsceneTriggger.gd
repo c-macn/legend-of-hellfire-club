@@ -12,10 +12,10 @@ func _ready() -> void:
 	_setup_signals()
 
 func _setup_signals() -> void:
-	self.connect("body_entered", self, "_trigger_cutscene")
+	connect("body_entered", self, "_trigger_cutscene")
 
 	if is_one_shot:
-		self.connect("body_exited", self, "_cutscene_finished")
+		connect("body_exited", self, "_cutscene_finished")
 
 func _is_Saoirse(body: KinematicBody2D) -> bool:
 	if body:

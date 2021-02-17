@@ -40,11 +40,11 @@ func set_current_speed(speed_value) -> void:
 	current_speed = speed_value
 
 func get_animation() -> String:
-	var facing_angle = _get_facing_angle()
+	var facing_angle = get_facing_angle(velocity)
 
 	# always convert to positive, TODO investigate why this is sometimes NEGATIVE
-	if facing_angle == -FACING_VALUES.LEFT:
-		facing_angle = FACING_VALUES.LEFT
+	# if facing_angle == -FACING_VALUES.LEFT:
+	# 	facing_angle = FACING_VALUES.LEFT
 
 	match facing_angle:
 		FACING_VALUES.DOWN:
@@ -66,12 +66,12 @@ func get_animation() -> String:
 		_:
 			return "default"
 
-func _get_facing_angle() -> int:
+func get_facing_angle(target_position: Vector2) -> int:
 	# get the degrees of the current velocity
-	var facing_angle = rad2deg(velocity.angle())
+	var facing_angle = rad2deg(target_position.angle())
 	# round to the nearest whole int divisble by 45
 	var facing_angle_rounded = int(round(facing_angle / 45) * 45)
-
+	
 	return facing_angle_rounded
 
 func _on_sprite_changed(current_sprite: AnimatedSprite) -> void:

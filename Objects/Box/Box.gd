@@ -8,6 +8,6 @@ func _input(_event) -> void:
 
 func interact() -> void:
 	if player:
-		if player.has_method("put_on_disguise"):
+		if player.has_method("put_on_disguise"):			
 			player.put_on_disguise()
-			queue_free()
+			.destroy()

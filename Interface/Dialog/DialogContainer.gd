@@ -1,3 +1,5 @@
+#TODO Refactor dis to make more sense
+
 extends Control
 
 signal dialouge_started
@@ -10,12 +12,15 @@ export(int) var reveal_speed: float = 15.0
 var current_dialog_set: Dictionary = {} setget set_dialog_set, get_dialog_set
 var current_dialog_key: String = "" setget set_dialog_key, get_dialog_key
 
-onready var character_portrait: TextureRect = $HBoxContainer/CharacterPortraitContainer/CenterContainer/TextureRect
-onready var dialog_label: RichTextLabel = $HBoxContainer/DialogContainer/RichTextLabel
-onready var reveal_tween: Tween = $HBoxContainer/DialogContainer/RevealTween
+onready var character_portrait: TextureRect = $DialogPanel/CharacterPortraitContainer/CharacterPortrait/CenterContainer/TextureRect
+onready var character_name: RichTextLabel = $DialogPanel/CharacterPortraitContainer/NameContainer/RichTextLabel
+onready var dialog_label: RichTextLabel = $DialogPanel/TextContainer/RichTextLabel
+onready var reveal_tween: Tween = $RevealTween
+onready var next_indicator: TextureRect = $DialogPanel/NextIndicator
 
 func _ready() -> void:
 	set_dialog_container_visibility(false)
+	_hide_next_indicator()
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
@@ -31,17 +36,25 @@ func is_dialog_container_visible() -> bool:
 func on_dialog_continue_pressed() -> void:
 	if reveal_tween.is_active():
 		end_reveal_animation() # skip to the end for impatient players #ADHD_ME
+		_show_next_indicator()
 	else:
 		var dialog_set = get_dialog_set()
 		var dialog_key = get_dialog_key()
-
+		
 		if should_dialog_continue(dialog_set, dialog_key):
-			set_dialog_key(dialog_set.get(dialog_key).next)
-			set_dialog_text(dialog_set.get(get_dialog_key()).value)
+			_hide_next_indicator()
+			if typeof(dialog_set.get(dialog_key).next) == TYPE_DICTIONARY:
+
+				if get_dialouge_condition_result(dialog_set.get(dialog_key).next.group, dialog_set.get(dialog_key).next.condition):
+					set_dialog_key(dialog_set.get(dialog_key).next.pass)
+					set_dialog_text(dialog_set.get(get_dialog_key()).value)
+				else:
+					_end_dialouge()
+			else:
+				set_dialog_key(dialog_set.get(dialog_key).next)
+				set_dialog_text(dialog_set.get(get_dialog_key()).value)
 		else:
-			get_tree().call_group("actors", "scene_over")
-			set_dialog_container_visibility(false)
-			emit_signal("dialouge_finished")
+			_end_dialouge()
 
 func get_file_content() -> Dictionary:
 	var file = File.new()
@@ -83,17 +96,43 @@ func set_portrait(character_portrait_texture) -> void:
 func animate_text(time_to_reveal: int) -> void:
 	reveal_tween.interpolate_property(dialog_label, "percent_visible", 0, 1, time_to_reveal, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	reveal_tween.start()
+	reveal_tween.interpolate_callback(self, time_to_reveal, "_show_next_indicator")
 
 func end_reveal_animation() -> void:
 	reveal_tween.seek(reveal_tween.get_runtime())
 
-func on_DialogReceived(chararacter: String, dialog_key: String) -> void:
+func on_DialogReceived(chararacter: String, dialog_key: String, use_alt_portrait: bool = false) -> void:
 	var dialog_data: Dictionary = get_file_content()
 	var dialog_set: Dictionary = dialog_data.get(chararacter)
+	var portrait = dialog_set.portrait if !use_alt_portrait else dialog_set.portrait_alt
+
+	character_name.text = chararacter
 
 	set_dialog_set(dialog_set)
 	set_dialog_key(dialog_key)
 	set_dialog_text(dialog_set.get(dialog_key).value)
-	set_portrait(dialog_set.portrait)
+	set_portrait(portrait)
 	set_dialog_container_visibility(true)
+	get_tree().call_group("actors", "scene_start")
 	emit_signal("dialouge_started")
+
+func _end_dialouge() -> void:
+	get_tree().call_group("actors", "scene_over")
+	set_dialog_container_visibility(false)
+	emit_signal("dialouge_finished")
+	_hide_next_indicator()
+
+func get_dialouge_condition_result(group_name: String, method_name: String) -> bool:
+	var result = null
+
+	for node in get_tree().get_nodes_in_group(group_name):
+		if node.name == "Saoirse":
+			result = node.call(method_name)
+	
+	return result
+	
+func _show_next_indicator() -> void:
+	next_indicator.visible = true
+	
+func _hide_next_indicator() -> void:
+	next_indicator.visible = false

@@ -9,20 +9,21 @@ var Box_scene = preload("res://Objects/Box/Box.tscn")
 
 var Saoirse
 
+onready var dialouge_container: Control = $CanvasLayer/DialogContainer
+
 func _ready() -> void:
 	spawn_Box(GameState.get_box_position())
 
 func spawn_Box(box_position: Vector2) -> void:
 	if box_position != Vector2.ZERO:
 		var Box = Box_scene.instance()
-		Box.position = box_position
 		add_child(Box)
 
 func spawn_Saoirse(spawn_point) -> void:
 	Saoirse = Saoirse_scene.instance()
 	Saoirse.position = spawn_point
-	add_child(Saoirse)
 	Saoirse.connect("disguise_removed", self, "_on_disguise_removed")
+	add_child(Saoirse)
 
 func set_camera_bounds() -> void:
 	if Saoirse != null and room_tilemap != null:
@@ -30,11 +31,14 @@ func set_camera_bounds() -> void:
 		var camera = Saoirse.get_node("Camera2D")
 		camera.set_bounds(tile_map.get_used_rect(), tile_map.cell_size)
 
-func update_world_state(new_state: int) -> void:
-	GameState.set_world_state(new_state)
+func update_cutscene_state(animation_name: String) -> void:
+	GameState.update_cutscene_state(animation_name)
+
+func init_dialouge(character_name: String, dialouge_key: String) -> void:
+	dialouge_container.on_DialogReceived(character_name, dialouge_key)
 
 func _on_disguise_removed(position: Vector2) -> void:
-	var current_scene = get_tree().current_scene.filename
-	position.x = position.x + BOX_OFFSET
+	var current_scene = GameState._current_scene # TODO add getter
+	var new_position = Vector2(position.x + BOX_OFFSET, position.y)
 	GameState.set_box_state(current_scene, position)
-	spawn_Box(position)
+	spawn_Box(new_position)

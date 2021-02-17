@@ -1,8 +1,9 @@
 {
   "saoirse": {
     "portrait": "res://Characters/Saoirse/Sprites/Saoirse_Portrait.png",
+    "portrait_alt": "res://Characters/Saoirse/Sprites/Saoirse_Portrait_Alt.png",
     "intro_0": {
-      "value": "Jaysus!............ it must have been a fierce one last night",
+      "value": "Jaysus!... it must have been a fierce one last night",
       "next": "intro_1"
     },
     "intro_1": {
@@ -10,38 +11,150 @@
       "next": "intro_2"
     },
     "intro_2": {
-      "value": "[shake rate=10 level=10]MAAAAAAAAAAAAAAAA![/shake]",
+      "value": "[shake rate=10 level=10]MAAAA![/shake]..... [shake rate=10 level=10]DAAAA![/shake]",
       "next": "intro_3"
     },
     "intro_3": {
-      "value": "[shake rate=10 level=10]DAAAAAAAAAAAAAAAAAAAA![/shake]",
-      "next": "intro_4"
-    },
-    "intro_4": {
       "value": "No answer... I better take a look around."
     },
     "cant_leave": {
-      "value": "I can't leave now! I have to make sure Ma and Da are safe."
+      "value": "I can't leave now! I have to find Ma and Da."
     },
     "the_head_0": {
-      "value": "OH FUCK!!!...",
+      "value": "I've heard of getting legless, but this is on another level!",
       "next": "the_head_1"
     },
     "the_head_1": {
-      "value": "I've heard of getting leggless, but this is on another level!",
-      "next": "the_head_2"
-    },
-    "the_head_2": {
       "value": "Tough crowd..."
+    },
+    "demon_eye_0": {
+      "value": "Jaysus, Mary, Mother of God! What in the blue fuck is that thing!?",
+      "next": "demon_eye_1"
+    },
+    "demon_eye_1": {
+      "value": "What's making that noise?"
+    },
+    "demon_eye_2": {
+      "value": "Ok, a bottle moving on it's own. Not the strangest thing I've seen tonight."
+    },
+    "demon_eye_3": {
+      "value": "Aww. It's a little rat. Rat boy be carefu...",
+      "next": "demon_eye_4"
+    },
+    "demon_eye_4": {
+      "value": "CHRIST!!!...",
+      "next": "demon_eye_5"
+    },
+    "demon_eye_5": {
+      "value": "Rat boy... I hardly knew ye..",
+      "next": "demon_eye_6"
+    },
+    "demon_eye_6": {
+      "value": "I guess I'll need something to hide in to get that card piece.",
+      "next": {
+        "condition": "is_disguised",
+        "group": "actors",
+        "pass": "demon_eye_7",
+        "fail": "null"
+      }
+    },
+    "demon_eye_7": {
+      "value": "Good thing I'm already in this box!"
+    },
+    "the_servant_0": {
+      "value": "[shake rate=50]Uggh.[/shake], Feels like someone just walked over my grave."
+    },
+    "the_devil_0": {
+      "value": "Jesus Christ!..."
+    },
+    "the_devil_4": {
+      "value": "I'm here to get my Ma and Da back, where are they? What have you done with them?"
+    },
+    "the_devil_8": {
+      "value": "Well, I don't have much of a choice in the matter. I'm in",
+      "next": "the_devil_9"
+    },
+    "the_devil_9": {
+      "value": "HIT ME!"
+    },
+    "the_good_end_0": {
+      "value": "Wha... Where am I now...."
     }
   },
   "cultist": {
-    "portrait": "res://Characters/Saoirse/Cultist_Portrait.png"
+    "portrait": "res://Characters/Saoirse/Cultist_Portrait.png",
+    "marked_0": {
+      "value": "You have been marked child, I will know of your precence within these walls."
+    },
+    "marked_1": {
+      "value": "[shake rate=20]BEGONE![/shake]",
+      "next": "marked_2"
+    },
+    "marked_2": {
+      "value": "Do not test my patience young one, lest you wish to learn the fate of those who stood in our way"
+    }
   },
   "servant": {
-    "portrait": "res://Characters/Saoirse/Servant_Portrait.png"
+    "portrait": "res://Characters/Saoirse/Servant_Portrait.png",
+    "the_servant_1": {
+      "value": "HEEEELP ME, I'm burnin' up.... HEEEELP"
+    },
+    "the_servant_2": {
+      "value": "HAHAHA. Only coddin luv",
+      "next": "the_servant_3"
+    },
+    "the_servant_3": {
+      "value": "Sure if you hadn't noticed. I'm already brown bread",
+      "next": "the_servant_4"
+    }
   },
   "devil": {
-    "portrait": "res://Characters/Saoirse/Devil_Portrait.png"
+    "portrait": "res://Characters/Saoirse/Devil_Portrait.png",
+    "the_devil_1": {
+      "value": "Not quite...",
+      "next": "the_devil_2"
+    },
+    "the_devil_2": {
+      "value": "Parsons' get in here and bring me my cards!",
+      "next": ""
+    },
+    "the_devil_3": {
+      "value": "Well, little one. What is it that brought you here?"
+    },
+    "the_devil_4": {
+      "value": "Ahhh, here to save the day what a brave little girl. How about we play a little game of cards first",
+      "next": "the_devil_5"
+    },
+    "the_devil_5": {
+      "value": "Have you played blackjack before? Nevermind, let's simplify, I'll draw three cards for you.",
+      "next": "the_devil_6"
+    },
+    "the_devil_6": {
+      "value": "If the value of the cards is above 21, I win, if not.. You win and I'll send you to your parents...",
+      "next": "the_devil_7"
+    },
+    "the_devil_7": {
+      "value": "So do we have a deal?"
+    },
+    "the_devil_bad_end": {
+      "value": "Ohh too bad little one, I guess Ma and Da won't be saved after all. Parsons' you know what to do.."
+    },
+    "the_devil_good_end": {
+      "value": "Argh, You sneaky little witch, used my servant and card against me.",
+      "next": "good_end"
+    },
+    "good_end": {
+      "value": "Well, I guess a deal is a deal....",
+      "next": "good_end_1"
+    },
+    "good_end_1": {
+      "value": "Say hello to Ma and Da for me..."
+    }
+  },
+  "mysteriousStranger": {
+    "portait": "",
+    "the_end": {
+      "value": "Only a fool makes a bargin with the Devil, welcome to hell little one."
+    }
   }
 }

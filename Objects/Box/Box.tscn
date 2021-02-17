@@ -5,6 +5,7 @@
 [ext_resource path="res://Objects/Box/Box.gd" type="Script" id=3]
 
 [node name="Box" instance=ExtResource( 2 )]
+collision_mask = 1
 script = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="0"]
