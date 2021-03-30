@@ -15,117 +15,117 @@ region = Rect2( 192, 0, 64, 64 )
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 64, 64 )
+region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 896, 0, 64, 64 )
+region = Rect2( 512, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 960, 0, 64, 64 )
+region = Rect2( 576, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 64, 0, 64, 64 )
+region = Rect2( 640, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 128, 0, 64, 64 )
+region = Rect2( 832, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 512, 0, 64, 64 )
+region = Rect2( 448, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 576, 0, 64, 64 )
+region = Rect2( 704, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 512, 0, 64, 64 )
+region = Rect2( 768, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 576, 0, 64, 64 )
+region = Rect2( 512, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 640, 0, 64, 64 )
+region = Rect2( 576, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=13]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 192, 0, 64, 64 )
+region = Rect2( 256, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 448, 0, 64, 64 )
+region = Rect2( 320, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=15]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 832, 0, 64, 64 )
+region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=16]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 256, 0, 64, 64 )
+region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 320, 0, 64, 64 )
+region = Rect2( 1088, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 448, 0, 64, 64 )
+region = Rect2( 1152, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 1088, 0, 64, 64 )
+region = Rect2( 1024, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 1152, 0, 64, 64 )
+region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=21]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 704, 0, 64, 64 )
+region = Rect2( 448, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=22]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 768, 0, 64, 64 )
+region = Rect2( 256, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=23]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 1024, 0, 64, 64 )
+region = Rect2( 320, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=24]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 256, 0, 64, 64 )
+region = Rect2( 896, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=25]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 320, 0, 64, 64 )
+region = Rect2( 960, 0, 64, 64 )
 
 [resource]
 animations = [ {
@@ -141,76 +141,76 @@ animations = [ {
 }, {
 "frames": [ SubResource( 3 ) ],
 "loop": true,
-"name": "idle_walk_back",
+"name": "idle_walk_left",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
-"name": "walk_up_left",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 6 ), SubResource( 7 ) ],
-"loop": true,
-"name": "walk_back",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 8 ), SubResource( 9 ) ],
-"loop": true,
-"name": "walk_right",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 10 ), SubResource( 11 ) ],
-"loop": true,
 "name": "walk_down_right",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 12 ) ],
+"frames": [ SubResource( 6 ) ],
 "loop": true,
 "name": "idle_walk_forward",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 13 ) ],
-"loop": true,
-"name": "idle_walk_left",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 14 ) ],
-"loop": true,
-"name": "idle_walk_right",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 15 ) ],
+"frames": [ SubResource( 7 ) ],
 "loop": true,
 "name": "idle_walk_up_left",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 16 ), SubResource( 17 ) ],
-"loop": true,
-"name": "walk_down_left",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 18 ) ],
+"frames": [ SubResource( 8 ) ],
 "loop": true,
 "name": "idle_walk_down_right",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 19 ), SubResource( 20 ) ],
-"loop": true,
-"name": "walk_up_right",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 21 ), SubResource( 22 ) ],
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": true,
 "name": "walk_forward",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 23 ) ],
+"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "walk_right",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 13 ), SubResource( 14 ) ],
+"loop": true,
+"name": "walk_left",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "walk_back",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 17 ), SubResource( 18 ) ],
+"loop": true,
+"name": "walk_up_right",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 19 ) ],
 "loop": true,
 "name": "idle_walk_up_right",
 "speed": 5.0
 }, {
+"frames": [ SubResource( 20 ) ],
+"loop": true,
+"name": "idle_walk_back",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 21 ) ],
+"loop": true,
+"name": "idle_walk_right",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 22 ), SubResource( 23 ) ],
+"loop": true,
+"name": "walk_down_left",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 24 ), SubResource( 25 ) ],
 "loop": true,
-"name": "walk_left",
+"name": "walk_up_left",
 "speed": 5.0
 } ]

@@ -3,6 +3,10 @@ extends Control
 var _is_open: bool = false
 
 onready var tween := $Tween
+onready var brandy_bottle: TextureRect = $NinePatchRect/BrandyBottle
+
+func _ready() -> void:
+	brandy_bottle.visible = GameState.get_has_brandy()
 
 func _input(_event) -> void:
 	if Input.is_action_just_pressed("inventory_toggle"):    
@@ -29,3 +33,7 @@ func hide_inventory() -> void:
 func toggle_inventory_open() -> bool:
 	_is_open = !_is_open
 	return _is_open
+	
+func add_brandy_to_inventory() -> void:
+	GameState.set_has_brandy(true)
+	brandy_bottle.visible = true

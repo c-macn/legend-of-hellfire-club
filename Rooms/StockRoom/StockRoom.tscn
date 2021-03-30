@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Interface/CanvasLayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tilesets/BaseRoomTileset.tres" type="TileSet" id=2]
 [ext_resource path="res://Rooms/StockRoom/StockRoom.gd" type="Script" id=3]
 [ext_resource path="res://Entities/SceneTranistion/SceneTransition.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Tilesets/main_tileset.tres" type="TileSet" id=5]
+[ext_resource path="res://Objects/BrandyBottle/Brandy.tscn" type="PackedScene" id=6]
 
 [node name="StockRoom" type="Node2D"]
 script = ExtResource( 3 )
@@ -32,3 +33,6 @@ position = Vector2( -32.9633, 161.253 )
 scale = Vector2( 3.01214, 2.32147 )
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 1 )]
+
+[node name="Brandy" parent="." instance=ExtResource( 6 )]
+position = Vector2( 547.284, 74.0836 )
