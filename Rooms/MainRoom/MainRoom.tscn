@@ -291,7 +291,6 @@ room_tilemap = NodePath("Walls")
 pause_mode = 2
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 position = Vector2( 21.3813, 12.4726 )
 color = Color( 0.0588235, 0.0588235, 0.0588235, 1 )
 

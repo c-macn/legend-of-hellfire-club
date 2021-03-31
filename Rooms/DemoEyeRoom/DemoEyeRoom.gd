@@ -6,9 +6,11 @@ onready var cutscene_manager: AnimationPlayer = $CutsceneManager
 onready var cutscene_camera := $Camera2D
 onready var tree = $AnimationTree
 onready var room_mask := $DemonEyeRoomMask
+
 func _ready() -> void:
 	._ready()
 	room_mask.connect("soairse_detected", self, "set_target")
+	yield(scene_transition, "transition_finished")
 	
 	if !GameState.get_cutscene_state("doomedRat"):
 		init_cutscene()

@@ -17,8 +17,8 @@ onready var camera: Camera2D = $Saoirse/Camera2D
 onready var animtion_tree := $AnimationTree
 
 func _ready() -> void:
-	$CanvasModulate.visible = true
 	._ready()
+	yield(scene_transition, "transition_finished")
 	setup_cutscene_triggers()
 	dialouge_container.connect("dialouge_finished", self, "_on_Dialouge_finished")
 	saoirse.position = determine_spawn_location()

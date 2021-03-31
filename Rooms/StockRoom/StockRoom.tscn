@@ -11,6 +11,12 @@
 script = ExtResource( 3 )
 room_tilemap = NodePath("TileMap")
 
+[node name="Exits" type="Node" parent="."]
+
+[node name="ExitArea" parent="Exits" instance=ExtResource( 4 )]
+position = Vector2( -32.9633, 161.253 )
+scale = Vector2( 3.01214, 2.32147 )
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.117647, 0.117647, 0.117647, 1 )
 
@@ -27,10 +33,6 @@ tile_data = PoolIntArray( -1, 0, 4, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -6
 
 [node name="SaoirseSpawnPoint" type="Position2D" parent="."]
 position = Vector2( 77.5082, 164.817 )
-
-[node name="ExitArea" parent="." instance=ExtResource( 4 )]
-position = Vector2( -32.9633, 161.253 )
-scale = Vector2( 3.01214, 2.32147 )
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 1 )]
 
