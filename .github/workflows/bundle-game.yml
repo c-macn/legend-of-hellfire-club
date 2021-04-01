@@ -33,6 +33,7 @@ jobs:
           mkdir -v -p build/windows
           cd $EXPORT_NAME
           godot -v --export "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
+          pwd build/windows
           
       - name: build:upload-artifact
         uses: actions/upload-artifact@v1
