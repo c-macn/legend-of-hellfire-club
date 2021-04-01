@@ -26,7 +26,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="legend-of-the-hellfire-club"
+config/name="devil-youre-dealt"
 run/main_scene="res://Interface/MainMenu/MainMenu.tscn"
 config/icon="res://icon.png"
 
@@ -121,6 +121,7 @@ inventory_toggle={
 
 quality/2d/use_pixel_snap=true
 quality/filters/anisotropic_filter_level=2
+quality/shadows/filter_mode=2
 environment/default_environment="res://default_env.tres"
 
 [world]
