@@ -48,7 +48,9 @@ tile_data = PoolIntArray( -262145, 0, 4, -327680, 0, 1, -327679, 0, 1, -327678, 
 [node name="SaoirseSpawnPoint" type="Position2D" parent="."]
 position = Vector2( 288.113, 413.518 )
 
-[node name="Exit" parent="." instance=ExtResource( 2 )]
+[node name="Exits" type="Node" parent="."]
+
+[node name="Exit" parent="Exits" instance=ExtResource( 2 )]
 position = Vector2( 287.94, 481.343 )
 scale = Vector2( 3.37675, 2.57944 )
 scene_to = 2

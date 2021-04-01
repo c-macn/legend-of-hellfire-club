@@ -10,9 +10,14 @@ var Box_scene = preload("res://Objects/Box/Box.tscn")
 var Saoirse
 
 onready var dialouge_container: Control = $CanvasLayer/DialogContainer
+onready var exits := $Exits.get_children()
+onready var scene_transition := $CanvasLayer/SceneTransition
 
 func _ready() -> void:
+	scene_transition.fade_out()
+	setup_scene_transitions()
 	spawn_Box(GameState.get_box_position())
+	$CanvasModulate.visible = true
 
 func spawn_Box(box_position: Vector2) -> void:
 	if box_position != Vector2.ZERO:
@@ -36,6 +41,11 @@ func update_cutscene_state(animation_name: String) -> void:
 
 func init_dialouge(character_name: String, dialouge_key: String) -> void:
 	dialouge_container.on_DialogReceived(character_name, dialouge_key)
+
+func setup_scene_transitions() -> void:
+	for exit in exits:
+		if !exit.is_connected("transition_to_scene", scene_transition, "transition_to_new_scene"):
+			exit.connect("transition_to_scene", scene_transition, "transition_to_new_scene")
 
 func _on_disguise_removed(position: Vector2) -> void:
 	var current_scene = GameState._current_scene # TODO add getter

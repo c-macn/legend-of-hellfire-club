@@ -372,7 +372,9 @@ pause_mode = 2
 position = Vector2( 432.633, 653.693 )
 rotation = 0.0
 
-[node name="Area2D" parent="." instance=ExtResource( 4 )]
+[node name="Exits" type="Node" parent="."]
+
+[node name="Area2D" parent="Exits" instance=ExtResource( 4 )]
 position = Vector2( 1120.33, 351.714 )
 scale = Vector2( 3.04, 3 )
 

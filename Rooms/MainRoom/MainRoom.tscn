@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Tilesets/BaseRoomTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://CutsceneTriggers/CutsceneTriggger.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Characters/Saoirse/Saoirse.tscn" type="PackedScene" id=7]
 [ext_resource path="res://CutsceneTriggers/CutsceneManager.gd" type="Script" id=8]
 [ext_resource path="res://Tilesets/main_tileset.tres" type="TileSet" id=9]
+[ext_resource path="res://Objects/TheHead/TheHead.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "intro"
@@ -394,5 +395,8 @@ tree_root = SubResource( 14 )
 anim_player = NodePath("../CutsceneManager")
 parameters/playback = SubResource( 15 )
 parameters/conditions/is_dialouge_finished = false
+
+[node name="TheHead" parent="." instance=ExtResource( 10 )]
+position = Vector2( 489.394, 358.715 )
 
 [editable path="Saoirse"]

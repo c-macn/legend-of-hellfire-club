@@ -11,17 +11,17 @@ func banish_cultist() -> void:
 	get_tree().call_group("cultist", "banish")
 
 # Abstract functions that will be handled in inherited scenes
-func handle_Saoirse_enter(body: KinematicBody2D):
+func handle_Saoirse_enter(_body: KinematicBody2D):
 	if is_safe_area:
 		banish_cultist()
 
-func handle_Saoirse_exit(body: KinematicBody2D):
+func handle_Saoirse_exit(_body: KinematicBody2D):
 	pass
 
-func handle_Body_enter(body: KinematicBody2D):
+func handle_Body_enter(_body: KinematicBody2D):
 	pass
 
-func handle_Body_exit(body: KinematicBody2D):
+func handle_Body_exit(_body: KinematicBody2D):
 	pass
 
 func _is_Body_Saoirse(body: KinematicBody2D) -> bool:

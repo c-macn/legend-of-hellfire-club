@@ -26,3 +26,7 @@ var _scenes = [
 
 func get_scene(scene_index: int) -> String:
 	return _scenes[scene_index]
+
+# checks if the body is Saoirse, should probably create a utils scripts for this
+func is_Saoirse(body: KinematicBody2D) -> bool:
+	return body.name == "Saoirse"

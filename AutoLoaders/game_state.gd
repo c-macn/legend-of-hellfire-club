@@ -35,6 +35,8 @@ var _box_state: Dictionary = {
 	"position": Vector2(669.883, 97.831)
 }
 
+var _has_brandy := false setget set_has_brandy, get_has_brandy
+
 func update_current_scene(updated_scene: int) -> void:
 	_previous_scene = _current_scene
 	_current_scene = updated_scene
@@ -80,3 +82,9 @@ func update_card_state(card_piece: String) -> void:
 
 func is_card_piece_collected(card_piece: String) -> bool:
 	return CARD_COLLECTION_STATE[card_piece]
+
+func set_has_brandy(has_brandy: bool) -> void:
+	_has_brandy = has_brandy
+	
+func get_has_brandy() -> bool:
+	return _has_brandy
