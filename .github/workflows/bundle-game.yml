@@ -5,7 +5,7 @@ env:
   GODOT_VERSION: 3.2.3
   EXPORT_NAME: devil-your-dealt
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -16,28 +16,26 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: barichello/godot-ci:3.2.3
-      
+
     steps:
       - name: build:checkout
         uses: actions/checkout@v2
         with:
           lfs: true
-          
+
       - name: build:prepare
         run: |
           mkdir -v -p ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-      
+
       - name: build:windows
         run: |
           mkdir -v -p build/windows
           cd $EXPORT_NAME
           godot -v --export "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
-          pwd build/windows
-          
+
       - name: build:upload-artifact
         uses: actions/upload-artifact@v1
         with:
           name: windows
           path: build/windows
-    
