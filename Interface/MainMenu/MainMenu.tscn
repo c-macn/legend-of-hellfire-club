@@ -1,49 +1,57 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Interface/MainMenu/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://Interface/MainMenu/Title Screen_withGHOST_Purple_NoButton.png" type="Texture" id=2]
+[ext_resource path="res://Interface/MainMenu/Play_Button.png" type="Texture" id=3]
+[ext_resource path="res://Interface/MainMenu/StorySoFar_Button.png" type="Texture" id=4]
+[ext_resource path="res://Interface/MainMenu/Credits_Button.png" type="Texture" id=5]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -2.24744
-margin_top = -1.49829
-margin_right = -2.24744
-margin_bottom = -1.49829
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ButtonContainer" type="VBoxContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonContainer" type="HBoxContainer" parent="."]
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -43.0
-margin_top = -40.0
-margin_right = 43.0
-margin_bottom = 40.0
+anchor_bottom = 1.0
+margin_left = -280.0
+margin_top = -80.0
+margin_right = 320.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Play" type="Button" parent="ButtonContainer"]
-margin_right = 86.0
-margin_bottom = 20.0
-text = "Play"
-
-[node name="Story" type="Button" parent="ButtonContainer"]
-margin_top = 30.0
-margin_right = 86.0
-margin_bottom = 50.0
-text = "Story So Far"
-
-[node name="Credits" type="Button" parent="ButtonContainer"]
-margin_top = 60.0
-margin_right = 86.0
+[node name="Credits" type="TextureButton" parent="ButtonContainer"]
+margin_right = 183.0
 margin_bottom = 80.0
-text = "Credits"
-[connection signal="pressed" from="ButtonContainer/Play" to="." method="_on_Play_clicked"]
-[connection signal="pressed" from="ButtonContainer/Story" to="." method="_on_Story_clicked"]
+texture_normal = ExtResource( 4 )
+
+[node name="Story" type="TextureButton" parent="ButtonContainer"]
+margin_left = 193.0
+margin_right = 376.0
+margin_bottom = 80.0
+texture_normal = ExtResource( 3 )
+
+[node name="Play" type="TextureButton" parent="ButtonContainer"]
+margin_left = 386.0
+margin_right = 569.0
+margin_bottom = 80.0
+texture_normal = ExtResource( 5 )
 [connection signal="pressed" from="ButtonContainer/Credits" to="." method="_on_Credits_clicked"]
+[connection signal="pressed" from="ButtonContainer/Story" to="." method="_on_Story_clicked"]
+[connection signal="pressed" from="ButtonContainer/Play" to="." method="_on_Play_clicked"]
