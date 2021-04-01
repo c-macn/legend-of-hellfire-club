@@ -12,6 +12,7 @@ onready var buttons = $ButtonContainer.get_children()
 onready var button_cursor = $Cursor
 
 func _ready() -> void:
+	get_tree().get_root().connect("size_changed", self, "update_cursor_position_on_resize")
 	update_cursor_position(_selected_button)
 
 func _input(event):
@@ -42,7 +43,10 @@ func set_previous_button(current_button: int) -> void:
 
 func update_cursor_position(current_button: int) -> void:
 	var draw_position = buttons[current_button].get_node("Position2D").global_position
-	button_cursor.global_position = draw_position
+	button_cursor.position = draw_position
+	
+func update_cursor_position_on_resize() -> void:
+	update_cursor_position(_selected_button)
 
 func trigger_button_action(current_button: int) -> void:
 	if current_button == MENU_BUTTONS.STORY:
