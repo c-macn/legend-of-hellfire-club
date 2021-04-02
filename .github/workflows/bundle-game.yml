@@ -3,7 +3,7 @@ name: Bundle Game
 
 env:
   GODOT_VERSION: 3.2.3
-  EXPORT_NAME: devil-your-dealt
+  EXPORT_NAME: devil-youre-dealt
 
 # Controls when the action will run.
 on:
@@ -31,7 +31,6 @@ jobs:
       - name: build:windows
         run: |
           mkdir -v -p build/windows
-          cd $EXPORT_NAME
           godot -v --export "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
 
       - name: build:upload-artifact
