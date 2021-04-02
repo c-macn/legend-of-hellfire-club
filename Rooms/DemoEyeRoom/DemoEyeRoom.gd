@@ -1,5 +1,7 @@
 extends "res://Rooms/Room.gd"
 
+const CUTSCENE_CAMERA_START_POSITION := Vector2(994, 341)
+
 onready var saoirse: KinematicBody2D = $Saoirse
 onready var doomed_rat: KinematicBody2D = $DoomedRat
 onready var cutscene_manager: AnimationPlayer = $CutsceneManager
@@ -9,8 +11,9 @@ onready var room_mask := $DemonEyeRoomMask
 
 func _ready() -> void:
 	._ready()
-	room_mask.connect("soairse_detected", self, "set_target")
 	yield(scene_transition, "transition_finished")
+	cutscene_camera.position = CUTSCENE_CAMERA_START_POSITION
+	room_mask.connect("soairse_detected", self, "set_target")
 	
 	if !GameState.get_cutscene_state("doomedRat"):
 		init_cutscene()
