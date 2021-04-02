@@ -40,7 +40,12 @@ jobs:
           path: build/windows
 
   build-linux:
-    - name: build:checkout
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:3.2.3
+      
+    steps:
+      - name: build:checkout
         uses: actions/checkout@v2
         with:
           lfs: true
@@ -62,7 +67,12 @@ jobs:
           path: build/linux
 
   build-mac:
-    - name: build:checkout
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:3.2.3
+      
+    steps:
+      - name: build:checkout
         uses: actions/checkout@v2
         with:
           lfs: true
@@ -71,7 +81,7 @@ jobs:
         run: |
           mkdir -v -p ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-      
+
       - name: build:linux
         run: |
           mkdir -v -p build/mac
@@ -82,4 +92,3 @@ jobs:
         with:
           name: mac
           path: build/mac
-
