@@ -13,8 +13,7 @@ func _ready() -> void:
 	.spawn_Saoirse(spawn_point)
 	.set_camera_bounds()
 
-func determine_spawn_point(previous_scene: int) -> Vector2:
-	print(previous_scene)
+func determine_spawn_point(previous_scene: int) -> Vector2:	
 	if previous_scene == GameConstants.SCENES.MAIN_ROOM:
 		return spawn_points[SPAWN_POINTS.ENTRANCE].position
 	if previous_scene == GameConstants.SCENES.GAME_ROOM:
