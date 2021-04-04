@@ -75,3 +75,7 @@ position = Vector2( 642.034, -29.7492 )
 scale = Vector2( 20, 5 )
 texture = ExtResource( 2 )
 mode = 2
+
+[node name="BanishTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true

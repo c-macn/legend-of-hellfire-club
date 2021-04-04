@@ -15,12 +15,12 @@ func _ready() -> void:
 	cutscene_camera.position = CUTSCENE_CAMERA_START_POSITION
 	room_mask.connect("soairse_detected", self, "set_target")
 	
-	if !GameState.get_cutscene_state("doomedRat"):
-		init_cutscene()
-	else:
-		doomed_rat.queue_free()
-		cutscene_camera.current = true
-		cutscene_camera.zoom = Vector2(1.6, 1.6)
+	# if !GameState.get_cutscene_state("doomedRat"):
+	# 	init_cutscene()
+	# else:
+	doomed_rat.queue_free()
+	cutscene_camera.current = true
+	cutscene_camera.zoom = Vector2(1.6, 1.6)
 
 func init_cutscene() -> void:
 	dialouge_container.connect("dialouge_finished", self, "_on_Dialouge_finished")

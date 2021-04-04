@@ -7,12 +7,14 @@ var player: KinematicBody2D
 
 onready var sprite: Sprite = $Sprite
 onready var interaction_label = $InteractLabel
+onready var interation_delay: Timer = $InterationDelay
 
 func _ready() -> void:
 	_highlight(Color(0, 0, 0))
 	connect("body_entered", self, "_on_Body_entered")
 	connect("body_exited", self, "_on_Body_exited")
-
+	interation_delay.connect("timeout", self, "_on_InteractionDelay_passed")
+	
 func _input(_event) -> void:
 	if Input.is_action_just_pressed("obj_interact") and _is_active:
 		interact()
@@ -22,7 +24,7 @@ func _highlight(color: Color) -> void:
 		sprite.material.set_shader_param("outline_color", color)
 
 func interact() -> void:
-	print("I have been interacted with")
+	pass
 
 func set_active(is_active: bool) -> void:
 	_is_active = is_active;
@@ -31,16 +33,27 @@ func set_active(is_active: bool) -> void:
 	else:
 		get_tree().call_group("interface", "hide_panel")
 
+func set_interaction_text(label: String) -> void:
+	interaction_label.text = label
+
 func _on_Body_entered(body: KinematicBody2D) -> void:
 	if body:
-		if body.name == "Saoirse":
+		if GameConstants.is_Saoirse(body):
 			_highlight(Color(255, 255, 255))
-			set_active(true)
 			player = body
+			
+			if !_is_active:
+				interation_delay.start(0.2)
 
-func _on_Body_exited(_body: KinematicBody2D) -> void:
-	set_active(false)
-	_highlight(Color(0, 0, 0))
+func _on_Body_exited(body: KinematicBody2D) -> void:
+	if body:
+		_highlight(Color(0, 0, 0))
+		set_active(false)
+		interation_delay.stop()
+
+func _on_InteractionDelay_passed() -> void:
+	set_active(true)
+	interation_delay.stop()
 
 func destroy() -> void:
 	queue_free()

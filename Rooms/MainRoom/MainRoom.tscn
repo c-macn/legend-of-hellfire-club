@@ -292,7 +292,7 @@ pause_mode = 2
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2( 21.3813, 12.4726 )
-color = Color( 0.0588235, 0.0588235, 0.0588235, 1 )
+color = Color( 0, 0, 0, 1 )
 
 [node name="Floors" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -386,7 +386,8 @@ position = Vector2( 546, 1107 )
 visible = true
 
 [node name="Light2D" parent="Saoirse" index="4"]
-energy = 0.4
+enabled = false
+energy = 0.0
 
 [node name="Camera2D" parent="Saoirse" index="5"]
 position = Vector2( 1, 1 )

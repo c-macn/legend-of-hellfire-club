@@ -8,10 +8,12 @@ var banish_target: KinematicBody2D = null
 onready var animated_sprite := $Eyeball
 onready var tween := $Tween
 onready var light_pivot: Node2D = $LightPivot
+onready var banish_time := $BanishTimer
 
 func _ready() -> void:	
 	animated_sprite.play("default")
 	light_pivot.rotation_degrees = INITIAL_ROTATION_DEGREES
+	banish_time.connect("timeout", self, "_banish_target")
 
 func _process(_delta: float) -> void:
 	if banish_target:
@@ -65,3 +67,9 @@ func look_at_target(target_node: NodePath) -> void:
 
 func set_target(target: KinematicBody2D) -> void:
 	banish_target = target
+	banish_time.start()
+
+func _banish_target() -> void:
+	banish_time.stop()
+	if banish_target.has_method("banish"):
+		banish_target.banish(3, Vector2.ZERO)

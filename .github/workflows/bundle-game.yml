@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: barichello/godot-ci:3.2.3
-      
+
     steps:
       - name: build:checkout
         uses: actions/checkout@v2
@@ -70,7 +70,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: barichello/godot-ci:3.2.3
-      
+
     steps:
       - name: build:checkout
         uses: actions/checkout@v2

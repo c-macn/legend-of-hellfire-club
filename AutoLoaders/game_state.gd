@@ -16,7 +16,7 @@ const CARD_COLLECTION_STATE = {
 	TopLeft = false,
 	TopRight = false,
 	BottomRight = false,
-	BottomLeft = false
+	BottomLeft = true
 }
 
 # previous/current scene is used to determine spawn point in certain levels
@@ -35,7 +35,9 @@ var _box_state: Dictionary = {
 	"position": Vector2(669.883, 97.831)
 }
 
-var _has_brandy := false setget set_has_brandy, get_has_brandy
+var _has_brandy := true setget set_has_brandy, get_has_brandy
+
+var _has_blessed_shot_ability := false setget set_has_blessed_shot, get_has_blessed_shot
 
 func update_current_scene(updated_scene: int) -> void:
 	_previous_scene = _current_scene
@@ -88,3 +90,10 @@ func set_has_brandy(has_brandy: bool) -> void:
 	
 func get_has_brandy() -> bool:
 	return _has_brandy
+	#return true
+
+func set_has_blessed_shot(has_shot: bool) -> void:
+	_has_blessed_shot_ability = has_shot
+
+func get_has_blessed_shot() -> bool:
+	return _has_blessed_shot_ability
