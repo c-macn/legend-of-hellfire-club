@@ -4,11 +4,9 @@ signal transition_finished
 
 onready var animation_player := $AnimationPlayer
 
-func transition_to_new_scene(scene: String) -> void:
-	print("CHANGE")
+func transition_to_new_scene(scene: String) -> void:	
 	fade_in()
 	yield(animation_player, "animation_finished")
-	print(scene)
 	get_tree().change_scene(scene)
 
 func fade_in() -> void:

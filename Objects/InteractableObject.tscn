@@ -35,3 +35,6 @@ text = "Press 'E' to interact"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="InterationDelay" type="Timer" parent="."]
+wait_time = 0.2
