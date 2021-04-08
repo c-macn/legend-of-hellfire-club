@@ -16,7 +16,7 @@ const CARD_COLLECTION_STATE = {
 	TopLeft = false,
 	TopRight = false,
 	BottomRight = false,
-	BottomLeft = true
+	BottomLeft = false
 }
 
 # previous/current scene is used to determine spawn point in certain levels
@@ -35,7 +35,7 @@ var _box_state: Dictionary = {
 	"position": Vector2(669.883, 97.831)
 }
 
-var _has_brandy := true setget set_has_brandy, get_has_brandy
+var _has_brandy := false setget set_has_brandy, get_has_brandy
 
 var _has_blessed_shot_ability := false setget set_has_blessed_shot, get_has_blessed_shot
 
