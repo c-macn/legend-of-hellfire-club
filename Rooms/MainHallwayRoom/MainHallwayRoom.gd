@@ -9,9 +9,9 @@ enum SPAWN_POINTS {
 onready var spawn_points: Array = $SpawnPoints.get_children()
 
 func _ready() -> void:
-	var spawn_point = determine_spawn_point(GameState.get_previous_scene())
-	.spawn_Saoirse(spawn_point)
-	.set_camera_bounds()
+	._ready()
+	.spawn_Saoirse(determine_spawn_point(GameState.get_previous_scene()))
+	.set_camera_bounds() 
 
 func determine_spawn_point(previous_scene: int) -> Vector2:	
 	if previous_scene == GameConstants.SCENES.MAIN_ROOM:

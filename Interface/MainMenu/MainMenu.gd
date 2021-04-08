@@ -15,11 +15,11 @@ func _ready() -> void:
 	get_tree().get_root().connect("size_changed", self, "update_cursor_position_on_resize")
 	update_cursor_position(_selected_button)
 
-func _input(event):
-	if Input.is_action_just_pressed("ui_left"):
+func _input(_event):
+	if Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("walk_left"):
 		set_previous_button(_selected_button)
 	
-	if Input.is_action_just_pressed("ui_right"):
+	if Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("walk_right"):
 		set_next_button(_selected_button)
 		
 	if Input.is_action_just_pressed("ui_accept"):

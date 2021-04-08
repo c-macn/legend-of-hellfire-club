@@ -6,15 +6,14 @@
 [ext_resource path="res://Interface/CanvasLayer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Tilesets/main_tileset.tres" type="TileSet" id=5]
 [ext_resource path="res://Objects/Door/Door.gd" type="Script" id=6]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 47.5764, 15.2046 )
+[ext_resource path="res://Objects/InteractableObject.tscn" type="PackedScene" id=7]
 
 [node name="MainHallwayRoom" type="Node2D"]
 script = ExtResource( 3 )
 room_tilemap = NodePath("TileMap")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color( 0.117647, 0.117647, 0.117647, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -53,46 +52,12 @@ scene_to = 5
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 4 )]
 
-[node name="DevilDoor" type="Area2D" parent="."]
-position = Vector2( 708.775, 1.80307 )
-script = ExtResource( 6 )
-scene_name = "DevilRoom"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DevilDoor"]
-position = Vector2( -97.8378, 144.097 )
-shape = SubResource( 1 )
-
-[node name="InteractLabel" type="RichTextLabel" parent="DevilDoor"]
-visible = false
-margin_left = -708.775
-margin_right = -668.775
-margin_bottom = 40.0
-text = "press 'e' to open"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Sprite" type="Sprite" parent="DevilDoor"]
-visible = false
-
-[node name="ServantsDoor" type="Area2D" parent="."]
-position = Vector2( -2.69458, 1.80307 )
+[node name="ServantsDoor" parent="." instance=ExtResource( 7 )]
+position = Vector2( -95.3313, 114.209 )
 script = ExtResource( 6 )
 scene_name = "ServantsRoom"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ServantsDoor"]
-position = Vector2( -97.8378, 144.097 )
-shape = SubResource( 1 )
-
-[node name="InteractLabel" type="RichTextLabel" parent="ServantsDoor"]
-visible = false
-margin_left = -708.775
-margin_right = -668.775
-margin_bottom = 40.0
-text = "press 'e' to open"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Sprite" type="Sprite" parent="ServantsDoor"]
-visible = false
+[node name="DevilDoor" parent="." instance=ExtResource( 7 )]
+position = Vector2( 607.855, 114.209 )
+script = ExtResource( 6 )
+scene_name = "DevilRoom"
