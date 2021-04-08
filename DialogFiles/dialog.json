@@ -1,7 +1,7 @@
 {
   "saoirse": {
     "portrait": "res://Characters/Saoirse/Sprites/Saoirse_Portrait.png",
-    "portrait_alt": "res://Characters/Saoirse/Sprites/Saoirse_Portrait_Alt.png",
+    "portrait_alt": "res://Characters/Saoirse/Sprites/Saoirse_Portrait_alt.png",
     "intro_0": {
       "value": "Jaysus!... it must have been a fierce one last night",
       "next": "intro_1"
@@ -62,7 +62,19 @@
       "value": "Good thing I'm already in this box!"
     },
     "the_servant_0": {
-      "value": "[shake rate=50]Uggh.[/shake], Feels like someone just walked over my grave."
+      "value": "[shake rate=50]Uggh.[/shake], Feels like someone just walked over my grave. Wait.. what's going on!!!"
+    },
+    "the_servant_7": {
+      "value": "Alright I'll get that bottle for ya but first. Can you tell me what's going on here?"
+    },
+    "the_servant_14": {
+      "value": "Jaysus, what have I gotten myself into... I hope you're not lying to me and you can help. I'll be back with the bottle soon"
+    },
+    "the_servant_has_brandy": {
+      "value": "Here ya go, I hope you'll enjoy it"
+    },
+    "the_servant_no_brandy": {
+      "value": "Sorry I haven't found it yet"
     },
     "the_devil_0": {
       "value": "Jesus Christ!..."
@@ -95,7 +107,7 @@
     }
   },
   "servant": {
-    "portrait": "res://Characters/Saoirse/Servant_Portrait.png",
+    "portrait": "res://Characters/Servant/Servant_Portrait.png",
     "the_servant_1": {
       "value": "HEEEELP ME, I'm burnin' up.... HEEEELP"
     },
@@ -106,6 +118,60 @@
     "the_servant_3": {
       "value": "Sure if you hadn't noticed. I'm already brown bread",
       "next": "the_servant_4"
+    },
+    "the_servant_4": {
+      "value": "Listen, I've been keeping an eye on ya, I see you've been collectin' the card pieces",
+      "next": "the_servant_5"
+    },
+    "the_servant_5": {
+      "value": "Well, I know of a way I can help you but I need a favour I'm parched and would murder some Brandy",
+      "next": "the_servant_6"
+    },
+    "the_servant_6": {
+      "value": "If you can that bottle for me, I'll help you out with Lord Parsons' the fella running around in his dressing gown if you didn't know already"
+    },
+    "the_servant_8": {
+      "value": "Well, I'm sure you know the rumours of this place. Lord Parsons' uses this place to commune with the Devil, up until know we all thought he was a bit loopy..",
+      "next": "the_servant_9"
+    },
+    "the_servant_9": {
+      "value": "But who would've belived it when the quare fella himself joined in on the nights festivities..",
+      "next": "the_servant_10"
+    },
+    "the_servant_10": {
+      "value": "Now mind you, he didn't show up as you'd expect. He disquised himself, planned on cheating in the game of cards and when he was found out.. well you saw thre mess out there",
+      "next": "the_servant_11"
+    },
+    "the_servant_11": {
+      "value": "Lord Parsons was only delighted for himself to show up, he started praising him, apoligising for the behaviour of some of the lads... Then the talk of rituals began",
+      "next": "the_servant_12"
+    },
+    "the_servant_12": {
+      "value": "Parsons and himself are planning on opening up a hell mouth to unleash the denizens of hell, We have one resident demon already and I don't want to see anymore",
+      "next": "the_servant_13"
+    },
+    "the_servant_13": {
+      "value": "Look, I'll fill you in more when you get the Brandy, so can you hurry up? I know I'm dead but I don't have all night"
+    },
+    "the_servant_ask_for_brandy": {
+      "value": "So chick. Do you have that brandy?"
+    },
+    "the_servant_has_brandy": {
+      "value": "Ah lovely, you have it hold on let me swig it down..."
+    },
+    "the_servant_power_0": {
+      "value": "Thanks for that chick. Now if you're wondering how I can help you. The answer is....... MAGIC!",
+      "next": "the_servant_power_1"
+    },
+    "the_servant_power_1": {
+      "value": "I'm going to fuse my spirit with this...... Spirit, and when you give it a little splash it'll send out a blast of positive energy to counter-act Parsons' negative",
+      "next": "the_servant_power_2"
+    },
+    "the_servant_power_2": {
+      "value": "Now hang on there and let me do this ritual, I hope these books I've been reading aren't all bollox"
+    },
+    "the_servant_power_3": {
+      "value": "Now chick, just pick up the bottle and you'll have a fighting chance with Parsons... Let's go before it's too late"      
     }
   },
   "devil": {

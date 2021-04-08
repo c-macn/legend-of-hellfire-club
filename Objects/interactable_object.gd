@@ -33,18 +33,23 @@ func set_active(is_active: bool) -> void:
 	else:
 		get_tree().call_group("interface", "hide_panel")
 
-func _on_Body_entered(body: KinematicBody2D) -> void:
-	if GameConstants.is_Saoirse(body):
-		_highlight(Color(255, 255, 255))
-		player = body
-		
-		if !_is_active:
-			interation_delay.start(0.2)
+func set_interaction_text(label: String) -> void:
+	interaction_label.text = label
 
-func _on_Body_exited(_body: KinematicBody2D) -> void:
-	_highlight(Color(0, 0, 0))
-	set_active(false)
-	interation_delay.stop()
+func _on_Body_entered(body: KinematicBody2D) -> void:
+	if body:
+		if GameConstants.is_Saoirse(body):
+			_highlight(Color(255, 255, 255))
+			player = body
+			
+			if !_is_active:
+				interation_delay.start(0.2)
+
+func _on_Body_exited(body: KinematicBody2D) -> void:
+	if body:
+		_highlight(Color(0, 0, 0))
+		set_active(false)
+		interation_delay.stop()
 
 func _on_InteractionDelay_passed() -> void:
 	set_active(true)

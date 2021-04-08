@@ -5,12 +5,9 @@ signal disguise_removed(position)
 
 const MAX_BANISHMENTS: int = 3
 
-export var has_blessed_water: bool = false
-
 var BlessedShot: PackedScene = preload("res://Entities/BlessedWaterShot/BlessedShot.tscn")
 var banish_count: int = 0
 var velocity := Vector2()
-var spawn_point := Vector2()
 var is_banished := false
 var default_frames := preload("res://Characters/Saoirse/Animations/Saoirse_Default_Frames.tres")
 var box_frames := preload("res://Characters/Saoirse/Animations/Saoirse_Box_Frames.tres")
@@ -24,14 +21,15 @@ onready var tween := $Tween
 
 func _ready():
 	add_to_group("actors")
-	# TODO create a path node every time saoirse walks so the path can be retraced
-	spawn_point = global_position # when banished, lerp to this point
 	var active_frames = box_frames if GameState.get_is_Saoirse_disguised() else default_frames
 	_set_active_frames(active_frames)
 
+func _process(_delta) -> void:
+	$ColorRect.material.set_shader_param("player_position", position)
+
 func _input(_event) -> void:
 	if !is_movement_disabled:
-		if Input.is_action_just_pressed("fire") and has_blessed_water:
+		if Input.is_action_just_pressed("fire") and GameState.get_has_blessed_shot():
 			fire_water()
 		
 		if Input.is_action_just_pressed("obj_cancel"):
@@ -45,13 +43,40 @@ func fire_water() -> void:
 	shot_spawner.add_child(shot)
 
 # when hit by cultist, move to spawn point
-func banish() -> void:
-	banish_count += 1
-	if banish_count < MAX_BANISHMENTS:
-		is_banished = true
-		animated_sprite.visible = !is_banished
+func banish(banish_increase: int, respawn_position: Vector2) -> void:
+	disable_movement()
+	if banish_increase:
+		banish_count += banish_increase
 	else:
-		get_tree().reload_current_scene()
+		banish_count += 1
+	
+	if banish_count < MAX_BANISHMENTS:
+		tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 1, 0, 1,
+			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+
+		tween.interpolate_callback(self, 1, "reanimate", respawn_position)
+	else:
+		tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 1, 0, 1,
+			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		
+		tween.interpolate_callback(self, 1, "game_over")
+
+	tween.start()
+
+func reanimate(respawn_point: Vector2) -> void:
+	global_position = lerp(global_position, respawn_point, 0.5)
+
+	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 0, 1, 1,
+		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+
+	tween.interpolate_property(self, "global_position", global_position, respawn_point, 0.5,
+		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+
+	tween.start()
+	enable_movement()
+
+func game_over() -> void:
+	get_tree().reload_current_scene() # create game over screen
 
 func move_to_point(target_position: Vector2) -> void:
 	tween.interpolate_property(self, "position", position, target_position, 1, Tween.TRANS_CUBIC, Tween.EASE_OUT) 

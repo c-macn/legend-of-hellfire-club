@@ -1,7 +1,13 @@
 extends "res://Characters/StateMachine/State.gd"
 
 func enter() -> void:
-	owner.owner.get_node("AnimatedSprite").play("default")
+	var animation_player = owner.owner.get_node("AnimatedSprite")
+	var current_animation = animation_player.get_animation()
+	
+	if current_animation != "default":
+		animation_player.play("idle_" + current_animation)
+	else:
+		animation_player.play("default")
 
 func handle_input(event: InputEvent):
 	return .handle_input(event)
