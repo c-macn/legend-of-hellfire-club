@@ -51,23 +51,19 @@ func banish(banish_increase: int, respawn_position: Vector2) -> void:
 		banish_count += 1
 	
 	if banish_count < MAX_BANISHMENTS:
-		tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 1, 0, 1,
-			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-
+		phase_out()
 		tween.interpolate_callback(self, 1, "reanimate", respawn_position)
 	else:
-		tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 1, 0, 1,
-			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-		
+		phase_out()
 		tween.interpolate_callback(self, 1, "game_over")
+		tween.interpolate_callback(self, 1, "reanimate", respawn_position)
 
 	tween.start()
 
 func reanimate(respawn_point: Vector2) -> void:
 	global_position = lerp(global_position, respawn_point, 0.5)
 
-	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 0, 1, 1,
-		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	phase_in()
 
 	tween.interpolate_property(self, "global_position", global_position, respawn_point, 0.5,
 		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
@@ -111,3 +107,14 @@ func _set_active_frames(frames: SpriteFrames) -> void:
 
 func turn_off_light() -> void:
 	$Light2D.visible = false
+
+func phase_out() -> void:
+	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 1, 0, 1,
+			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+
+func phase_in() -> void:
+	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 0, 1, 1,
+			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+
+	if !tween.is_active():
+		tween.start()
