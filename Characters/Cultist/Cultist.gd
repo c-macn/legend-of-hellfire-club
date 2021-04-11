@@ -47,6 +47,7 @@ func _ready():
 	detection_timer.connect("timeout", self, "_on_Detection_timeout")
 	cast_timeout.connect("timeout", self, "_on_Cast_cooldown")
 	banishment_area.connect("body_entered", self, "_on_Banish_entered")
+	banishment_area.connect("body_exited", self, "_on_Banish_exited")
 
 func _physics_process(delta):
 	if is_stunned:
@@ -64,7 +65,7 @@ func _physics_process(delta):
 
 	# var desired_velocity = chosen_direction * speed
 	# velocity = velocity.linear_interpolate(desired_velocity, steer_force)
-
+	animated_sprite.play(get_animation())
 	move_and_slide(velocity)
 
 func stun():
@@ -114,6 +115,10 @@ func _on_Stun_timeout() -> void:
 func _on_Banish_entered(body: KinematicBody2D) -> void:
 	if body:
 		detection_timer.start()
+
+func _on_Banish_exited(body: KinematicBody2D) -> void:
+	if body:
+		detection_timer.stop()
 
 func _on_Detection_timeout() -> void:
 	# fire magic shiz
