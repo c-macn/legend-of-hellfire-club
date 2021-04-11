@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Tilesets/BaseRoomTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://CutsceneTriggers/CutsceneTriggger.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://CutsceneTriggers/CutsceneManager.gd" type="Script" id=8]
 [ext_resource path="res://Tilesets/main_tileset.tres" type="TileSet" id=9]
 [ext_resource path="res://Objects/TheHead/TheHead.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Characters/Cultist/Cultist.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "intro"
@@ -291,6 +292,7 @@ room_tilemap = NodePath("Walls")
 pause_mode = 2
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 position = Vector2( 21.3813, 12.4726 )
 color = Color( 0, 0, 0, 1 )
 
@@ -378,6 +380,9 @@ anims/the_head_end = SubResource( 3 )
 anims/the_head_investigation = SubResource( 4 )
 anims/the_head_start = SubResource( 5 )
 script = ExtResource( 8 )
+
+[node name="Cultists" parent="." instance=ExtResource( 11 )]
+position = Vector2( 263.091, 1009.81 )
 
 [node name="Saoirse" parent="." instance=ExtResource( 7 )]
 position = Vector2( 546, 1107 )

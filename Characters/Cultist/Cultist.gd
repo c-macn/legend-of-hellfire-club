@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const SPEED_PATROLLING: int = 100
+const SPEED_PATROLLING: int = 50
 const SPEED_CHASING: int = 100
 
 enum FACING_VALUES {
@@ -14,15 +14,21 @@ enum FACING_VALUES {
 	DIAGONAL_DOWN_RIGHT = 45
 }
 
-export(NodePath) var path_to_follow = null
+export(int) var detection_length = 100
+export(int) var detection_rays_length = 32
 
 var velocity: Vector2 = Vector2()
 var speed: int = SPEED_PATROLLING
 var is_stunned: bool = false
 var is_chasing: bool = false
-var patrol_points: Array = []
-var patrol_index: int = 0
 var player_position: Vector2 = Vector2.ZERO
+
+# steering behaviour
+var detection_ray_directions := []
+var interest := []
+var danger := []
+var chosen_direction := Vector2.ZERO
+var steer_force := 100.0
 
 onready var stun_timer: Timer = $StunnedTimer
 onready var detection_timer: Timer = $DetectionArea/DetectionTimer
@@ -33,6 +39,7 @@ onready var animated_sprite: AnimatedSprite = $AnimatedSprite
 
 func _ready():
 	add_to_group("cultists")
+	init_ai_context()
 
 	stun_timer.connect("timeout", self, "_on_Stun_timeout")
 	detection_timer.connect("timeout", self, "_on_Detection_timeout")
@@ -40,28 +47,21 @@ func _ready():
 	detection_radius.connect("body_exited", self, "_on_Body_exited")
 	banishment_area.connect("body_entered", self, "_on_Banish_entered")
 
-	if path_to_follow:
-		patrol_points = get_node(path_to_follow).curve.get_baked_points()
+func _physics_process(delta):
+	if is_stunned:
+		pass
+	
+	velocity += seek_Saoirse() * delta
+	velocity = velocity.clamped(speed)
+	position += velocity * delta
+	# set_interest()
+	# set_danger()
+	# choose_direction()
 
-func _physics_process(_delta):
-	if !path_to_follow:
-		return
+	# var desired_velocity = chosen_direction * speed
+	# velocity = velocity.linear_interpolate(desired_velocity, steer_force)
 
-	var target = get_target()
-
-	if not is_stunned:
-		velocity = lerp(velocity, (target - position).normalized() * speed, 0.1)
-	else:
-		velocity = lerp(velocity, Vector2.ZERO, 0.1)
-
-	animated_sprite.play(get_animation())
-	velocity = move_and_slide(velocity)
-
-func get_target():
-	if is_chasing:
-		return get_player_position()
-	else:
-		return get_path_target(patrol_points)
+	move_and_slide(velocity)
 
 func stun():
 	if not is_stunned:
@@ -74,16 +74,6 @@ func stun():
 
 func get_player_position() -> Vector2:
 	return get_parent().get_node("Saoirse").position
-
-func get_path_target(points: Array) -> Vector2:
-	var target = points[patrol_index]
-
-	if position.distance_to(target) <= 1:
-		var new_index = randi() % points.size() - 1
-		target = points[new_index]
-		patrol_index = new_index
-
-	return target
 
 func get_animation() -> String:
 	# get the degrees of the current velocity
@@ -121,23 +111,72 @@ func _on_Stun_timeout() -> void:
 	is_stunned = false
 
 # detection radius entered
-func _on_Body_entered(body: KinematicBody2D) -> void:
-	if not is_chasing:
-		if is_body_Saoirse(body.name):
-			detection_timer.start()
+func _on_Body_entered(_body: KinematicBody2D) -> void:
+	pass
+	# if not is_chasing:
+		# if is_body_Saoirse(body.name):
+		# 	detection_timer.start()
 
 # detection radius exited
-func _on_Body_exited(body: KinematicBody2D) -> void:
-	if is_body_Saoirse(body.name):
-		if not is_chasing:
-			detection_timer.stop()
-		else:
-			is_chasing = false
+func _on_Body_exited(_body: KinematicBody2D) -> void:
+	pass
+	# if is_body_Saoirse(body.name):
+	# 	if not is_chasing:
+	# 		detection_timer.stop()
+	# 	else:
+	# 		is_chasing = false
 
-func _on_Banish_entered(body: KinematicBody2D) -> void:
-	if is_body_Saoirse(body.name):
-		body.banish()
+func _on_Banish_entered(_body: KinematicBody2D) -> void:
+	pass
+	# if is_body_Saoirse(body.name):
+	# 	body.banish()
 
 func _on_Detection_timeout() -> void:
 	is_chasing = true
 	detection_timer.stop()
+
+# sets up the detection raycast, interest, and danger value arrays
+func init_ai_context() -> void:
+	interest.resize(detection_rays_length)
+	danger.resize(detection_rays_length)
+	detection_ray_directions.resize(detection_rays_length)
+
+	# create rays starting from rotation 0 (right facing)
+	for i in detection_rays_length:
+		var angle = i * 2 * PI / detection_rays_length
+		detection_ray_directions[i] = Vector2.RIGHT.rotated(angle)
+
+func set_interest() -> void:
+	var Saoirse_position = get_player_position()
+	for i in detection_rays_length:
+		var direction = detection_ray_directions[i].dot(Saoirse_position)
+		interest[i] = direction
+
+func set_danger() -> void:
+	var space_state = get_world_2d().direct_space_state
+	for i in detection_rays_length:
+		var ray_length = detection_ray_directions[i] * detection_length 
+		var result = space_state.intersect_ray(position, position + ray_length, [self])
+
+		danger[i] = 1.0 if result else 0.0
+
+func choose_direction() -> void:
+	for i in detection_rays_length:
+		if danger[i] > 0.0:
+			interest[i] = 0.0;
+
+	chosen_direction = Vector2.ZERO
+	for i in detection_rays_length:
+		chosen_direction += detection_ray_directions[i] * interest[i]
+
+	chosen_direction = chosen_direction.normalized()
+
+func seek_Saoirse() -> Vector2:
+	var steer = Vector2.ZERO
+	var target_position = get_player_position()
+
+	if target_position:
+		var desired_direction = (target_position - position).normalized() * speed
+		steer = (desired_direction - velocity).normalized() * steer_force
+	
+	return steer
