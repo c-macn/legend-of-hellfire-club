@@ -17,7 +17,7 @@ enum FACING_VALUES {
 # export(int) var detection_length = 100
 # export(int) var detection_rays_length = 32
 
-var BlessedShot: PackedScene = preload("res://Entities/BlessedWaterShot/BlessedShot.tscn")
+var InfernalShot: PackedScene = preload("res://Entities/InfernalShot/InfernalShot.tscn")
 
 var velocity: Vector2 = Vector2()
 var speed: int = SPEED_PATROLLING
@@ -66,6 +66,7 @@ func _physics_process(delta):
 	# var desired_velocity = chosen_direction * speed
 	# velocity = velocity.linear_interpolate(desired_velocity, steer_force)
 	animated_sprite.play(get_animation())
+	#$Light2D.material.set_shader_param("player_position", position)
 	move_and_slide(velocity)
 
 func stun():
@@ -121,13 +122,16 @@ func _on_Banish_exited(body: KinematicBody2D) -> void:
 		detection_timer.stop()
 
 func _on_Detection_timeout() -> void:
-	# fire magic shiz
 	cast_spell()
 	detection_timer.stop()
 
 func cast_spell() -> void:
-	#var shot = BlessedShot.instance()
-	print("CAST")
+	var shot = InfernalShot.instance()
+	shot.position = global_position
+	add_child(shot)
+	shot.reveal()
+	shot.target = get_player_position()
+
 	is_chasing = false
 	cast_timeout.start()
 

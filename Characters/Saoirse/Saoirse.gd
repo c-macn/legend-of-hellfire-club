@@ -13,6 +13,7 @@ var default_frames := preload("res://Characters/Saoirse/Animations/Saoirse_Defau
 var box_frames := preload("res://Characters/Saoirse/Animations/Saoirse_Box_Frames.tres")
 var cutscene_waypoints: PoolVector2Array
 var is_movement_disabled: bool = false
+var spawn_point: Vector2
 
 onready var shot_spawner: Node2D = $ShotSpawner
 onready var animated_sprite: AnimatedSprite = $AnimatedSprite
@@ -21,11 +22,12 @@ onready var tween := $Tween
 
 func _ready():
 	add_to_group("actors")
+	spawn_point = global_position
 	var active_frames = box_frames if GameState.get_is_Saoirse_disguised() else default_frames
 	_set_active_frames(active_frames)
 
 func _process(_delta) -> void:
-	$ColorRect.material.set_shader_param("player_position", position)
+	$Light2D.material.set_shader_param("player_position", position)
 
 func _input(_event) -> void:
 	if !is_movement_disabled:
@@ -43,8 +45,9 @@ func fire_water() -> void:
 	shot_spawner.add_child(shot)
 
 # when hit by cultist, move to spawn point
-func banish(banish_increase: int, respawn_position: Vector2) -> void:
+func banish(banish_increase: int = 1, respawn_position: Vector2 = spawn_point) -> void:
 	disable_movement()
+
 	if banish_increase:
 		banish_count += banish_increase
 	else:

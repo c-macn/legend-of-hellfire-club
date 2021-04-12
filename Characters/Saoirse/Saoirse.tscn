@@ -40,6 +40,8 @@ height = 28.828
 "actors_demon_eye",
 "actors_intro",
 ]]
+material = ExtResource( 5 )
+use_parent_material = true
 collision_mask = 15
 script = ExtResource( 1 )
 
@@ -57,6 +59,7 @@ shape = SubResource( 5 )
 [node name="StateMachine" parent="." instance=ExtResource( 10 )]
 
 [node name="Light2D" parent="." instance=ExtResource( 3 )]
+material = ExtResource( 5 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 4 )]
 offset = Vector2( 0, 0 )
@@ -66,14 +69,3 @@ editor_draw_limits = true
 editor_draw_drag_margin = false
 
 [node name="Tween" type="Tween" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-material = ExtResource( 5 )
-margin_left = -18.24
-margin_top = -9.82153
-margin_right = 21.76
-margin_bottom = 30.1785
-__meta__ = {
-"_edit_use_anchors_": false
-}
