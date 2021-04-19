@@ -1,12 +1,15 @@
 extends KinematicBody2D
 
+signal spell_limit_reached
+
 const SPEED_PATROLLING: int = 50
 const SPEED_CHASING: int = 100
+const MAX_SHOTS: int = 3
 
 enum FACING_VALUES {
 	UP = -90,
 	DOWN = 90,
-	LEFT = 180,
+	LEFT = -180,
 	RIGHT = 0,
 	DIAGONAL_UP_LEFT = -135
 	DIAGONAL_UP_RIGHT = -45
@@ -22,7 +25,7 @@ var InfernalShot: PackedScene = preload("res://Entities/InfernalShot/InfernalSho
 var velocity: Vector2 = Vector2()
 var speed: int = SPEED_PATROLLING
 var is_stunned: bool = false
-var is_chasing: bool = true
+var is_chasing: bool = false
 var player_position: Vector2 = Vector2.ZERO
 
 # steering behaviour
@@ -38,6 +41,8 @@ onready var cast_timeout: Timer = $CastTimeout
 onready var banishment_area: Area2D = $BanishmentArea
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 onready var animated_sprite: AnimatedSprite = $AnimatedSprite
+onready var tween := $Tween
+onready var shot_count := 0
 
 func _ready():
 	add_to_group("cultists")
@@ -48,6 +53,8 @@ func _ready():
 	cast_timeout.connect("timeout", self, "_on_Cast_cooldown")
 	banishment_area.connect("body_entered", self, "_on_Banish_entered")
 	banishment_area.connect("body_exited", self, "_on_Banish_exited")
+	
+	phase_in()
 
 func _physics_process(delta):
 	if is_stunned:
@@ -57,6 +64,7 @@ func _physics_process(delta):
 		velocity += seek_Saoirse() * delta
 		velocity = velocity.clamped(speed)
 		position += velocity * delta
+		$ShotSpawner.look_at(get_player_position())
 	else:
 		velocity = lerp(velocity, Vector2.ZERO, 0.5)
 	# set_interest()
@@ -79,13 +87,18 @@ func stun():
 		animation_player.play("stunned")
 
 func get_player_position() -> Vector2:
-	return get_parent().get_node("Saoirse").position
+	return get_parent().get_Saoirses_position()
 
-func get_animation() -> String:
+func get_facing_angle() -> int:
 	# get the degrees of the current velocity
 	var facing_angle = rad2deg(velocity.angle())
 	# round to the nearest whole int divisble by 45
 	var facing_angle_rounded = int(round(facing_angle / 45) * 45)
+
+	return facing_angle_rounded
+
+func get_animation() -> String:
+	var facing_angle_rounded = get_facing_angle()
 
 	match facing_angle_rounded:
 		FACING_VALUES.DOWN:
@@ -115,7 +128,8 @@ func _on_Stun_timeout() -> void:
 
 func _on_Banish_entered(body: KinematicBody2D) -> void:
 	if body:
-		detection_timer.start()
+		if is_chasing:
+			detection_timer.start()
 
 func _on_Banish_exited(body: KinematicBody2D) -> void:
 	if body:
@@ -126,14 +140,20 @@ func _on_Detection_timeout() -> void:
 	detection_timer.stop()
 
 func cast_spell() -> void:
-	var shot = InfernalShot.instance()
-	shot.position = global_position
-	add_child(shot)
-	shot.reveal()
-	shot.target = get_player_position()
+	shot_count += 1;
+	if shot_count <= MAX_SHOTS:
+		var shot = InfernalShot.instance()
+		add_child(shot)
+		#$ShotSpawner.look_at(get_player_position())
+		shot.transform = $ShotSpawner.global_transform
+		shot.scale = Vector2(1, 0.5)
+		shot.reveal()
 
-	is_chasing = false
-	cast_timeout.start()
+		is_chasing = false
+		cast_timeout.start()
+	else:
+		phase_out()
+		emit_signal("spell_limit_reached")
 
 func seek_Saoirse() -> Vector2:
 	var steer = Vector2.ZERO
@@ -144,10 +164,44 @@ func seek_Saoirse() -> Vector2:
 		steer = (desired_direction - velocity).normalized() * steer_force
 	
 	return steer
+
+func phase_out() -> void:
+	cast_timeout.stop()
+	is_chasing = false
 	
+	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 1, 0, 3,
+			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+
+	tween.interpolate_property($Light2D, 'energy', 1, 0, 4,
+			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+			
+	tween.interpolate_callback(self, 2, "_phased_out")
+
+	if !tween.is_active():
+		tween.start()
+
+func phase_in() -> void:
+	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 0, 1, 1,
+			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			
+	tween.interpolate_property($Light2D, 'energy', 0, 1, 1,
+			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			
+	tween.interpolate_callback(self, 1, "_phased_in")
+
+	if !tween.is_active():
+		tween.start()
+
+func _phased_out() -> void:
+	queue_free()
+
+func _phased_in() -> void:
+	is_chasing = true
+
 func _on_Cast_cooldown() -> void:
 	is_chasing = true
 	cast_timeout.stop()
+
 	
 ############### CONTEXT STEERING CODE #############################
 

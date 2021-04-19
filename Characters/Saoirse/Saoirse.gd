@@ -3,6 +3,9 @@ extends KinematicBody2D
 # Used to tell the parent scene the disquise has been removed, so a box instance should be created
 signal disguise_removed(position)
 
+# used to tell the parent scene that Saoirse has been banished so the cultist can de-spawn
+signal banished
+
 const MAX_BANISHMENTS: int = 3
 
 var BlessedShot: PackedScene = preload("res://Entities/BlessedWaterShot/BlessedShot.tscn")
@@ -25,13 +28,11 @@ func _ready():
 	spawn_point = global_position
 	var active_frames = box_frames if GameState.get_is_Saoirse_disguised() else default_frames
 	_set_active_frames(active_frames)
-
-func _process(_delta) -> void:
-	$Light2D.material.set_shader_param("player_position", position)
+	phase_in()
 
 func _input(_event) -> void:
 	if !is_movement_disabled:
-		if Input.is_action_just_pressed("fire") and GameState.get_has_blessed_shot():
+		if Input.is_action_just_pressed("fire"):
 			fire_water()
 		
 		if Input.is_action_just_pressed("obj_cancel"):
@@ -56,6 +57,7 @@ func banish(banish_increase: int = 1, respawn_position: Vector2 = spawn_point) -
 	if banish_count < MAX_BANISHMENTS:
 		phase_out()
 		tween.interpolate_callback(self, 1, "reanimate", respawn_position)
+		emit_signal("banished")
 	else:
 		phase_out()
 		tween.interpolate_callback(self, 1, "game_over")

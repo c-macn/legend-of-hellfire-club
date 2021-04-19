@@ -18,4 +18,3 @@ func update(_delta: float) -> void:
 
 func is_moving() -> bool:
 	return Input.is_action_just_pressed("walk_left") or Input.is_action_just_pressed("walk_right") or Input.is_action_just_pressed("walk_up") or Input.is_action_just_pressed("walk_down")
-

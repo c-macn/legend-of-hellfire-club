@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Tilesets/BaseRoomTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://CutsceneTriggers/CutsceneTriggger.tscn" type="PackedScene" id=2]
@@ -10,7 +10,7 @@
 [ext_resource path="res://CutsceneTriggers/CutsceneManager.gd" type="Script" id=8]
 [ext_resource path="res://Tilesets/main_tileset.tres" type="TileSet" id=9]
 [ext_resource path="res://Objects/TheHead/TheHead.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Characters/Cultist/Cultist.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Objects/CultistSpawner/CultistSpawner.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "intro"
@@ -181,7 +181,6 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "the_head_investigation"
 length = 1.5
 tracks/0/type = "method"
 tracks/0/path = NodePath("Saoirse")
@@ -283,6 +282,35 @@ graph_offset = Vector2( -384.359, -2.71978 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=15]
 
+[sub_resource type="Shader" id=16]
+code = "shader_type canvas_item;
+
+uniform sampler2D dissolve_texture : hint_albedo;
+uniform float dissolve_value : hint_range(0,1);
+
+void fragment(){
+    vec4 main_texture = texture(TEXTURE, UV);
+    vec4 noise_texture = texture(dissolve_texture, UV);
+    main_texture.a *= floor(dissolve_value + min(1, noise_texture.x));
+    COLOR = main_texture;
+}"
+
+[sub_resource type="OpenSimplexNoise" id=17]
+period = 56.5
+persistence = 0.781
+lacunarity = 3.5
+
+[sub_resource type="NoiseTexture" id=18]
+resource_local_to_scene = true
+seamless = true
+noise = SubResource( 17 )
+
+[sub_resource type="ShaderMaterial" id=19]
+resource_local_to_scene = true
+shader = SubResource( 16 )
+shader_param/dissolve_value = 1.0
+shader_param/dissolve_texture = SubResource( 18 )
+
 [node name="MainRoom" type="Node2D"]
 position = Vector2( 0, 2 )
 script = ExtResource( 6 )
@@ -293,7 +321,7 @@ pause_mode = 2
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2( 21.3813, 12.4726 )
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.113725, 0.0941176, 0.137255, 1 )
 
 [node name="Floors" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -387,22 +415,6 @@ anims/the_head_investigation = SubResource( 4 )
 anims/the_head_start = SubResource( 5 )
 script = ExtResource( 8 )
 
-[node name="Saoirse" parent="." instance=ExtResource( 7 )]
-position = Vector2( 546, 1107 )
-
-[node name="CollisionShape2D" parent="Saoirse" index="1"]
-visible = true
-
-[node name="Light2D" parent="Saoirse" index="4"]
-enabled = false
-energy = 0.0
-
-[node name="Camera2D" parent="Saoirse" index="5"]
-position = Vector2( 1, 1 )
-
-[node name="Cultists" parent="." instance=ExtResource( 11 )]
-position = Vector2( 263.091, 1009.81 )
-
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 14 )
 anim_player = NodePath("../CutsceneManager")
@@ -411,5 +423,29 @@ parameters/conditions/is_dialouge_finished = false
 
 [node name="TheHead" parent="." instance=ExtResource( 10 )]
 position = Vector2( 489.394, 358.715 )
+
+[node name="Saoirse" parent="." instance=ExtResource( 7 )]
+material = null
+use_parent_material = false
+position = Vector2( 546, 1107 )
+
+[node name="AnimatedSprite" parent="Saoirse" index="0"]
+material = SubResource( 19 )
+
+[node name="Light2D" parent="Saoirse" index="4"]
+enabled = false
+energy = 0.0
+
+[node name="Camera2D" parent="Saoirse" index="5"]
+position = Vector2( 1, 1 )
+
+[node name="CultistSpawner" parent="." instance=ExtResource( 11 )]
+Saoirse = NodePath("../Saoirse")
+floor_map = NodePath("../Floors")
+default_spawn_position = NodePath("../DefaultCultistSpawnPosition")
+spawn_percentage = 60
+
+[node name="DefaultCultistSpawnPosition" type="Position2D" parent="."]
+position = Vector2( 576.902, 800.405 )
 
 [editable path="Saoirse"]

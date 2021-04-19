@@ -41,10 +41,11 @@ func set_current_speed(speed_value) -> void:
 
 func get_animation() -> String:
 	var facing_angle = get_facing_angle(velocity)
+	print(facing_angle)
 
 	# always convert to positive, TODO investigate why this is sometimes NEGATIVE
-	# if facing_angle == -FACING_VALUES.LEFT:
-	# 	facing_angle = FACING_VALUES.LEFT
+	if facing_angle == -FACING_VALUES.LEFT:
+		facing_angle = FACING_VALUES.LEFT
 
 	match facing_angle:
 		FACING_VALUES.DOWN:
