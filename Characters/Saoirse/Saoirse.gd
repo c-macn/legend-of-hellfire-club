@@ -1,7 +1,11 @@
 extends KinematicBody2D
+class_name Saoirse
 
 # Used to tell the parent scene the disquise has been removed, so a box instance should be created
 signal disguise_removed(position)
+
+# used to tell the parent scene that Saoirse has been banished so the cultist can de-spawn
+signal banished
 
 const MAX_BANISHMENTS: int = 3
 
@@ -13,6 +17,7 @@ var default_frames := preload("res://Characters/Saoirse/Animations/Saoirse_Defau
 var box_frames := preload("res://Characters/Saoirse/Animations/Saoirse_Box_Frames.tres")
 var cutscene_waypoints: PoolVector2Array
 var is_movement_disabled: bool = false
+var spawn_point: Vector2
 
 onready var shot_spawner: Node2D = $ShotSpawner
 onready var animated_sprite: AnimatedSprite = $AnimatedSprite
@@ -21,15 +26,14 @@ onready var tween := $Tween
 
 func _ready():
 	add_to_group("actors")
+	spawn_point = global_position
 	var active_frames = box_frames if GameState.get_is_Saoirse_disguised() else default_frames
 	_set_active_frames(active_frames)
-
-func _process(_delta) -> void:
-	$ColorRect.material.set_shader_param("player_position", position)
+	phase_in()
 
 func _input(_event) -> void:
 	if !is_movement_disabled:
-		if Input.is_action_just_pressed("fire") and GameState.get_has_blessed_shot():
+		if Input.is_action_just_pressed("fire"):
 			fire_water()
 		
 		if Input.is_action_just_pressed("obj_cancel"):
@@ -43,31 +47,29 @@ func fire_water() -> void:
 	shot_spawner.add_child(shot)
 
 # when hit by cultist, move to spawn point
-func banish(banish_increase: int, respawn_position: Vector2) -> void:
+func banish(banish_increase: int = 1, respawn_position: Vector2 = spawn_point) -> void:
 	disable_movement()
+
 	if banish_increase:
 		banish_count += banish_increase
 	else:
 		banish_count += 1
 	
 	if banish_count < MAX_BANISHMENTS:
-		tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 1, 0, 1,
-			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-
+		phase_out()
 		tween.interpolate_callback(self, 1, "reanimate", respawn_position)
+		emit_signal("banished")
 	else:
-		tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 1, 0, 1,
-			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-		
+		phase_out()
 		tween.interpolate_callback(self, 1, "game_over")
+		tween.interpolate_callback(self, 1, "reanimate", respawn_position)
 
 	tween.start()
 
 func reanimate(respawn_point: Vector2) -> void:
 	global_position = lerp(global_position, respawn_point, 0.5)
 
-	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 0, 1, 1,
-		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	phase_in()
 
 	tween.interpolate_property(self, "global_position", global_position, respawn_point, 0.5,
 		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
@@ -111,3 +113,14 @@ func _set_active_frames(frames: SpriteFrames) -> void:
 
 func turn_off_light() -> void:
 	$Light2D.visible = false
+
+func phase_out() -> void:
+	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 1, 0, 1,
+			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+
+func phase_in() -> void:
+	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 0, 1, 1,
+			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+
+	if !tween.is_active():
+		tween.start()

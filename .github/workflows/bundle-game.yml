@@ -38,7 +38,7 @@ jobs:
         with:
           name: windows
           path: build/windows
-  
+
   build-mac:
     runs-on: ubuntu-latest
     container:
