@@ -9,6 +9,7 @@ enum SPAWN_POINTS {
 # pulled this value out of me hole
 const DEFAULT_SPAWN_POINT := Vector2(546, 1107)
 
+onready var navigation = get_tree().get_root().find_node("Navigation2D", true, false)
 onready var spawn_points: Array = $SpawnPoints.get_children()
 onready var animation_player: AnimationPlayer = $CutsceneManager
 onready var the_head_cutscene_trigger: Area2D  = $CutsceneTriggers/TheHead
@@ -19,12 +20,15 @@ onready var animtion_tree := $AnimationTree
 func _ready() -> void:
 	._ready()
 	yield(scene_transition, "transition_finished")
-	setup_cutscene_triggers()
+	#setup_cutscene_triggers()
 	dialouge_container.connect("dialouge_finished", self, "_on_Dialouge_finished")
 	saoirse.position = determine_spawn_location()
 	
 	if !saoirse.is_connected("disguise_removed", self, "_on_disguise_removed"): 
 		saoirse.connect("disguise_removed", self, "_on_disguise_removed")
+		
+	if !saoirse.is_connected("banished", self, "_on_banishment"):
+		saoirse.connect("banished", self, "_on_banishment")
 
 	# if !GameState.get_cutscene_state("intro"):
 	# 	play_cutscene("intro")
@@ -62,3 +66,6 @@ func on_Cutscene_ended() -> void:
 
 func _on_Dialouge_finished() -> void:
 	animtion_tree["parameters/conditions/is_dialouge_finished"] = true
+	
+func _on_banishment() -> void:
+	$CultistSpawner.despawn_cultitst()

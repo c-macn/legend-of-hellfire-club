@@ -9,19 +9,79 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Cultist",
+"language": "GDScript",
+"path": "res://Characters/Cultist/Cultist.gd"
+}, {
+"base": "State",
+"class": "CultistCasting",
+"language": "GDScript",
+"path": "res://Characters/Cultist/StateMachine/Casting.gd"
+}, {
+"base": "State",
+"class": "CultistChasing",
+"language": "GDScript",
+"path": "res://Characters/Cultist/StateMachine/Chasing.gd"
+}, {
+"base": "State",
+"class": "CultistIdle",
+"language": "GDScript",
+"path": "res://Characters/Cultist/StateMachine/Idle.gd"
+}, {
+"base": "State",
+"class": "CultistSearching",
+"language": "GDScript",
+"path": "res://Characters/Cultist/StateMachine/Searching.gd"
+}, {
+"base": "StateMachine",
+"class": "CultistStateMachine",
+"language": "GDScript",
+"path": "res://Characters/Cultist/StateMachine/StateMachine.gd"
+}, {
 "base": "",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://git_api.gdns"
 }, {
+"base": "Area2D",
+"class": "InfernalShot",
+"language": "GDScript",
+"path": "res://Entities/InfernalShot/InfernalShot.gd"
+}, {
+"base": "State",
+"class": "MoveState",
+"language": "GDScript",
+"path": "res://Characters/Saoirse/StateMachine/MoveState.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Saoirse",
+"language": "GDScript",
+"path": "res://Characters/Saoirse/Saoirse.gd"
+}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
 "path": "res://Characters/StateMachine/State.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://Characters/StateMachine/StateMachine.gd"
 } ]
 _global_script_class_icons={
+"Cultist": "",
+"CultistCasting": "",
+"CultistChasing": "",
+"CultistIdle": "",
+"CultistSearching": "",
+"CultistStateMachine": "",
 "GitAPI": "",
-"State": ""
+"InfernalShot": "",
+"MoveState": "",
+"Saoirse": "",
+"State": "",
+"StateMachine": ""
 }
 
 [application]
@@ -119,10 +179,11 @@ inventory_toggle={
 
 [rendering]
 
-quality/2d/use_pixel_snap=true
-quality/filters/anisotropic_filter_level=2
+2d/snapping/use_gpu_pixel_snap=true
 quality/shadows/filter_mode=2
+quality/filters/anisotropic_filter_level=2
 environment/default_environment="res://default_env.tres"
+quality/2d/use_pixel_snap=true
 
 [world]
 

@@ -1,8 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 18.455
-height = 58.1585
+[sub_resource type="CircleShape2D" id=1]
 
 [node name="BanishmentArea" type="Area2D"]
 collision_layer = 2

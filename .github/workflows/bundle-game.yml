@@ -39,33 +39,6 @@ jobs:
           name: windows
           path: build/windows
 
-  build-linux:
-    runs-on: ubuntu-latest
-    container:
-      image: barichello/godot-ci:3.2.3
-
-    steps:
-      - name: build:checkout
-        uses: actions/checkout@v2
-        with:
-          lfs: true
-
-      - name: build:prepare
-        run: |
-          mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-
-      - name: build:linux
-        run: |
-          mkdir -v -p build/linux
-          godot -v --export "Linux/X11" build/linux/$EXPORT_NAME.x86_64
-
-      - name: build:upload-artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: linux
-          path: build/linux
-
   build-mac:
     runs-on: ubuntu-latest
     container:

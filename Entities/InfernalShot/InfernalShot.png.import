@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Servent_3.png-48e910cc0c421939413348ab56bd9fb7.stex"
+path="res://.import/InfernalShot.png-1f58fd17e5e069417f4bce8993cd182b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/Servant/Servent_3.png"
-dest_files=[ "res://.import/Servent_3.png-48e910cc0c421939413348ab56bd9fb7.stex" ]
+source_file="res://Entities/InfernalShot/InfernalShot.png"
+dest_files=[ "res://.import/InfernalShot.png-1f58fd17e5e069417f4bce8993cd182b.stex" ]
 
 [params]
 
@@ -23,7 +23,7 @@ flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=2
+flags/srgb=0
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false

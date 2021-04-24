@@ -17,7 +17,7 @@ func _ready() -> void:
 	scene_transition.fade_out()
 	setup_scene_transitions()
 	spawn_Box(GameState.get_box_position())
-	$CanvasModulate.visible = true
+	#$CanvasModulate.visible = true
 
 func spawn_Box(box_position: Vector2) -> void:
 	if box_position != Vector2.ZERO:

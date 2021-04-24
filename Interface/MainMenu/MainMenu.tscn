@@ -86,6 +86,7 @@ position = Vector2( -10, 25 )
 
 [node name="Cursor" type="Sprite" parent="."]
 texture = ExtResource( 6 )
+
 [connection signal="pressed" from="ButtonContainer/VBoxContainer/Story" to="." method="_on_Credits_clicked"]
 [connection signal="pressed" from="ButtonContainer/VBoxContainer2/Play" to="." method="_on_Story_clicked"]
 [connection signal="pressed" from="ButtonContainer/VBoxContainer3/Credits" to="." method="_on_Play_clicked"]

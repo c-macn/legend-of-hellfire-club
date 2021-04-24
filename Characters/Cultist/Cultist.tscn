@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Characters/Cultist/Cultist_Front0.png" type="Texture" id=1]
 [ext_resource path="res://Characters/Cultist/Cultist.gd" type="Script" id=2]
-[ext_resource path="res://Characters/Cultist/DetectionArea.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Entities/Lights/Candles/candle_lightmap.png" type="Texture" id=3]
 [ext_resource path="res://Characters/Cultist/BanishmentArea.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Characters/Cultist/Cultist_BackLeft.png" type="Texture" id=5]
 [ext_resource path="res://Characters/Cultist/Cultist_Side.png" type="Texture" id=6]
@@ -11,22 +11,18 @@
 [ext_resource path="res://Characters/Cultist/Cultist_Right.png" type="Texture" id=9]
 [ext_resource path="res://Characters/Cultist/Cultist_BackRight.png" type="Texture" id=10]
 [ext_resource path="res://Characters/Cultist/Cultist_Left.png" type="Texture" id=11]
+[ext_resource path="res://Shaders/Dissolve.tres" type="Material" id=12]
+[ext_resource path="res://Characters/Cultist/StateMachine/StateMachine.gd" type="Script" id=13]
+[ext_resource path="res://Characters/Cultist/StateMachine/Idle.gd" type="Script" id=14]
+[ext_resource path="res://Characters/Cultist/StateMachine/Chasing.gd" type="Script" id=15]
+[ext_resource path="res://Characters/Cultist/StateMachine/Casting.gd" type="Script" id=16]
+[ext_resource path="res://Entities/InfernalShot/InfernalShot.tscn" type="PackedScene" id=17]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
+"frames": [ ExtResource( 10 ) ],
 "loop": true,
-"name": "default",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "walk_right",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "walk_down_right",
+"name": "walk_up_right",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ) ],
@@ -49,9 +45,19 @@ animations = [ {
 "name": "walk_forward",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ) ],
+"frames": [ ExtResource( 9 ) ],
 "loop": true,
-"name": "walk_up_right",
+"name": "walk_down_right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "walk_back",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "walk_right",
 "speed": 5.0
 } ]
 
@@ -73,29 +79,110 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CapsuleShape2D" id=3]
-radius = 15.4227
-height = 48.0834
+radius = 3.81838
+height = 26.8504
 
 [node name="Cultists" type="KinematicBody2D"]
-position = Vector2( -0.25, 1.75 )
+scale = Vector2( 1.5, 1.5 )
+z_index = 1
 collision_layer = 2
-collision_mask = 16
+collision_mask = 21
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = ExtResource( 12 )
 frames = SubResource( 1 )
-animation = "walk_down_left"
+animation = "walk_back"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/stunned = SubResource( 2 )
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 10.559 )
 shape = SubResource( 3 )
 
+[node name="BanishmentArea" parent="." instance=ExtResource( 4 )]
+scale = Vector2( 8.54536, 8.46536 )
+
 [node name="StunnedTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
 
-[node name="DetectionArea" parent="." instance=ExtResource( 3 )]
+[node name="DetectionTimer" type="Timer" parent="."]
+one_shot = true
 
-[node name="BanishmentArea" parent="." instance=ExtResource( 4 )]
+[node name="CastTimeout" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[node name="Light2D" type="Light2D" parent="."]
+material = ExtResource( 12 )
+texture = ExtResource( 3 )
+texture_scale = 3.0
+energy = 0.0
+mode = 2
+
+[node name="ShotSpawner" type="Position2D" parent="."]
+scale = Vector2( 0.3, 0.3 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="DebugLines" type="Node" parent="."]
+
+[node name="RayCast2D" type="Line2D" parent="DebugLines"]
+position = Vector2( -0.25, 1.75 )
+rotation = 0.261799
+scale = Vector2( 1.5, 1.5 )
+
+[node name="RayCast2D2" type="Line2D" parent="DebugLines"]
+position = Vector2( -0.25, 1.75 )
+rotation = 0.261799
+scale = Vector2( 1.5, 1.5 )
+
+[node name="RayCast2D3" type="Line2D" parent="DebugLines"]
+position = Vector2( -0.25, 1.75 )
+rotation = 0.261799
+scale = Vector2( 1.5, 1.5 )
+
+[node name="RayCast2D4" type="Line2D" parent="DebugLines"]
+position = Vector2( -0.25, 1.75 )
+rotation = 0.261799
+scale = Vector2( 1.5, 1.5 )
+
+[node name="RayCast2D5" type="Line2D" parent="DebugLines"]
+position = Vector2( -0.25, 1.75 )
+rotation = 0.261799
+scale = Vector2( 1.5, 1.5 )
+
+[node name="RayCast2D6" type="Line2D" parent="DebugLines"]
+position = Vector2( -0.25, 1.75 )
+rotation = 0.261799
+scale = Vector2( 1.5, 1.5 )
+
+[node name="RayCast2D7" type="Line2D" parent="DebugLines"]
+position = Vector2( -0.25, 1.75 )
+rotation = 0.261799
+scale = Vector2( 1.5, 1.5 )
+
+[node name="RayCast2D8" type="Line2D" parent="DebugLines"]
+position = Vector2( -0.25, 1.75 )
+rotation = 0.261799
+scale = Vector2( 1.5, 1.5 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 13 )
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 14 )
+
+[node name="Chasing" type="Node" parent="StateMachine"]
+script = ExtResource( 15 )
+
+[node name="Casting" type="Node" parent="StateMachine"]
+script = ExtResource( 16 )
+infernal_shot = ExtResource( 17 )
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 5.0
+default_color = Color( 0.368627, 0.0352941, 0.552941, 1 )
+antialiased = true

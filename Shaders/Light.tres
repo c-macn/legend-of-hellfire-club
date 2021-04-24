@@ -17,9 +17,10 @@ void fragment(){
 }"
 
 [resource]
+render_priority = 1
 shader = SubResource( 1 )
-shader_param/player_position = null
-shader_param/color = Color( 0.960784, 0.752941, 0.403922, 1 )
-shader_param/MULTIPLIER = 1.0
-shader_param/SCALE = 4.0
-shader_param/SOFTNESS = 1.0
+shader_param/player_position = Vector2( 0.5, 0.5 )
+shader_param/color = Color( 0.0745098, 0.0705882, 0.0862745, 1 )
+shader_param/MULTIPLIER = 0.8
+shader_param/SCALE = 0.45
+shader_param/SOFTNESS = 0.56
