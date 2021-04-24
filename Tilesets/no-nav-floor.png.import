@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PortraitTest.png-0444e0ab38ead2689793ab4c91155d0f.stex"
+path="res://.import/no-nav-floor.png-a500abe76798bd511df9f302675b12f5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Interface/Dialog/PortraitTest.png"
-dest_files=[ "res://.import/PortraitTest.png-0444e0ab38ead2689793ab4c91155d0f.stex" ]
+source_file="res://Tilesets/no-nav-floor.png"
+dest_files=[ "res://.import/no-nav-floor.png-a500abe76798bd511df9f302675b12f5.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -1,4 +1,4 @@
-extends "res://Characters/StateMachine/State.gd"
+extends State
 
 func enter() -> void:
 	var animation_player = owner.owner.get_node("AnimatedSprite")
@@ -9,12 +9,15 @@ func enter() -> void:
 	else:
 		animation_player.play("default")
 
+
 func handle_input(event: InputEvent):
 	return .handle_input(event)
+
 
 func update(_delta: float) -> void:
 	if is_moving():
 		emit_signal("transition_to_state", "move")
+
 
 func is_moving() -> bool:
 	return Input.is_action_just_pressed("walk_left") or Input.is_action_just_pressed("walk_right") or Input.is_action_just_pressed("walk_up") or Input.is_action_just_pressed("walk_down")

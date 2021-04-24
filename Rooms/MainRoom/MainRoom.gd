@@ -9,6 +9,7 @@ enum SPAWN_POINTS {
 # pulled this value out of me hole
 const DEFAULT_SPAWN_POINT := Vector2(546, 1107)
 
+onready var navigation = get_tree().get_root().find_node("Navigation2D", true, false)
 onready var spawn_points: Array = $SpawnPoints.get_children()
 onready var animation_player: AnimationPlayer = $CutsceneManager
 onready var the_head_cutscene_trigger: Area2D  = $CutsceneTriggers/TheHead

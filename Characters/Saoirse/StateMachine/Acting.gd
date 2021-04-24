@@ -11,8 +11,7 @@ func enter() -> void:
 func scene_over() -> void:
 	emit_signal("transition_to_state", "idle")
 
-func update(delta: float) -> void:
-	.update(delta)
+func update(_delta: float) -> void:
 	var target = get_current_destination()
 	if target != null:
 		if _has_reached_destination(owner.owner.global_position, target):

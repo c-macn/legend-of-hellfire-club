@@ -3,17 +3,18 @@
 
 	The base state for all common movement needs
 """
-extends "res://Characters/StateMachine/State.gd"
+extends State
+class_name MoveState
 
-enum FACING_VALUES {
-	UP = -90,
-	DOWN = 90,
-	LEFT = 180,
+enum FACING_DIRECTIONS {
 	RIGHT = 0,
-	DIAGONAL_UP_LEFT = -135,
-	DIAGONAL_UP_RIGHT = -45,
-	DIAGONAL_DOWN_LEFT = 135,
-	DIAGONAL_DOWN_RIGHT = 45
+	DIAGONAL_DOWN_RIGHT = 1,
+	DOWN = 2,
+	DIAGONAL_DOWN_LEFT = 3,
+	LEFT = 4
+	DIAGONAL_UP_LEFT = 5,
+	UP = 6,
+	DIAGONAL_UP_RIGHT = 7
 }
 
 export(int) var speed_walking = 200
@@ -29,51 +30,43 @@ func exit():
 	set_current_speed(speed_walking)
 	velocity = Vector2.ZERO
 
-func handle_input(event: InputEvent):
-	return .handle_input(event)
-
-# move to subclass
-func update(delta: float) -> void:
-	.update(delta)
 
 func set_current_speed(speed_value) -> void:
 	current_speed = speed_value
 
+
 func get_animation() -> String:
-	var facing_angle = get_facing_angle(velocity)
-	print(facing_angle)
-
-	# always convert to positive, TODO investigate why this is sometimes NEGATIVE
-	if facing_angle == -FACING_VALUES.LEFT:
-		facing_angle = FACING_VALUES.LEFT
-
-	match facing_angle:
-		FACING_VALUES.DOWN:
+	var facing_direction = get_facing_direction(velocity)
+	
+	match facing_direction:
+		FACING_DIRECTIONS.DOWN:
 			return "walk_back"
-		FACING_VALUES.UP:
+		FACING_DIRECTIONS.UP:
 			return "walk_forward"
-		FACING_VALUES.LEFT:
+		FACING_DIRECTIONS.LEFT:
 			return "walk_left"
-		FACING_VALUES.RIGHT:
+		FACING_DIRECTIONS.RIGHT:
 			return "walk_right"
-		FACING_VALUES.DIAGONAL_DOWN_LEFT:
+		FACING_DIRECTIONS.DIAGONAL_DOWN_LEFT:
 			return "walk_down_left"
-		FACING_VALUES.DIAGONAL_DOWN_RIGHT:
+		FACING_DIRECTIONS.DIAGONAL_DOWN_RIGHT:
 			return "walk_down_right"
-		FACING_VALUES.DIAGONAL_UP_LEFT:
+		FACING_DIRECTIONS.DIAGONAL_UP_LEFT:
 			return "walk_up_left"
-		FACING_VALUES.DIAGONAL_UP_RIGHT:
+		FACING_DIRECTIONS.DIAGONAL_UP_RIGHT:
 			return "walk_up_right"
 		_:
 			return "default"
 
-func get_facing_angle(target_position: Vector2) -> int:
-	# get the degrees of the current velocity
-	var facing_angle = rad2deg(target_position.angle())
-	# round to the nearest whole int divisble by 45
-	var facing_angle_rounded = int(round(facing_angle / 45) * 45)
+
+func get_facing_direction(current_direction: Vector2) -> int:
+	var angle = current_direction.angle()
 	
-	return facing_angle_rounded
+	if angle < 0:
+		angle += 2 * PI # make the angle positive for simplicity
+	
+	return int(round(angle / PI * 4)) % 8 # ensure only values between 0 - 7 are returned
+
 
 func _on_sprite_changed(current_sprite: AnimatedSprite) -> void:
 	animated_sprite = current_sprite

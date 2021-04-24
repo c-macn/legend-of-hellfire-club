@@ -10,7 +10,7 @@ extents = Vector2( 59.2057, 17.3898 )
 
 [node name="EntranceBlock" type="Area2D"]
 position = Vector2( 3.35037, 0.61145 )
-collision_layer = 4
+collision_layer = 32
 script = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
@@ -19,6 +19,7 @@ shape = SubResource( 1 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( -127.245, 1521 )
+collision_layer = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( -0.561234, -5.89294 )

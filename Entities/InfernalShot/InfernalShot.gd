@@ -1,4 +1,5 @@
 extends Area2D
+class_name InfernalShot
 
 var is_ready_to_fire = false
 var speed: int = 600
@@ -26,7 +27,7 @@ func reveal() -> void:
 	tween.interpolate_property(sprite, "self_modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 
 		0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		
-	tween.start()	
+	tween.start()
 	shoot_timer.start()
 
 func shoot() -> void:

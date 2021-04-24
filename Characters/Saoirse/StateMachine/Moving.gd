@@ -1,19 +1,22 @@
-extends "res://Characters/Saoirse/StateMachine/MoveState.gd"
+extends MoveState
 
 func enter():
 	.set_current_speed(speed_walking)
 	velocity = Vector2.ZERO
 	animated_sprite = owner.owner.get_node("AnimatedSprite")
 
+
 func exit():
 	.exit()
+
 
 func handle_input(event: InputEvent):
 	return .handle_input(event)
 
+
 func update(_delta: float) -> void:
 	var direction: Vector2 = _handle_movement()
-
+	
 	if Input.is_action_pressed("sprint"):
 		set_current_speed(speed_running)
 	else:
@@ -25,10 +28,11 @@ func update(_delta: float) -> void:
 		owner.owner.move_and_slide(velocity)
 	else:
 		emit_signal("transition_to_state", "idle")
-	
+
+
 func _handle_movement() -> Vector2:
 	var input: Vector2 = Vector2.ZERO
-
+	
 	if !owner.owner.is_movement_disabled:
 		if Input.is_action_pressed("walk_up"):
 			input.y -= 1
@@ -38,5 +42,4 @@ func _handle_movement() -> Vector2:
 			input.x += 1
 		if Input.is_action_pressed("walk_left"):
 			input.x -= 1
-
 	return input.normalized()

@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Saoirse
 
 # Used to tell the parent scene the disquise has been removed, so a box instance should be created
 signal disguise_removed(position)

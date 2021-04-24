@@ -3,14 +3,14 @@
 [ext_resource path="res://Entities/InfernalShot/InfernalShot.png" type="Texture" id=1]
 [ext_resource path="res://Entities/InfernalShot/InfernalShot.gd" type="Script" id=2]
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.0128205, 0.871795 )
 colors = PoolColorArray( 0.272617, 0.272617, 0.272617, 1, 0.505754, 0.330767, 0.838379, 1 )
 
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-[sub_resource type="ParticlesMaterial" id=1]
+[sub_resource type="ParticlesMaterial" id=3]
 emission_shape = 1
 emission_sphere_radius = 16.7
 flag_disable_z = true
@@ -22,7 +22,7 @@ angular_velocity_random = 0.36
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 1.75
-color_ramp = SubResource( 3 )
+color_ramp = SubResource( 2 )
 hue_variation = 0.04
 hue_variation_random = 0.33
 
@@ -51,4 +51,4 @@ one_shot = true
 
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( -13.8284, 2.375 )
-process_material = SubResource( 1 )
+process_material = SubResource( 3 )

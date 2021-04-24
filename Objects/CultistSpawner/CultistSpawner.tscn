@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Objects/CultistSpawner/CultistSpawner.gd" type="Script" id=1]
+[ext_resource path="res://Characters/Cultist/Cultist.tscn" type="PackedScene" id=2]
 
 [node name="CultistSpawner" type="Node2D"]
 script = ExtResource( 1 )
@@ -10,3 +11,5 @@ wait_time = 5.0
 
 [node name="ChaseTimer" type="Timer" parent="."]
 wait_time = 60.0
+
+[node name="Cultist" parent="." instance=ExtResource( 2 )]
