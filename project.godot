@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "BaseRoom",
+"language": "GDScript",
+"path": "res://Rooms/Room.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Cultist",
 "language": "GDScript",
@@ -70,6 +75,7 @@ _global_script_classes=[ {
 "path": "res://Characters/StateMachine/StateMachine.gd"
 } ]
 _global_script_class_icons={
+"BaseRoom": "",
 "Cultist": "",
 "CultistCasting": "",
 "CultistChasing": "",
