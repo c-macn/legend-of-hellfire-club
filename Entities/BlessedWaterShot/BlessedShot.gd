@@ -25,7 +25,7 @@ func lock_rotation(degrees: float) -> void:
 func _on_BlessedShot_body_entered(body: KinematicBody2D) -> void:
 	if body != null:
 		if body.is_in_group("cultists"):
-			body.stun()
+			body.cleanse()
 	queue_free()
 
 func _on_left_bounds() -> void:

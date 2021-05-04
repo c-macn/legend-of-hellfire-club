@@ -12,7 +12,8 @@ enum SCENES {
 	DEMON_ROOM = 3,
 	SERVANTS_ROOM = 4,
 	GAME_ROOM = 5,
-	FINAL_ROOM = 6
+	FINAL_ROOM = 6,
+	BOSS_BATTLE = 7
 }
 
 var _scenes = [
@@ -21,7 +22,9 @@ var _scenes = [
 	"res://Rooms/MainHallwayRoom/MainHallwayRoom.tscn", 
 	"res://Rooms/DemoEyeRoom/DemoEyeRoom.tscn", 
 	"res://Rooms/ServantsRoom/ServantsRoom.tscn", 
-	"res://Rooms/GameRoom/GameRoom.tscn"
+	"res://Rooms/GameRoom/GameRoom.tscn",
+	"",
+	"res://Rooms/BossBattleRoom/BossBattleRoom.tscn"
 ]
 
 func get_scene(scene_index: int) -> String:

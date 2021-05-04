@@ -73,6 +73,11 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://Characters/StateMachine/StateMachine.gd"
+}, {
+"base": "State",
+"class": "Stun",
+"language": "GDScript",
+"path": "res://Characters/Cultist/StateMachine/Stun.gd"
 } ]
 _global_script_class_icons={
 "BaseRoom": "",
@@ -87,7 +92,8 @@ _global_script_class_icons={
 "MoveState": "",
 "Saoirse": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"Stun": ""
 }
 
 [application]

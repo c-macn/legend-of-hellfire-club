@@ -3,7 +3,7 @@ class_name State
 
 signal transition_to_state(next_state_name)
 
-func enter() -> void:
+func enter() -> void: 
 	pass
 
 func exit() -> void:

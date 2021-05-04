@@ -13,8 +13,7 @@ onready var navigation = get_tree().get_root().find_node("Navigation2D", true, f
 onready var spawn_points: Array = $SpawnPoints.get_children()
 onready var animation_player: AnimationPlayer = $CutsceneManager
 onready var the_head_cutscene_trigger: Area2D  = $CutsceneTriggers/TheHead
-onready var saoirse: KinematicBody2D = $Saoirse
-onready var camera: Camera2D = $Saoirse/Camera2D
+onready var saoirse: KinematicBody2D = $YSort/Saoirse
 onready var animtion_tree := $AnimationTree
 
 func _ready() -> void:
@@ -30,7 +29,10 @@ func _ready() -> void:
 		saoirse.connect("banished", self, "_on_banishment")
 
 	if !GameState.get_cutscene_state("intro"):
-		play_cutscene("intro")
+		#play_cutscene("intro")
+		saoirse.get_node("Light2D").enabled = true
+		saoirse.get_node("Light2D").energy = 1
+		$CanvasModulate.modulate = Color(30, 150, 80, 255)
 	else:
 		saoirse.get_node("Light2D").enabled = true
 		saoirse.get_node("Light2D").energy = 1

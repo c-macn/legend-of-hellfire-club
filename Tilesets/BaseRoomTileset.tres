@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=84 format=2]
+[gd_resource type="TileSet" load_steps=83 format=2]
 
 [ext_resource path="res://Tilesets/TileSet.png" type="Texture" id=1]
 [ext_resource path="res://Tilesets/NEW Wall Gap Tile Set Full.png" type="Texture" id=2]
@@ -146,9 +146,6 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 [sub_resource type="NavigationPolygon" id=41]
 vertices = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-
-[sub_resource type="ConvexPolygonShape2D" id=42]
-points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 
 [sub_resource type="ConvexPolygonShape2D" id=43]
 points = PoolVector2Array( 8.25464, 8.51852, 23.8796, 8.51852, 25.037, 26.4583, 7.09723, 27.037 )
@@ -752,16 +749,9 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 18/navigation_offset = Vector2( 0, 0 )
 18/shape_offset = Vector2( 0, 0 )
 18/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-18/shape = SubResource( 42 )
 18/shape_one_way = false
-18/shape_one_way_margin = 1.0
-18/shapes = [ {
-"autotile_coord": Vector2( 1, 1 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 42 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
+18/shape_one_way_margin = 0.0
+18/shapes = [  ]
 18/z_index = 0
 19/name = "test_wall"
 19/texture = ExtResource( 6 )

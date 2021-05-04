@@ -10,7 +10,7 @@ onready var tween := $Tween
 onready var light_pivot: Node2D = $LightPivot
 onready var banish_time := $BanishTimer
 
-func _ready() -> void:	
+func _ready() -> void:
 	animated_sprite.play("default")
 	light_pivot.rotation_degrees = INITIAL_ROTATION_DEGREES
 	banish_time.connect("timeout", self, "_banish_target")

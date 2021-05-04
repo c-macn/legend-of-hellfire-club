@@ -42,14 +42,15 @@ func _input(_event) -> void:
 		
 func fire_water() -> void:
 	var shot = BlessedShot.instance()
+	shot_spawner.look_at(get_global_mouse_position())
 	shot.transform = shot_spawner.global_transform
-
 	shot_spawner.add_child(shot)
+
 
 # when hit by cultist, move to spawn point
 func banish(banish_increase: int = 1, respawn_position: Vector2 = spawn_point) -> void:
 	disable_movement()
-
+	
 	if banish_increase:
 		banish_count += banish_increase
 	else:
@@ -63,17 +64,17 @@ func banish(banish_increase: int = 1, respawn_position: Vector2 = spawn_point) -
 		phase_out()
 		tween.interpolate_callback(self, 1, "game_over")
 		tween.interpolate_callback(self, 1, "reanimate", respawn_position)
-
+		
 	tween.start()
 
 func reanimate(respawn_point: Vector2) -> void:
 	global_position = lerp(global_position, respawn_point, 0.5)
-
+	
 	phase_in()
 
 	tween.interpolate_property(self, "global_position", global_position, respawn_point, 0.5,
 		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-
+		
 	tween.start()
 	enable_movement()
 
@@ -84,43 +85,55 @@ func move_to_point(target_position: Vector2) -> void:
 	tween.interpolate_property(self, "position", position, target_position, 1, Tween.TRANS_CUBIC, Tween.EASE_OUT) 
 	tween.start(); # convert to steer behavior
 
+
 func put_on_disguise() -> void:
 	GameState.set_is_Saoirse_disguised(true)	
 	_set_active_frames(box_frames)
+
 
 func take_off_disguise() -> void:
 	GameState.set_is_Saoirse_disguised(false)
 	_set_active_frames(default_frames)
 	emit_signal("disguise_removed", position)
 
+
 func is_disguised() -> bool:
 	return GameState.get_is_Saoirse_disguised()
+
 
 func scene_start() -> void:
 	pause_mode = Node.PAUSE_MODE_STOP;
 
+
 func scene_end() -> void:
 	pause_mode = Node.PAUSE_MODE_PROCESS;
+
 
 func disable_movement() -> void:
 	is_movement_disabled = true
 
+
 func enable_movement() -> void:
 	is_movement_disabled = false
+
 
 func _set_active_frames(frames: SpriteFrames) -> void:
 	animated_sprite.frames = frames
 
+
 func turn_off_light() -> void:
 	$Light2D.visible = false
+
 
 func phase_out() -> void:
 	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 1, 0, 1,
 			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 
+
 func phase_in() -> void:
 	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 0, 1, 1,
 			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+
 
 	if !tween.is_active():
 		tween.start()

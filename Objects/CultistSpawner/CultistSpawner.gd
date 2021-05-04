@@ -8,7 +8,7 @@ export(int) var spawn_percentage
 var floor_tiles: TileMap
 
 onready var Cultist := $Cultist
-onready var Saoirse := get_parent().get_node("Saoirse")
+onready var Saoirse := get_parent().get_node("YSort/Saoirse")
 onready var spawn_timer := $SpawnTimer
 onready var chase_timer := $ChaseTimer
 onready var rng = RandomNumberGenerator.new()
