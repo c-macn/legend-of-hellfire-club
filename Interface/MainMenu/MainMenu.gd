@@ -59,13 +59,13 @@ func trigger_button_action(current_button: int) -> void:
 		_on_Credits_clicked()
 
 func _on_Play_clicked() -> void:
-	load_scene(GameConstants.SCENES.MAIN_ROOM)
+	load_scene(GameConstants.SCENES.BOSS_BATTLE)
 
 func _on_Story_clicked() -> void:
-	load_scene(GameConstants.SCENES.MAIN_ROOM)
+	load_scene(GameConstants.SCENES.BOSS_BATTLE)
 
 func _on_Credits_clicked() -> void:
-	load_scene(GameConstants.SCENES.MAIN_ROOM)
+	load_scene(GameConstants.SCENES.BOSS_BATTLE)
 
 func load_scene(scene_index: int) -> void:
 	get_tree().change_scene(GameConstants.get_scene(scene_index))

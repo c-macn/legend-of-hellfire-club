@@ -13,14 +13,12 @@ onready var navigation = get_tree().get_root().find_node("Navigation2D", true, f
 onready var spawn_points: Array = $SpawnPoints.get_children()
 onready var animation_player: AnimationPlayer = $CutsceneManager
 onready var the_head_cutscene_trigger: Area2D  = $CutsceneTriggers/TheHead
-onready var saoirse: KinematicBody2D = $Saoirse
-onready var camera: Camera2D = $Saoirse/Camera2D
+onready var saoirse: KinematicBody2D = $YSort/Saoirse
 onready var animtion_tree := $AnimationTree
 
 func _ready() -> void:
-	._ready()
 	yield(scene_transition, "transition_finished")
-	#setup_cutscene_triggers()
+	setup_cutscene_triggers()
 	dialouge_container.connect("dialouge_finished", self, "_on_Dialouge_finished")
 	saoirse.position = determine_spawn_location()
 	
@@ -30,12 +28,15 @@ func _ready() -> void:
 	if !saoirse.is_connected("banished", self, "_on_banishment"):
 		saoirse.connect("banished", self, "_on_banishment")
 
-	# if !GameState.get_cutscene_state("intro"):
-	# 	play_cutscene("intro")
-	# else:
-	saoirse.get_node("Light2D").enabled = true
-	saoirse.get_node("Light2D").energy = 1
-	$CanvasModulate.modulate = Color(30, 150, 80, 255)
+	if !GameState.get_cutscene_state("intro"):
+		#play_cutscene("intro")
+		saoirse.get_node("Light2D").enabled = true
+		saoirse.get_node("Light2D").energy = 1
+		$CanvasModulate.modulate = Color(30, 150, 80, 255)
+	else:
+		saoirse.get_node("Light2D").enabled = true
+		saoirse.get_node("Light2D").energy = 1
+		$CanvasModulate.modulate = Color(30, 150, 80, 255)
 
 func determine_spawn_location() -> Vector2:
 	var previous_scene = GameState.get_previous_scene()

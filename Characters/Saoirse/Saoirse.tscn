@@ -1,15 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Characters/Saoirse/Saoirse.gd" type="Script" id=1]
 [ext_resource path="res://Characters/Saoirse/Animations/Saoirse_Default_Frames.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://Characters/Saoirse/Torch.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Camera/Camera2D.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Shaders/Light.tres" type="Material" id=5]
 [ext_resource path="res://Shaders/Dissolve.tres" type="Material" id=6]
 [ext_resource path="res://Characters/Saoirse/StateMachine/StateMachine.tscn" type="PackedScene" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 4.92594
+radius = 10.0486
 height = 15.8349
 
 [node name="Saoirse" type="KinematicBody2D" groups=[
@@ -29,7 +28,7 @@ z_as_relative = false
 frames = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.873722, 8.79359 )
+position = Vector2( -0.42828, 14.4731 )
 shape = SubResource( 1 )
 
 [node name="ShotSpawner" type="Node2D" parent="."]
@@ -39,11 +38,8 @@ shape = SubResource( 1 )
 [node name="Light2D" parent="." instance=ExtResource( 3 )]
 material = ExtResource( 5 )
 
-[node name="Camera2D" parent="." instance=ExtResource( 4 )]
-offset = Vector2( 0, 0 )
-drag_margin_h_enabled = false
-drag_margin_v_enabled = false
-editor_draw_limits = true
-editor_draw_drag_margin = false
-
 [node name="Tween" type="Tween" parent="."]
+
+[node name="ShootDelay" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true

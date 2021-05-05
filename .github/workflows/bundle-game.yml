@@ -2,7 +2,7 @@
 name: Bundle Game
 
 env:
-  GODOT_VERSION: 3.2.3
+  GODOT_VERSION: 3.3
   EXPORT_NAME: devil-youre-dealt
 
 # Controls when the action will run.
@@ -15,7 +15,7 @@ jobs:
   build-windows:
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.2.3
+      image: barichello/godot-ci:3.3
 
     steps:
       - name: build:checkout
@@ -42,7 +42,7 @@ jobs:
   build-mac:
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.2.3
+      image: barichello/godot-ci:3.3
 
     steps:
       - name: build:checkout

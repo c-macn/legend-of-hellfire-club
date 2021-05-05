@@ -44,9 +44,10 @@ func exit() -> void:
 
 
 func update(delta: float) -> void:
-	var Saoirse_current_position = owner.get_parent().get_Saoirses_position()
-	_navigate_to_Saoirse(delta, Saoirse_current_position)
-	_target_Saoirse(Saoirse_current_position)
+	if owner.get_parent().has_method("get_Saoirses_position"):
+		var Saoirse_current_position = owner.get_parent().get_Saoirses_position()
+		_navigate_to_Saoirse(delta, Saoirse_current_position)
+		_target_Saoirse(Saoirse_current_position)
 	animated_sprite.play(_get_animation())
 
 func _navigate_to_Saoirse(delta: float, Saoirse_position: Vector2) -> void:

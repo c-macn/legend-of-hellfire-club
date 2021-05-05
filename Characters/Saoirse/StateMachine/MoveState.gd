@@ -63,7 +63,7 @@ func get_facing_direction(current_direction: Vector2) -> int:
 	var angle = current_direction.angle()
 	
 	if angle < 0:
-		angle += 2 * PI # make the angle positive for simplicity
+		angle += TAU # make the angle positive for simplicity
 	
 	return int(round(angle / PI * 4)) % 8 # ensure only values between 0 - 7 are returned
 
