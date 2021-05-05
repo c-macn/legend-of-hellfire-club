@@ -109,6 +109,7 @@ func get_Saoirses_position() -> Vector2:
 func cleanse() -> void:
 	if is_stunned:
 		cleanse_count += 1
+		hit_box.call_deferred("set_disabled", true)
 		emit_signal("cleansed", cleanse_count)
 
 

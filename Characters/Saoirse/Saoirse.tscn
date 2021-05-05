@@ -39,3 +39,7 @@ shape = SubResource( 1 )
 material = ExtResource( 5 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="ShootDelay" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true

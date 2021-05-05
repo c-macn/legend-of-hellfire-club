@@ -27,14 +27,9 @@ animations = [ {
 "name": "walk_up_right",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 5 ) ],
 "loop": true,
-"name": "walk_forward",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "walk_back",
+"name": "walk_up_left",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ) ],
@@ -42,9 +37,9 @@ animations = [ {
 "name": "walk_right",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ) ],
+"frames": [ ExtResource( 1 ) ],
 "loop": true,
-"name": "walk_down_left",
+"name": "walk_back",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ) ],
@@ -52,9 +47,14 @@ animations = [ {
 "name": "walk_left",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
-"name": "walk_up_left",
+"name": "walk_forward",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "walk_down_left",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ) ],

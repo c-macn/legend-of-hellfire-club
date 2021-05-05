@@ -33,7 +33,7 @@ func _ready():
 
 func _input(_event) -> void:
 	if !is_movement_disabled:
-		if Input.is_action_just_pressed("fire"):
+		if Input.is_action_just_pressed("fire") and _can_fire():
 			fire_water()
 		
 		if Input.is_action_just_pressed("obj_cancel"):
@@ -45,6 +45,7 @@ func fire_water() -> void:
 	shot_spawner.look_at(get_global_mouse_position())
 	shot.transform = shot_spawner.global_transform
 	shot_spawner.add_child(shot)
+	$ShootDelay.start()
 
 
 # when hit by cultist, move to spawn point
@@ -137,3 +138,7 @@ func phase_in() -> void:
 
 	if !tween.is_active():
 		tween.start()
+
+
+func _can_fire() -> bool:
+	return $ShootDelay.is_stopped()
