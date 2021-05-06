@@ -82,6 +82,7 @@ func reanimate(respawn_point: Vector2) -> void:
 func game_over() -> void:
 	get_tree().reload_current_scene() # create game over screen
 
+
 func move_to_point(target_position: Vector2) -> void:
 	tween.interpolate_property(self, "position", position, target_position, 1, Tween.TRANS_CUBIC, Tween.EASE_OUT) 
 	tween.start(); # convert to steer behavior
@@ -142,3 +143,7 @@ func phase_in() -> void:
 
 func _can_fire() -> bool:
 	return $ShootDelay.is_stopped()
+
+
+func play_animation(animation_name: String) -> void:
+	animated_sprite.play(animation_name)

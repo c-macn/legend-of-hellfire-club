@@ -5,7 +5,10 @@ func enter() -> void:
 	var current_animation = animation_player.get_animation()
 	
 	if current_animation != "default":
-		animation_player.play("idle_" + current_animation)
+		if current_animation.begins_with("idle_"):
+			animation_player.play(current_animation)
+		else:
+			animation_player.play("idle_" + current_animation)
 	else:
 		animation_player.play("default")
 

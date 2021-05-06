@@ -91,10 +91,26 @@
     },
     "the_good_end_0": {
       "value": "Wha... Where am I now...."
+    },
+    "boss_battle_0": {
+      "value": "Alright Parsons', come on out!",
+      "next": "boss_battle_1"
+    },
+    "boss_battle_1": {
+      "value": "Come and fight me like a man"
+    },
+    "boss_battle_4": {
+      "value": "Let's dance aul lad"
+    },
+    "boss_battle_won": {
+      "value": "Alright Parsons this card is mine now, slip it into the deck and give it to your master"
+    },
+    "victory_message": {
+      "value": "Right, now to get Ma and Da..."
     }
   },
   "cultist": {
-    "portrait": "res://Characters/Saoirse/Cultist_Portrait.png",
+    "portrait": "res://Characters/Cultist/Cultist_Portrait.png",
     "marked_0": {
       "value": "You have been marked child, I will know of your precence within these walls."
     },
@@ -104,6 +120,16 @@
     },
     "marked_2": {
       "value": "Do not test my patience young one, lest you wish to learn the fate of those who stood in our way"
+    },
+    "boss_battle_2": {
+      "value": "You petulant child! This is your final warning, give me the card pieces and leave",
+      "next": "boss_battle_3"
+    },
+    "boss_battle_3": {
+      "value": "Don't think just because you have some palor trick magic you can beat me"
+    },
+    "boss_battle_won": {
+      "value": "Ughguguh, ugghghughug. gughug"
     }
   },
   "servant": {
@@ -172,6 +198,13 @@
     },
     "the_servant_power_3": {
       "value": "Now chick, just pick up the bottle and you'll have a fighting chance with Parsons... Let's go before it's too late"      
+    },
+    "boss_battle_won": {
+      "value": "You done it chic. I'm afriad I'll have to leave ya now",
+      "next": "boss_battle_won_1"
+    },
+    "boss_battle_won_1": {
+      "value": "Thanks for setting my spirit free from this cursed place, now slip him the caaaarrr..."
     }
   },
   "devil": {

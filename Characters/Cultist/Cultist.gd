@@ -113,6 +113,23 @@ func cleanse() -> void:
 		emit_signal("cleansed", cleanse_count)
 
 
+func set_to_idle() -> void:
+	animated_sprite.play("walk_back")
+	stun_timer.disconnect("timeout", self, "phase_out")
+	stun_timer.stop()
+	state_machine._change_state("idle")
+
+
+func _phase_in_animation() -> void:
+	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 0, 1, 2,
+			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			
+	tween.interpolate_property(light, 'energy', 0, 1, 2,
+			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		
+	tween.start()
+
+
 func _phased_out() -> void:
 	hit_box.set_disabled(true)
 	state_machine._change_state("idle")

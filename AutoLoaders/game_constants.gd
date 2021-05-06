@@ -23,7 +23,7 @@ var _scenes = [
 	"res://Rooms/DemoEyeRoom/DemoEyeRoom.tscn", 
 	"res://Rooms/ServantsRoom/ServantsRoom.tscn", 
 	"res://Rooms/GameRoom/GameRoom.tscn",
-	"",
+	"res://Rooms/DevilRoom/DevilRoom.tscn",
 	"res://Rooms/BossBattleRoom/BossBattleRoom.tscn"
 ]
 

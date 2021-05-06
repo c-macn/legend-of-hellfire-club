@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Rooms/BossBattleRoom/.BossBattleRoom.gd" type="Script" id=1]
 [ext_resource path="res://Tilesets/BaseRoomTileset.tres" type="TileSet" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Characters/Saoirse/Saoirse.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Shaders/FireShader.tres" type="Material" id=5]
 [ext_resource path="res://icon.png" type="Texture" id=6]
+[ext_resource path="res://Interface/CanvasLayer.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -41,9 +42,297 @@ _data = {
 "points": PoolVector2Array(  )
 }
 
+[sub_resource type="Animation" id=6]
+resource_name = "cultist_intro"
+length = 3.0
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "cultist", "boss_battle_2" ],
+"method": "init_dialouge"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Saoirse")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "idle_walk_forward" ],
+"method": "play_animation"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Cultists")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_phase_in_animation"
+} ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "ending"
+length = 5.0
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "saoirse", "victory_message" ],
+"method": "init_dialouge"
+}, {
+"args": [ "cultist", "boss_battle_won" ],
+"method": "init_dialouge"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 3, 4.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "fade_in"
+}, {
+"args": [  ],
+"method": "go_to_final_scene"
+} ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "fight_over"
+length = 4.0
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "fade_in"
+}, {
+"args": [  ],
+"method": "fade_out"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ Vector2( 225, 207 ) ],
+"method": "set_cultist_position"
+}, {
+"args": [ "saoirse", "boss_battle_won" ],
+"method": "init_dialouge"
+} ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "fight_start"
+tracks/0/type = "method"
+tracks/0/path = NodePath("Cultists")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "phase_out"
+} ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 3.5
+tracks/0/type = "method"
+tracks/0/path = NodePath("Saoirse")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "idle_walk_down_right" ],
+"method": "play_animation"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Saoirse")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "idle_walk_down_left" ],
+"method": "play_animation"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "saoirse", "boss_battle_0" ],
+"method": "init_dialouge"
+} ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "lets_go"
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "saoirse", "boss_battle_4" ],
+"method": "init_dialouge"
+} ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "servant_ending"
+length = 1.5
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "servant", "boss_battle_won" ],
+"method": "init_dialouge"
+} ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "cultist_intro"
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "ending"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "fight_over"
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "fight_start"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "intro"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "lets_go"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "servant_ending"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+switch_mode = 2
+advance_condition = "is_dialouge_finished"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+switch_mode = 2
+advance_condition = "is_dialouge_finished"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+switch_mode = 2
+advance_condition = "is_dialouge_finished"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+switch_mode = 2
+advance_condition = "has_won_fight"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+switch_mode = 2
+advance_condition = "is_dialouge_finished"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+switch_mode = 2
+advance_condition = "is_dialouge_finished"
+
+[sub_resource type="AnimationNodeStateMachine" id=14]
+states/cultist_intro/node = SubResource( 9 )
+states/cultist_intro/position = Vector2( 103, -676 )
+states/ending/node = SubResource( 27 )
+states/ending/position = Vector2( 561.726, -395 )
+states/fight_over/node = SubResource( 20 )
+states/fight_over/position = Vector2( 341, -395 )
+states/fight_start/node = SubResource( 17 )
+states/fight_start/position = Vector2( 103, -507.22 )
+states/intro/node = SubResource( 10 )
+states/intro/position = Vector2( 103, -776 )
+states/lets_go/node = SubResource( 11 )
+states/lets_go/position = Vector2( 103, -600 )
+states/servant_ending/node = SubResource( 24 )
+states/servant_ending/position = Vector2( 103, -395 )
+transitions = [ "intro", "cultist_intro", SubResource( 12 ), "cultist_intro", "lets_go", SubResource( 13 ), "lets_go", "fight_start", SubResource( 18 ), "fight_start", "servant_ending", SubResource( 25 ), "servant_ending", "fight_over", SubResource( 26 ), "fight_over", "ending", SubResource( 28 ) ]
+start_node = "intro"
+end_node = "fight_start"
+graph_offset = Vector2( -647.835, -1096.81 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
+
 [node name="BossBattleRoom" type="Node2D"]
 position = Vector2( -53.033, 0 )
 script = ExtResource( 1 )
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 7 )]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.537255, 0.317647, 0.145098, 1 )
@@ -411,5 +700,21 @@ SaoirseNode = NodePath("../Saoirse")
 [node name="CultistsClone2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 480.33, -515.397 )
 SaoirseNode = NodePath("../Saoirse")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/cultist_intro = SubResource( 6 )
+anims/ending = SubResource( 23 )
+anims/fight_over = SubResource( 19 )
+anims/fight_start = SubResource( 16 )
+anims/intro = SubResource( 7 )
+anims/lets_go = SubResource( 8 )
+anims/servant_ending = SubResource( 22 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 14 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 15 )
+parameters/conditions/has_won_fight = false
+parameters/conditions/is_dialouge_finished = false
 
 [editable path="Saoirse"]
