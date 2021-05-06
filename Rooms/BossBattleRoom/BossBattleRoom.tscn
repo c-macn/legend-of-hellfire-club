@@ -8,7 +8,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=6]
 [ext_resource path="res://Interface/CanvasLayer.tscn" type="PackedScene" id=7]
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=29]
 code = "shader_type canvas_item;
 
 uniform sampler2D dissolve_texture : hint_albedo;
@@ -21,28 +21,28 @@ void fragment(){
     COLOR = main_texture;
 }"
 
-[sub_resource type="OpenSimplexNoise" id=2]
+[sub_resource type="OpenSimplexNoise" id=30]
 period = 56.5
 persistence = 0.781
 lacunarity = 3.5
 
-[sub_resource type="NoiseTexture" id=3]
+[sub_resource type="NoiseTexture" id=31]
 resource_local_to_scene = true
 seamless = true
-noise = SubResource( 2 )
+noise = SubResource( 30 )
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=32]
 resource_local_to_scene = true
-shader = SubResource( 1 )
+shader = SubResource( 29 )
 shader_param/dissolve_value = 1.0
-shader_param/dissolve_texture = SubResource( 3 )
+shader_param/dissolve_texture = SubResource( 31 )
 
-[sub_resource type="Curve2D" id=5]
+[sub_resource type="Curve2D" id=33]
 _data = {
 "points": PoolVector2Array(  )
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=34]
 resource_name = "cultist_intro"
 length = 3.0
 tracks/0/type = "method"
@@ -88,7 +88,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=35]
 resource_name = "ending"
 length = 5.0
 tracks/0/type = "method"
@@ -98,7 +98,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.1, 1.3 ),
+"times": PoolRealArray( 0.1, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [ "saoirse", "victory_message" ],
@@ -126,7 +126,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=36]
 resource_name = "fight_over"
 length = 4.0
 tracks/0/type = "method"
@@ -164,7 +164,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=37]
 resource_name = "fight_start"
 tracks/0/type = "method"
 tracks/0/path = NodePath("Cultists")
@@ -181,7 +181,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=38]
 length = 3.5
 tracks/0/type = "method"
 tracks/0/path = NodePath("Saoirse")
@@ -226,7 +226,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=39]
 resource_name = "lets_go"
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -243,7 +243,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=40]
 resource_name = "servant_ending"
 length = 1.5
 tracks/0/type = "method"
@@ -326,7 +326,7 @@ start_node = "intro"
 end_node = "fight_start"
 graph_offset = Vector2( -647.835, -1096.81 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=41]
 
 [node name="BossBattleRoom" type="Node2D"]
 position = Vector2( -53.033, 0 )
@@ -351,7 +351,7 @@ zoom = Vector2( 1.2, 1.2 )
 position = Vector2( 226, 336 )
 
 [node name="AnimatedSprite" parent="Saoirse" index="0"]
-material = SubResource( 4 )
+material = SubResource( 32 )
 
 [node name="Fire" type="Node" parent="."]
 
@@ -662,7 +662,7 @@ texture = ExtResource( 6 )
 [node name="CultistPath" type="Path2D" parent="."]
 position = Vector2( 33.2172, 42.8259 )
 scale = Vector2( 0.784399, 0.913989 )
-curve = SubResource( 5 )
+curve = SubResource( 33 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="CultistPath"]
 
@@ -702,18 +702,18 @@ position = Vector2( 480.33, -515.397 )
 SaoirseNode = NodePath("../Saoirse")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/cultist_intro = SubResource( 6 )
-anims/ending = SubResource( 23 )
-anims/fight_over = SubResource( 19 )
-anims/fight_start = SubResource( 16 )
-anims/intro = SubResource( 7 )
-anims/lets_go = SubResource( 8 )
-anims/servant_ending = SubResource( 22 )
+anims/cultist_intro = SubResource( 34 )
+anims/ending = SubResource( 35 )
+anims/fight_over = SubResource( 36 )
+anims/fight_start = SubResource( 37 )
+anims/intro = SubResource( 38 )
+anims/lets_go = SubResource( 39 )
+anims/servant_ending = SubResource( 40 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 14 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 15 )
+parameters/playback = SubResource( 41 )
 parameters/conditions/has_won_fight = false
 parameters/conditions/is_dialouge_finished = false
 

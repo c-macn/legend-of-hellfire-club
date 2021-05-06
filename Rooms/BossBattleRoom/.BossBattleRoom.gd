@@ -99,7 +99,7 @@ func _Cultist_cleansed(cleansed_count: int) -> void:
 	elif cleansed_count == 2:
 		cultist_clone_2.phase_out()
 
-	elif cleansed_count > 3:
+	elif cleansed_count == 3:
 		cultist.set_to_idle()
 		cultist_clone.queue_free()
 		cultist_clone_2.queue_free()

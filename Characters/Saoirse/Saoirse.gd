@@ -147,3 +147,7 @@ func _can_fire() -> bool:
 
 func play_animation(animation_name: String) -> void:
 	animated_sprite.play(animation_name)
+
+
+func set_remote_transform(node_path: NodePath) -> void:
+	$RemoteTransform2D.remote_path = node_path
