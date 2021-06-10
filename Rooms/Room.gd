@@ -18,7 +18,7 @@ func _ready() -> void:
 	scene_transition.fade_out()
 	setup_scene_transitions()
 	spawn_Box(GameState.get_box_position())
-	#$CanvasModulate.visible = true
+	$CanvasModulate.visible = true
 
 
 func spawn_Box(box_position: Vector2) -> void:
@@ -35,10 +35,11 @@ func spawn_Saoirse(spawn_point) -> void:
 
 
 func set_camera_bounds() -> void:
-	if Saoirse != null and room_tilemap != null:
-		var tile_map: TileMap = get_node(room_tilemap)
-		var camera = Saoirse.get_node("Camera2D")
-		camera.set_bounds(tile_map.get_used_rect(), tile_map.cell_size)
+	pass
+#	if Saoirse != null and room_tilemap != null:
+#		var tile_map: TileMap = get_node(room_tilemap)
+#		var camera = Saoirse.get_node("Camera2D")
+#		camera.set_bounds(tile_map.get_used_rect(), tile_map.cell_size)
 
 
 func update_cutscene_state(animation_name: String) -> void:

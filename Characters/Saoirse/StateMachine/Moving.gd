@@ -23,7 +23,8 @@ func update(_delta: float) -> void:
 		set_current_speed(speed_walking)
 		 
 	if not direction == Vector2.ZERO:
-		velocity = lerp(velocity, direction * current_speed, acceleration)
+#		velocity = lerp(velocity, direction * current_speed, acceleration)
+		velocity = direction * current_speed
 		animated_sprite.play(get_animation())
 		owner.owner.move_and_slide(velocity)
 	else:

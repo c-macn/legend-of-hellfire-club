@@ -19,7 +19,9 @@ onready var animtion_tree := $AnimationTree
 func _ready() -> void:
 	yield(scene_transition, "transition_finished")
 	setup_cutscene_triggers()
+	dialouge_container.connect("dialouge_started", self, "_on_Dialouge_started")
 	dialouge_container.connect("dialouge_finished", self, "_on_Dialouge_finished")
+	saoirse.set_remote_transform($Camera2D.get_path())
 	saoirse.position = determine_spawn_location()
 	
 	if !saoirse.is_connected("disguise_removed", self, "_on_disguise_removed"): 
@@ -55,9 +57,7 @@ func setup_cutscene_triggers() -> void:
 		the_head_cutscene_trigger.connect("cutscene_start", self, "play_cutscene")
 
 func play_cutscene(animation_name: String) -> void:
-	animtion_tree.active = true
-	animtion_tree["parameters/conditions/is_dialouge_finished"] = false
-	animtion_tree["parameters/playback"].start(animation_name)
+	animation_player.play(animation_name)
 
 func on_Cutscene_begins() -> void:
 	get_tree().call_group("actors", "disable_movement")
@@ -66,7 +66,20 @@ func on_Cutscene_ended() -> void:
 	get_tree().call_group("actors", "enable_movement")
 
 func _on_Dialouge_finished() -> void:
-	animtion_tree["parameters/conditions/is_dialouge_finished"] = true
-	
+	animation_player.play()
+
+
+func _on_Dialouge_started() -> void:
+	animation_player.stop(false)
+
+
 func _on_banishment() -> void:
 	$CultistSpawner.despawn_cultitst()
+
+
+func phase_in_cultist() -> void:
+	$CutsceneCultist._phase_in_animation()
+	
+func phase_out_cultist() -> void:
+	$CutsceneCultist.phase_out()
+	$CutsceneCultist.queue_free()

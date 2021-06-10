@@ -10,7 +10,7 @@
 [ext_resource path="res://Tilesets/main_tileset.tres" type="TileSet" id=8]
 [ext_resource path="res://Objects/DevilsCard/DevilCardBottomLeft.png" type="Texture" id=9]
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=1]
 resource_name = "ask_brandy"
 length = 3.0
 tracks/0/type = "method"
@@ -45,7 +45,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=2]
 resource_name = "exposition"
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -62,7 +62,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=3]
 resource_name = "pre_exposition"
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -79,7 +79,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=26]
+[sub_resource type="Animation" id=4]
 resource_name = "servant_ritual"
 length = 10.0
 tracks/0/type = "method"
@@ -129,7 +129,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=5]
 resource_name = "servants_end"
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -146,7 +146,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=32]
+[sub_resource type="Animation" id=6]
 resource_name = "the_blessed_shot"
 length = 3.0
 tracks/0/type = "method"
@@ -190,7 +190,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=28]
+[sub_resource type="Animation" id=7]
 resource_name = "the_servant"
 length = 2.0
 tracks/0/type = "value"
@@ -235,7 +235,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=29]
+[sub_resource type="Animation" id=8]
 resource_name = "the_servant_burns"
 length = 11.0
 tracks/0/type = "method"
@@ -276,37 +276,29 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "ask_brandy"
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "exposition"
 
-[sub_resource type="AnimationNodeAnimation" id=10]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "pre_exposition"
 
-[sub_resource type="AnimationNodeAnimation" id=11]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "servant_ritual"
 
-[sub_resource type="AnimationNodeAnimation" id=12]
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "servants_end"
 
-[sub_resource type="AnimationNodeAnimation" id=33]
+[sub_resource type="AnimationNodeAnimation" id=14]
 animation = "the_blessed_shot"
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=15]
 animation = "the_servant"
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "the_servant_burns"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=15]
-switch_mode = 2
-advance_condition = "is_dialouge_finished"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
-switch_mode = 2
-advance_condition = "is_dialouge_finished"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=17]
 switch_mode = 2
@@ -318,45 +310,53 @@ advance_condition = "is_dialouge_finished"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=19]
 switch_mode = 2
-advance_condition = "has_brandy"
-priority = 0
+advance_condition = "is_dialouge_finished"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+switch_mode = 2
+advance_condition = "is_dialouge_finished"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=21]
 switch_mode = 2
 advance_condition = "has_brandy"
 priority = 0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+switch_mode = 2
+advance_condition = "has_brandy"
+priority = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
 advance_condition = "is_dialouge_finished"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
 advance_condition = "is_dialouge_finished"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
 advance_condition = "is_dialouge_finished"
 
-[sub_resource type="AnimationNodeStateMachine" id=22]
-states/ask_brandy/node = SubResource( 8 )
+[sub_resource type="AnimationNodeStateMachine" id=26]
+states/ask_brandy/node = SubResource( 9 )
 states/ask_brandy/position = Vector2( 803, 193 )
-states/exposition/node = SubResource( 9 )
+states/exposition/node = SubResource( 10 )
 states/exposition/position = Vector2( 803, 53 )
-states/pre_exposition/node = SubResource( 10 )
+states/pre_exposition/node = SubResource( 11 )
 states/pre_exposition/position = Vector2( 549, 53 )
-states/servant_ritual/node = SubResource( 11 )
+states/servant_ritual/node = SubResource( 12 )
 states/servant_ritual/position = Vector2( 1087.35, 193 )
-states/servants_end/node = SubResource( 12 )
+states/servants_end/node = SubResource( 13 )
 states/servants_end/position = Vector2( 1378.52, 53 )
-states/the_blessed_shot/node = SubResource( 33 )
+states/the_blessed_shot/node = SubResource( 14 )
 states/the_blessed_shot/position = Vector2( 1378.52, 193 )
-states/the_servant/node = SubResource( 13 )
+states/the_servant/node = SubResource( 15 )
 states/the_servant/position = Vector2( 67, 53 )
-states/the_servant_burns/node = SubResource( 14 )
+states/the_servant_burns/node = SubResource( 16 )
 states/the_servant_burns/position = Vector2( 294, 53 )
-transitions = [ "the_servant", "the_servant_burns", SubResource( 15 ), "the_servant_burns", "pre_exposition", SubResource( 16 ), "pre_exposition", "exposition", SubResource( 17 ), "exposition", "servants_end", SubResource( 18 ), "ask_brandy", "servant_ritual", SubResource( 19 ), "exposition", "ask_brandy", SubResource( 21 ), "ask_brandy", "servants_end", SubResource( 31 ), "servant_ritual", "the_blessed_shot", SubResource( 34 ), "the_blessed_shot", "servants_end", SubResource( 35 ) ]
+transitions = [ "the_servant", "the_servant_burns", SubResource( 17 ), "the_servant_burns", "pre_exposition", SubResource( 18 ), "pre_exposition", "exposition", SubResource( 19 ), "exposition", "servants_end", SubResource( 20 ), "ask_brandy", "servant_ritual", SubResource( 21 ), "exposition", "ask_brandy", SubResource( 22 ), "ask_brandy", "servants_end", SubResource( 23 ), "servant_ritual", "the_blessed_shot", SubResource( 24 ), "the_blessed_shot", "servants_end", SubResource( 25 ) ]
 end_node = "servants_end"
 graph_offset = Vector2( -47.4801, 0 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=30]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=27]
 
 [node name="ServantsRoom" type="Node2D"]
 script = ExtResource( 3 )
@@ -409,20 +409,20 @@ scale = Vector2( 30.68, 1.09571 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 pause_mode = 2
-anims/ask_brandy = SubResource( 23 )
-anims/exposition = SubResource( 24 )
-anims/pre_exposition = SubResource( 25 )
-anims/servant_ritual = SubResource( 26 )
-anims/servants_end = SubResource( 27 )
-anims/the_blessed_shot = SubResource( 32 )
-anims/the_servant = SubResource( 28 )
-anims/the_servant_burns = SubResource( 29 )
+anims/ask_brandy = SubResource( 1 )
+anims/exposition = SubResource( 2 )
+anims/pre_exposition = SubResource( 3 )
+anims/servant_ritual = SubResource( 4 )
+anims/servants_end = SubResource( 5 )
+anims/the_blessed_shot = SubResource( 6 )
+anims/the_servant = SubResource( 7 )
+anims/the_servant_burns = SubResource( 8 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 pause_mode = 2
-tree_root = SubResource( 22 )
+tree_root = SubResource( 26 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 30 )
+parameters/playback = SubResource( 27 )
 parameters/conditions/has_brandy = false
 parameters/conditions/is_dialouge_finished = false

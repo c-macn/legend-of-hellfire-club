@@ -84,8 +84,10 @@ func game_over() -> void:
 
 
 func move_to_point(target_position: Vector2) -> void:
+	tween.connect("tween_completed", self, "has_reached_point")
 	tween.interpolate_property(self, "position", position, target_position, 1, Tween.TRANS_CUBIC, Tween.EASE_OUT) 
 	tween.start(); # convert to steer behavior
+	animated_sprite.play("walk_forward")
 
 
 func put_on_disguise() -> void:
@@ -151,3 +153,8 @@ func play_animation(animation_name: String) -> void:
 
 func set_remote_transform(node_path: NodePath) -> void:
 	$RemoteTransform2D.remote_path = node_path
+
+
+func has_reached_point(_object, _key) -> void:
+	tween.disconnect("tween_completed", self, "has_reached_point")
+	animated_sprite.play("idle_walk_back")

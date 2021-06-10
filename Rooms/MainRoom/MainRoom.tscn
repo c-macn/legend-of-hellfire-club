@@ -10,6 +10,11 @@
 [ext_resource path="res://CutsceneTriggers/CutsceneManager.gd" type="Script" id=8]
 [ext_resource path="res://Tilesets/main_tileset.tres" type="TileSet" id=9]
 [ext_resource path="res://Objects/TheHead/TheHead.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Characters/Cultist/Cultist.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Objects/DevilsCard/DevilCardBottomRight.png" type="Texture" id=12]
+[ext_resource path="res://Objects/DevilsCard/DevilCardBottomLeft.png" type="Texture" id=13]
+[ext_resource path="res://Objects/DevilsCard/DevilCardTopRight.png" type="Texture" id=14]
+[ext_resource path="res://Objects/DevilsCard/DevilCardTopLeft.png" type="Texture" id=15]
 
 [sub_resource type="Animation" id=1]
 resource_name = "intro"
@@ -39,28 +44,30 @@ tracks/1/keys = {
 "values": [ 0.0, 1.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Saoirse/Camera2D:zoom")
+tracks/2/path = NodePath("CanvasModulate:color")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0.8, 0.8 ) ]
+"values": [ Color( 0, 0, 0, 1 ), Color( 0.117647, 0.117647, 0.117647, 1 ) ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("CanvasModulate:color")
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 0.117647, 0.117647, 0.117647, 1 ) ]
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "saoirse", "intro_0" ],
+"method": "init_dialouge"
+} ]
 }
 tracks/4/type = "method"
 tracks/4/path = NodePath(".")
@@ -69,20 +76,6 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 2 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "saoirse", "intro_0" ],
-"method": "init_dialouge"
-} ]
-}
-tracks/5/type = "method"
-tracks/5/path = NodePath(".")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -94,17 +87,19 @@ tracks/5/keys = {
 [sub_resource type="Animation" id=2]
 resource_name = "intro_end"
 length = 1.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("Saoirse/Camera2D:position")
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.8, 0.8 ), Vector2( 1, 1 ) ]
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "intro" ],
+"method": "update_cutscene_state"
+} ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -116,71 +111,14 @@ tracks/1/keys = {
 "times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "intro" ],
-"method": "update_cutscene_state"
-} ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
 "args": [  ],
 "method": "on_Cutscene_ended"
 } ]
 }
 
 [sub_resource type="Animation" id=3]
-resource_name = "the_head_end"
-length = 2.0
-tracks/0/type = "method"
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 1.5 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "on_Cutscene_ended"
-} ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Saoirse/Camera2D:zoom")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.8, 0.8 ), Vector2( 1, 1 ) ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 1.5 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "theHead" ],
-"method": "update_cutscene_state"
-} ]
-}
-
-[sub_resource type="Animation" id=4]
-length = 1.5
+resource_name = "the_head"
+length = 10.0
 tracks/0/type = "method"
 tracks/0/path = NodePath("YSort/Saoirse")
 tracks/0/interp = 1
@@ -188,7 +126,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0.5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ Vector2( 481, 441 ) ],
@@ -202,84 +140,150 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "saoirse", "the_head_0" ],
-"method": "init_dialouge"
-} ]
-}
-
-[sub_resource type="Animation" id=5]
-length = 1.5
-tracks/0/type = "method"
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 1.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "on_Cutscene_begins"
+}, {
+"args": [ "saoirse", "the_head_0" ],
+"method": "init_dialouge"
+}, {
+"args": [ "saoirse", "the_card_grab" ],
+"method": "init_dialouge"
 } ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Saoirse/Camera2D:zoom")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1.5 ),
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.6, 2.5, 3.5, 7.3, 7.5, 8, 8.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "phase_in_cultist"
+}, {
+"args": [ "cultist", "amusing" ],
+"method": "init_dialouge"
+}, {
+"args": [ "cultist", "the_head_4" ],
+"method": "init_dialouge"
+}, {
+"args": [ "cultist", "marked_0" ],
+"method": "init_dialouge"
+}, {
+"args": [ "cultist", "marked_1" ],
+"method": "init_dialouge"
+}, {
+"args": [  ],
+"method": "phase_out_cultist"
+}, {
+"args": [  ],
+"method": "on_Cutscene_ended"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 3, 8.5 ),
 "transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "saoirse", "the_head_2" ],
+"method": "init_dialouge"
+}, {
+"args": [ "theHead" ],
+"method": "update_cutscene_state"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Camera2D:zoom")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1, 7.5, 8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 0.8, 0.8 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 0.8, 0.8 ), Vector2( 1, 1 ) ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath("CutsceneCultist")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "shoot_target"
+} ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Card:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath("CanvasLayer")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 4.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "reveal_card"
+} ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=6]
-animation = "intro"
-
-[sub_resource type="AnimationNodeAnimation" id=7]
-animation = "intro_end"
-
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "the_head_end"
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "the_head_investigation"
 
-[sub_resource type="AnimationNodeAnimation" id=10]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "the_head_start"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
 switch_mode = 2
+auto_advance = true
 advance_condition = "is_dialouge_finished"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
-advance_condition = "is_dialouge_finished"
-
-[sub_resource type="AnimationNodeStateMachine" id=14]
-states/intro/node = SubResource( 6 )
-states/intro/position = Vector2( -301.359, 34.2802 )
-states/intro_end/node = SubResource( 7 )
-states/intro_end/position = Vector2( -132.359, 34.2802 )
-states/the_head_end/node = SubResource( 8 )
+[sub_resource type="AnimationNodeStateMachine" id=9]
+states/the_head_end/node = SubResource( 4 )
 states/the_head_end/position = Vector2( 710, 82 )
-states/the_head_investigation/node = SubResource( 9 )
+states/the_head_investigation/node = SubResource( 5 )
 states/the_head_investigation/position = Vector2( 427, 82 )
-states/the_head_start/node = SubResource( 10 )
+states/the_head_start/node = SubResource( 6 )
 states/the_head_start/position = Vector2( 132, 82 )
-transitions = [ "the_head_start", "the_head_investigation", SubResource( 11 ), "the_head_investigation", "the_head_end", SubResource( 12 ), "intro", "intro_end", SubResource( 13 ) ]
+transitions = [ "the_head_start", "the_head_investigation", SubResource( 7 ), "the_head_investigation", "the_head_end", SubResource( 8 ) ]
 graph_offset = Vector2( -384.359, -2.71978 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 
 [node name="MainRoom" type="Node2D"]
 position = Vector2( 0, 3 )
@@ -327,7 +331,28 @@ pause_mode = 2
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
 position = Vector2( 21.3813, 12.4726 )
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.117647, 0.117647, 0.117647, 1 )
+
+[node name="Card" type="Node2D" parent="."]
+visible = false
+position = Vector2( 506.806, 371.155 )
+z_index = 2
+
+[node name="BottomLeft" type="Sprite" parent="Card"]
+position = Vector2( -32.2615, 2.80676 )
+texture = ExtResource( 13 )
+
+[node name="TopLeft" type="Sprite" parent="Card"]
+position = Vector2( -32.2588, -20.6478 )
+texture = ExtResource( 15 )
+
+[node name="TopRight" type="Sprite" parent="Card"]
+position = Vector2( -15.5563, -16.6091 )
+texture = ExtResource( 14 )
+
+[node name="BottomRight" type="Sprite" parent="Card"]
+position = Vector2( -14.4531, 2.76321 )
+texture = ExtResource( 12 )
 
 [node name="Exits" type="Node" parent="."]
 
@@ -360,9 +385,9 @@ position = Vector2( 43.406, 288.298 )
 [node name="CutsceneTriggers" type="Node" parent="."]
 
 [node name="TheHead" parent="CutsceneTriggers" instance=ExtResource( 2 )]
-position = Vector2( 487.232, 362.473 )
-scale = Vector2( 18, 15 )
-cutscene_animation_name = "the_head_start"
+position = Vector2( 516.962, 505.178 )
+scale = Vector2( 44.96, 3.08 )
+cutscene_animation_name = "the_head"
 
 [node name="CutsceneWaypoints" type="Node" parent="."]
 
@@ -387,15 +412,13 @@ position = Vector2( 706.537, -193.827 )
 [node name="CutsceneManager" type="AnimationPlayer" parent="."]
 anims/intro = SubResource( 1 )
 anims/intro_end = SubResource( 2 )
-anims/the_head_end = SubResource( 3 )
-anims/the_head_investigation = SubResource( 4 )
-anims/the_head_start = SubResource( 5 )
+anims/the_head = SubResource( 3 )
 script = ExtResource( 8 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 14 )
+tree_root = SubResource( 9 )
 anim_player = NodePath("../CutsceneManager")
-parameters/playback = SubResource( 15 )
+parameters/playback = SubResource( 10 )
 parameters/conditions/is_dialouge_finished = false
 
 [node name="TheHead" parent="." instance=ExtResource( 10 )]
@@ -404,3 +427,13 @@ collision_layer = 32
 
 [node name="DefaultCultistSpawnPosition" type="Position2D" parent="."]
 position = Vector2( 576.902, 800.405 )
+
+[node name="CutsceneCultist" parent="." instance=ExtResource( 11 )]
+position = Vector2( 482.895, 297.933 )
+SaoirseNode = NodePath("../YSort/Saoirse")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 556.885, 1060.85 )
+current = true
+zoom = Vector2( 0.8, 0.8 )
+smoothing_enabled = true

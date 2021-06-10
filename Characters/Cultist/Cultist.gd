@@ -120,6 +120,18 @@ func set_to_idle() -> void:
 	state_machine._change_state("idle")
 
 
+func shoot_target() -> void:
+	var shot_spawner = get_node("ShotSpawner")
+	var target_position = get_Saoirses_position()
+	var shot = InfernalShot.instance()
+	
+	add_child(shot)
+	shot.set_is_lethal(false)
+	shot_spawner.look_at(target_position)
+	shot.transform = shot_spawner.global_transform
+	shot.scale = Vector2(1, 0.5)
+	shot.reveal()
+
 func _phase_in_animation() -> void:
 	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 0, 1, 2,
 			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)

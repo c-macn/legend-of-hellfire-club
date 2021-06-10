@@ -27,6 +27,16 @@
     "the_head_1": {
       "value": "Tough crowd..."
     },
+    "the_head_2": {
+      "value": "Jaysus! don't sneak up on a girl like that",
+      "next": "the_head_3"
+    },
+    "the_head_3": {
+      "value": "You look like a bit of a piss head, have you seen my Ma and Da? They work here"
+    },
+    "the_card_grab": {
+      "value": "Oh you mean this card........"
+    },
     "demon_eye_0": {
       "value": "Jaysus, Mary, Mother of God! What in the blue fuck is that thing!?",
       "next": "demon_eye_1"
@@ -111,6 +121,16 @@
   },
   "cultist": {
     "portrait": "res://Characters/Cultist/Cultist_Portrait.png",
+    "amusing": {
+      "value": "Very amusing..."
+    },
+    "the_head_4": {
+      "value": "I have no time for entertaining you child, your Ma and Da are probably dead like the rest. ",
+      "next": "card_expo"
+    },
+    "card_expo": {
+      "value": "Now, step away from the head. I must retrieve my masters card"
+    },
     "marked_0": {
       "value": "You have been marked child, I will know of your precence within these walls."
     },
@@ -177,7 +197,19 @@
       "next": "the_servant_13"
     },
     "the_servant_13": {
-      "value": "Look, I'll fill you in more when you get the Brandy, so can you hurry up? I know I'm dead but I don't have all night"
+      "value": "Now if you're thinkin' what's all this shite about card pieces. Well that's an interestin' one. Ya see the quare fella has a special card he can turn any hand into a winner using it.",
+      "next": "the_servant_14"
+    },
+    "the_servant_14": {
+      "value": "Now how will that help me ya say. If you can get all of them a repeat the incantation 'CARDUS.. INFERNUS.. STICKYUS', they'll all pop together and you'll be the master of the card.",
+      "next": "the_servant_15"
+    },
+    "the_servant_15": {
+      "value": "Now a little secret for ya. Your Ma and Da are alive but held captive by the quare fella, so he'll challenge you to a game of cards if ya can manage to sneak the card into the deck, you'll surely win",
+      "next": "the_servant_16"
+    },
+    "the_servant_16": {
+      "value": "Look, I'll fill you in more when you get the Brandy, so can you hurry up? I know I'm dead but I don't have all night.."
     },
     "the_servant_ask_for_brandy": {
       "value": "So chick. Do you have that brandy?"
@@ -197,7 +229,7 @@
       "value": "Now hang on there and let me do this ritual, I hope these books I've been reading aren't all bollox"
     },
     "the_servant_power_3": {
-      "value": "Now chick, just pick up the bottle and you'll have a fighting chance with Parsons... Let's go before it's too late"      
+      "value": "Now chick, just pick up the bottle and you'll have a fighting chance with Parsons... Let's go before it's too late"
     },
     "boss_battle_won": {
       "value": "You done it chic. I'm afriad I'll have to leave ya now",
