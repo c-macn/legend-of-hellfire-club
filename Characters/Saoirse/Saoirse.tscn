@@ -26,7 +26,6 @@ script = ExtResource( 1 )
 material = ExtResource( 6 )
 z_as_relative = false
 frames = ExtResource( 2 )
-animation = "walk_forward"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.42828, 14.4731 )

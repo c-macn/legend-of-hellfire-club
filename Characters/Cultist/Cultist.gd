@@ -132,6 +132,14 @@ func shoot_target() -> void:
 	shot.scale = Vector2(1, 0.5)
 	shot.reveal()
 
+
+func reveal() -> void:
+	animated_sprite.material.set_shader_param("dissolve_value", 1)
+
+
+func play_animation(animation_name: String) -> void:
+	animated_sprite.play(animation_name)
+
 func _phase_in_animation() -> void:
 	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 0, 1, 2,
 			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)

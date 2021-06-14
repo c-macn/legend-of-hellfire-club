@@ -240,14 +240,13 @@
     }
   },
   "devil": {
-    "portrait": "res://Characters/Saoirse/Devil_Portrait.png",
+    "portrait": "res://Characters/Satan/Devil_Portrait.png",
     "the_devil_1": {
       "value": "Not quite...",
       "next": "the_devil_2"
     },
     "the_devil_2": {
-      "value": "Parsons' get in here and bring me my cards!",
-      "next": ""
+      "value": "Parsons' get in here and bring me my cards!"
     },
     "the_devil_3": {
       "value": "Well, little one. What is it that brought you here?"
