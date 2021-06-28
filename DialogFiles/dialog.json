@@ -93,7 +93,7 @@
       "value": "I'm here to get my Ma and Da back, where are they? What have you done with them?"
     },
     "the_devil_8": {
-      "value": "Well, I don't have much of a choice in the matter. I'm in",
+      "value": "Well, I don't have much of a choice in the matter. I'm in, the cards will be Ace, Ace, Ten!",
       "next": "the_devil_9"
     },
     "the_devil_9": {
@@ -256,11 +256,11 @@
       "next": "the_devil_5"
     },
     "the_devil_5": {
-      "value": "Have you played blackjack before? Nevermind, let's simplify, I'll draw three cards for you.",
+      "value": "We're going to play 3 card blackjack. I'll draw three cards and you bet on what they'll be.",
       "next": "the_devil_6"
     },
     "the_devil_6": {
-      "value": "If the value of the cards is above 21, I win, if not.. You win and I'll send you to your parents...",
+      "value": "Guess correct and you win, it's all very simple...",
       "next": "the_devil_7"
     },
     "the_devil_7": {

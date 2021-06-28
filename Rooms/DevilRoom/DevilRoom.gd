@@ -6,13 +6,19 @@ onready var scene_transition := $CanvasLayer/SceneTransition
 onready var cultist := $Cultists
 
 func _ready() -> void:
+	GameState.connect("has_won_card_game", self, "_play_ending")
 	_init_scene()
 	scene_transition.fade_out()
+	yield(get_tree().create_timer(0.3), "timeout")
 	$AnimationPlayer.play("pre_puzzle")
 
 
 func start_dialouge(character_name: String, dialouge_key: String) -> void:
 	dialouge_container.on_DialogReceived(character_name, dialouge_key)
+
+
+func fade() -> void:
+	scene_transition.fade_in()
 
 
 func _init_scene() -> void:
@@ -28,7 +34,14 @@ func _init_scene() -> void:
 
 
 func _on_Animation_finsihed(animation_name: String) -> void:
-	get_tree().call_group("actors", "enable_movement")
+	if animation_name == "pre_puzzle":
+		$CanvasLayer.reveal_puzzle()
+	
+	if animation_name == "bad_ending":
+		get_tree().change_scene("res://Interface/MainMenu/MainMenu.tscn")
+	
+	if animation_name == "good_ending":
+		get_tree().change_scene("res://Interface/MainMenu/MainMenu.tscn")
 
 
 func _on_Dialouge_started() -> void:
@@ -37,3 +50,10 @@ func _on_Dialouge_started() -> void:
 
 func _on_Dialouge_finished() -> void:
 	$AnimationPlayer.play()
+
+
+func _play_ending(has_won: bool) -> void:
+	if has_won:
+		$AnimationPlayer.play("good_ending")
+	else:
+		$AnimationPlayer.play("bad_ending")

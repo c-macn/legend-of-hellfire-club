@@ -18,7 +18,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if banish_target:
 		light_pivot.look_at(banish_target.position)
-	pass
 
 func get_banish_target(target_path: NodePath) -> Node:
 	return get_node(target_path)
@@ -68,6 +67,15 @@ func look_at_target(target_node: NodePath) -> void:
 func set_target(target: KinematicBody2D) -> void:
 	banish_target = target
 	banish_time.start()
+
+
+func turn_off_light() -> void:
+	light_pivot.get_node("Light2D").enabled = false
+
+
+func set_bad_ending_frame() -> void:
+	animated_sprite.play("bad_ending")
+	
 
 func _banish_target() -> void:
 	banish_time.stop()

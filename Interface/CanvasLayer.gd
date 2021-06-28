@@ -24,3 +24,8 @@ func play_break_away() -> void:
 func add_card_inventory_item() -> void:
 	# render inventory marker to keep track of collected card pieces
 	pass
+	
+func reveal_puzzle() -> void:
+	$CardPuzzle.visible = true
+	yield(get_tree().create_timer(1.5), "timeout")
+	$CardPuzzle.reveal_cards()
