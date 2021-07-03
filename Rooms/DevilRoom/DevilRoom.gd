@@ -38,10 +38,10 @@ func _on_Animation_finsihed(animation_name: String) -> void:
 		$CanvasLayer.reveal_puzzle()
 	
 	if animation_name == "bad_ending":
-		get_tree().change_scene("res://Interface/MainMenu/MainMenu.tscn")
+		get_tree().change_scene("res://Rooms/BadEnding.tscn")
 	
 	if animation_name == "good_ending":
-		get_tree().change_scene("res://Interface/MainMenu/MainMenu.tscn")
+		get_tree().change_scene("res://Rooms/GoodEnding.tscn")
 
 
 func _on_Dialouge_started() -> void:

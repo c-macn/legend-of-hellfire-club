@@ -8,8 +8,8 @@
 [ext_resource path="res://Characters/Saoirse/StateMachine/StateMachine.tscn" type="PackedScene" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 10.0486
-height = 15.8349
+radius = 13.3894
+height = 34.0986
 
 [node name="Saoirse" type="KinematicBody2D" groups=[
 "actors",
@@ -28,7 +28,7 @@ z_as_relative = false
 frames = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.42828, 14.4731 )
+position = Vector2( -0.42828, 0.998269 )
 shape = SubResource( 1 )
 
 [node name="ShotSpawner" type="Node2D" parent="."]
@@ -36,6 +36,7 @@ shape = SubResource( 1 )
 [node name="StateMachine" parent="." instance=ExtResource( 10 )]
 
 [node name="Light2D" parent="." instance=ExtResource( 3 )]
+visible = false
 material = ExtResource( 5 )
 
 [node name="Tween" type="Tween" parent="."]

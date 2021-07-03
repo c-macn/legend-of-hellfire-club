@@ -18,7 +18,7 @@ func _ready() -> void:
 		spawn_timer.start()
 		spawn_timer.connect("timeout", self, "_should_spawn_Cultist")
 		chase_timer.connect("timeout", self, "despawn_cultitst")
-		#Cultist.connect("spell_limit_reached", self, "_start_Spawn_Timer")
+		Cultist.connect("spell_limit_reached", self, "_start_Spawn_Timer")
 		
 	if floor_map:
 		floor_tiles = get_node(floor_map)

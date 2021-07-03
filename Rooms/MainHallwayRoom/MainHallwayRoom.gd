@@ -11,7 +11,7 @@ onready var spawn_points: Array = $SpawnPoints.get_children()
 func _ready() -> void:
 	._ready()
 	.spawn_Saoirse(determine_spawn_point(GameState.get_previous_scene()))
-	.set_camera_bounds() 
+	Saoirse.set_remote_transform($Camera2D.get_path()) 
 
 func determine_spawn_point(previous_scene: int) -> Vector2:	
 	if previous_scene == GameConstants.SCENES.MAIN_ROOM:

@@ -100,7 +100,11 @@
       "value": "HIT ME!"
     },
     "the_good_end_0": {
-      "value": "Wha... Where am I now...."
+      "value": "Wha... Where am I?",
+      "next": "the_good_end_1"
+    },
+    "the_good_end_1": {
+      "value": "You're not Parsons.. Who are you?"
     },
     "boss_battle_0": {
       "value": "Alright Parsons', come on out!",
@@ -281,10 +285,18 @@
       "value": "Say hello to Ma and Da for me..."
     }
   },
-  "mysteriousStranger": {
-    "portait": "",
+  "man": {
+    "portrait": "res://Characters/Satan/Devil_Portrait.png",
     "the_end": {
-      "value": "Only a fool makes a bargin with the Devil, welcome to hell little one."
+      "value": "Who I am matters not. But you! little one, have made a grave mistake.",
+      "next": "the_end_1"
+    },
+    "the_end_1": {
+      "value": "Only a fool would make a bargin with the devil and now I welcome you to Hell...",
+      "next": "the_end_2"
+    },
+    "the_end_2": {
+      "value": "I shall be your guide through this realm and I will help you find your Ma and Da. Come now, we must make haste"
     }
   }
 }

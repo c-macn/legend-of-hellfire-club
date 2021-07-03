@@ -1,5 +1,3 @@
-#TODO Refactor dis to make more sense
-
 extends Control
 
 signal dialouge_started
@@ -12,8 +10,8 @@ export(int) var reveal_speed: float = 15.0
 var current_dialog_set: Dictionary = {} setget set_dialog_set, get_dialog_set
 var current_dialog_key: String = "" setget set_dialog_key, get_dialog_key
 
-onready var character_portrait: TextureRect = $DialogPanel/CharacterPortraitContainer/CharacterPortrait/CenterContainer/TextureRect
-onready var character_name: RichTextLabel = $DialogPanel/CharacterPortraitContainer/NameContainer/RichTextLabel
+onready var character_portrait: TextureRect = $DialogPanel/CharacterPortrait/CenterContainer/TextureRect
+onready var character_name: RichTextLabel = $DialogPanel/NameContainer/RichTextLabel
 onready var dialog_label: RichTextLabel = $DialogPanel/TextContainer/RichTextLabel
 onready var reveal_tween: Tween = $RevealTween
 onready var next_indicator: TextureRect = $DialogPanel/NextIndicator
