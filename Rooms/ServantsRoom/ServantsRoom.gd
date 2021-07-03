@@ -48,9 +48,13 @@ func on_Cutscene_ended() -> void:
 func _on_Dialouge_finished() -> void:
 	tree["parameters/conditions/has_brandy"] = GameState.get_has_brandy()
 	tree["parameters/conditions/is_dialouge_finished"] = true
+	tree.process_mode = tree.PAUSE_MODE_PROCESS
+	get_tree().paused = false
 
 func _on_Dialouge_started() -> void:
 	tree["parameters/conditions/is_dialouge_finished"] = false
+	tree.process_mode = tree.PAUSE_MODE_STOP
+	get_tree().paused = true
 	
 func has_brandy() -> void:
 	if GameState.get_has_brandy():

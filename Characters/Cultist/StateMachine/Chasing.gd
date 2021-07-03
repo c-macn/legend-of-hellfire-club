@@ -1,8 +1,8 @@
 extends State
 class_name CultistChasing
 
-const SPEED := 100
-const STEER_FORCE := 20.0
+const SPEED := 200
+const STEER_FORCE := 150.0
 
 enum FACING_DIRECTIONS {
 	RIGHT = 0,
@@ -84,7 +84,6 @@ func _navigate_to_Saoirse(delta: float, Saoirse_position: Vector2) -> void:
 
 func _get_path_to_Saoirse(Saoirse_position: Vector2) -> PoolVector2Array:
 	var path = owner.navigation.get_simple_path(owner.global_position, Saoirse_position, false)
-	owner.debug_line.points = path
 	return path
 
 

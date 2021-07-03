@@ -180,39 +180,39 @@
     "the_servant_6": {
       "value": "If you can that bottle for me, I'll help you out with Lord Parsons' the fella running around in his dressing gown if you didn't know already"
     },
-    "the_servant_8": {
-      "value": "Well, I'm sure you know the rumours of this place. Lord Parsons' uses this place to commune with the Devil, up until know we all thought he was a bit loopy..",
-      "next": "the_servant_9"
-    },
-    "the_servant_9": {
-      "value": "But who would've belived it when the quare fella himself joined in on the nights festivities..",
-      "next": "the_servant_10"
-    },
-    "the_servant_10": {
-      "value": "Now mind you, he didn't show up as you'd expect. He disquised himself, planned on cheating in the game of cards and when he was found out.. well you saw thre mess out there",
-      "next": "the_servant_11"
-    },
-    "the_servant_11": {
-      "value": "Lord Parsons was only delighted for himself to show up, he started praising him, apoligising for the behaviour of some of the lads... Then the talk of rituals began",
-      "next": "the_servant_12"
-    },
     "the_servant_12": {
-      "value": "Parsons and himself are planning on opening up a hell mouth to unleash the denizens of hell, We have one resident demon already and I don't want to see anymore",
+      "value": "Parsons and his master are planning on opening up a hell mouth to unleash the infernal denizens upon the earth, We have one resident demon already!",
       "next": "the_servant_13"
     },
     "the_servant_13": {
-      "value": "Now if you're thinkin' what's all this shite about card pieces. Well that's an interestin' one. Ya see the quare fella has a special card he can turn any hand into a winner using it.",
+      "value": "Now if you're thinkin' what's all this shite about card pieces. Well that's an interestin' one. Ya see the master fella has a special card he can turn any hand into a winner by using it.",
       "next": "the_servant_14"
     },
     "the_servant_14": {
-      "value": "Now how will that help me ya say. If you can get all of them a repeat the incantation 'CARDUS.. INFERNUS.. STICKYUS', they'll all pop together and you'll be the master of the card.",
+      "value": "Now how will that help me ya say. If you can get all of them and repeat the incantation 'CARDUS.. INFERNUS.. STICKYUS'",
       "next": "the_servant_15"
     },
     "the_servant_15": {
-      "value": "Now a little secret for ya. Your Ma and Da are alive but held captive by the quare fella, so he'll challenge you to a game of cards if ya can manage to sneak the card into the deck, you'll surely win",
+      "value": "CARDUS....",
       "next": "the_servant_16"
     },
     "the_servant_16": {
+      "value": "INFERNUS....",
+      "next": "the_servant_17"
+    },
+    "the_servant_17":  {
+      "value": "STICKYUS....",
+      "next": "the_servant_18"
+    },
+    "the_servant_18": {
+      "value": "Then POOF! they'll all pop together and you'll be the master of the card.",
+      "next": "the_servant_19"
+    },
+    "the_servant_19": {
+      "value": "Now a little secret for ya. Your Ma and Da are alive but held captive by the Parsons master. If you can get control of this card you can challenge him to a game for their freedom",
+      "next": "the_servant_20"
+    },
+    "the_servant_20": {
       "value": "Look, I'll fill you in more when you get the Brandy, so can you hurry up? I know I'm dead but I don't have all night.."
     },
     "the_servant_ask_for_brandy": {
@@ -230,7 +230,7 @@
       "next": "the_servant_power_2"
     },
     "the_servant_power_2": {
-      "value": "Now hang on there and let me do this ritual, I hope these books I've been reading aren't all bollox"
+      "value": "Now hang on there and let me do this ritual, I hope these books I've been reading aren't all bollocks"
     },
     "the_servant_power_3": {
       "value": "Now chick, just pick up the bottle and you'll have a fighting chance with Parsons... Let's go before it's too late"
