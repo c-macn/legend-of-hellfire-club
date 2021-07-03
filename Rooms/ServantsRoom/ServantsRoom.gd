@@ -8,7 +8,7 @@ onready var servant := $Servant
 
 func _ready() -> void:
 	.spawn_Saoirse(Saoirse_spawn_point.position)
-	.set_camera_bounds()
+	Saoirse.set_remote_transform($Camera2D.get_path())
 	init_card_piece(GameState.CARD_COLLECTION_STATE.BottomLeft)
 	
 func init_card_piece(has_collected_card: bool) -> void:
