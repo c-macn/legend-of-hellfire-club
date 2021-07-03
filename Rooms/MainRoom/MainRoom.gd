@@ -17,28 +17,26 @@ onready var saoirse: KinematicBody2D = $YSort/Saoirse
 onready var animtion_tree := $AnimationTree
 
 func _ready() -> void:
-	yield(scene_transition, "transition_finished")
 	setup_cutscene_triggers()
 	dialouge_container.connect("dialouge_started", self, "_on_Dialouge_started")
 	dialouge_container.connect("dialouge_finished", self, "_on_Dialouge_finished")
-	saoirse.set_remote_transform($Camera2D.get_path())
 	saoirse.position = determine_spawn_location()
+	saoirse.set_remote_transform($Camera2D.get_path())
+	yield(scene_transition, "transition_finished")
 	
 	if !saoirse.is_connected("disguise_removed", self, "_on_disguise_removed"): 
 		saoirse.connect("disguise_removed", self, "_on_disguise_removed")
 		
 	if !saoirse.is_connected("banished", self, "_on_banishment"):
 		saoirse.connect("banished", self, "_on_banishment")
-
-	if !GameState.get_cutscene_state("intro"):
-		#play_cutscene("intro")
-		saoirse.get_node("Light2D").enabled = true
-		saoirse.get_node("Light2D").energy = 1
-		$CanvasModulate.modulate = Color(30, 150, 80, 255)
-	else:
-		saoirse.get_node("Light2D").enabled = true
-		saoirse.get_node("Light2D").energy = 1
-		$CanvasModulate.modulate = Color(30, 150, 80, 255)
+	
+	if GameState.get_has_met_cultist():
+		$CultistSpawner.spawn_percentage = 60
+		$CultistSpawner.saoirse_path = saoirse.get_path()
+	
+	saoirse.get_node("Light2D").enabled = true
+	saoirse.get_node("Light2D").energy = 1
+	$CanvasModulate.modulate = Color(30, 150, 80, 255)
 
 func determine_spawn_location() -> Vector2:
 	var previous_scene = GameState.get_previous_scene()
@@ -64,6 +62,7 @@ func on_Cutscene_begins() -> void:
 	
 func on_Cutscene_ended() -> void:
 	get_tree().call_group("actors", "enable_movement")
+	GameState.set_has_met_cultist(true)
 
 func _on_Dialouge_finished() -> void:
 	animation_player.play()

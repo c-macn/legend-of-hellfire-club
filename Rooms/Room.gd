@@ -43,7 +43,10 @@ func update_cutscene_state(animation_name: String) -> void:
 
 
 func init_dialouge(character_name: String, dialouge_key: String) -> void:
-	dialouge_container.on_DialogReceived(character_name, dialouge_key)
+	if character_name == "saoirse":
+		dialouge_container.on_DialogReceived(character_name, dialouge_key, get_tree().get_nodes_in_group("Saoirse")[0].call("is_disguised"))
+	else:
+		dialouge_container.on_DialogReceived(character_name, dialouge_key)
 
 
 func setup_scene_transitions() -> void:

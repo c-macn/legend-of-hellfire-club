@@ -63,7 +63,7 @@ func _on_Play_clicked() -> void:
 	load_scene(GameConstants.SCENES.MAIN_ROOM)
 
 func _on_Story_clicked() -> void:
-	load_scene(GameConstants.SCENES.BOSS_BATTLE)
+	load_scene(GameConstants.SCENES.MAIN_ROOM)
 
 func _on_Credits_clicked() -> void:
 	load_scene(GameConstants.SCENES.BOSS_BATTLE)

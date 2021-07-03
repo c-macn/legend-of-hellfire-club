@@ -12,6 +12,7 @@ radius = 13.3894
 height = 34.0986
 
 [node name="Saoirse" type="KinematicBody2D" groups=[
+"Saoirse",
 "actors",
 "actors_demon_eye",
 "actors_intro",

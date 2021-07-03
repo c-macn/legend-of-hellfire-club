@@ -49,7 +49,7 @@ card_piece_texture = ExtResource( 4 )
 floor_map = NodePath("../Navigation2D/TileMap")
 default_spawn_position = NodePath("../SpawnPoint")
 navigation = NodePath("../Navigation2D")
-spawn_percentage = 30
+spawn_percentage = 80
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

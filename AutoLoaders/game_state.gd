@@ -41,7 +41,7 @@ var _has_brandy := false setget set_has_brandy, get_has_brandy
 
 var _has_blessed_shot_ability := false setget set_has_blessed_shot, get_has_blessed_shot
 
-var _has_met_cultist := true setget set_has_met_cultist, get_has_met_cultist
+var _has_met_cultist := false setget set_has_met_cultist, get_has_met_cultist
 
 func update_current_scene(updated_scene: int) -> void:
 	_previous_scene = _current_scene
@@ -126,9 +126,9 @@ func get_has_met_cultist() -> bool:
 
 
 func has_collected_all_cards() -> bool:
-	return CARD_COLLECTION_STATE.BottomLeft && CARD_COLLECTION_STATE.BottomRight && CARD_COLLECTION_STATE.TopLeft && CARD_COLLECTION_STATE.TopRight
+	return CARD_COLLECTION_STATE.BottomLeft && CARD_COLLECTION_STATE.BottomRight && CARD_COLLECTION_STATE.TopLeft
 
 
 func has_won_card_came() -> void:
 	var has_all_cards = has_collected_all_cards()
-	emit_signal("has_won_card_game", true)
+	emit_signal("has_won_card_game", has_all_cards)

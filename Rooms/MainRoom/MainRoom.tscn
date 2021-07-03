@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Tilesets/BaseRoomTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://CutsceneTriggers/CutsceneTriggger.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Rooms/MainRoom/MainRoom.gd" type="Script" id=6]
 [ext_resource path="res://Characters/Saoirse/Saoirse.tscn" type="PackedScene" id=7]
 [ext_resource path="res://CutsceneTriggers/CutsceneManager.gd" type="Script" id=8]
+[ext_resource path="res://Objects/CultistSpawner/CultistSpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Objects/TheHead/TheHead.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Characters/Cultist/Cultist.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Objects/DevilsCard/DevilCardBottomRight.png" type="Texture" id=12]
@@ -159,7 +160,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1.6, 2.5, 3.5, 7.3, 7.5, 8, 8.5 ),
+"times": PoolRealArray( 1.6, 2.5, 3.5, 7.9, 8, 8.5, 9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -191,7 +192,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 3, 8.5 ),
+"times": PoolRealArray( 3, 9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [ "saoirse", "the_head_2" ],
@@ -433,5 +434,9 @@ SaoirseNode = NodePath("../YSort/Saoirse")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 556.885, 1060.85 )
 current = true
-zoom = Vector2( 0.8, 0.8 )
 smoothing_enabled = true
+
+[node name="CultistSpawner" parent="." instance=ExtResource( 9 )]
+floor_map = NodePath("../YSort/Navigation2D/Floors")
+default_spawn_position = NodePath("../DefaultCultistSpawnPosition")
+navigation = NodePath("../YSort/Navigation2D")
