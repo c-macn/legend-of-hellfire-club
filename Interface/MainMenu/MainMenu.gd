@@ -12,6 +12,7 @@ onready var buttons = $ButtonContainer.get_children()
 onready var button_cursor = $Cursor
 
 func _ready() -> void:
+	$CanvasLayer/SceneTransition.fade_out()
 	get_tree().get_root().connect("size_changed", self, "update_cursor_position_on_resize")
 	update_cursor_position(_selected_button)
 
@@ -65,7 +66,7 @@ func _on_Story_clicked() -> void:
 	load_scene(GameConstants.SCENES.MAIN_ROOM)
 
 func _on_Credits_clicked() -> void:
-	load_scene(GameConstants.SCENES.MAIN_ROOM)
+	load_scene(GameConstants.SCENES.BOSS_BATTLE)
 
 func load_scene(scene_index: int) -> void:
 	get_tree().change_scene(GameConstants.get_scene(scene_index))

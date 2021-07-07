@@ -5,7 +5,9 @@ func _ready() -> void:
 	state_map = {
 		"idle": $Idle,
 		"chasing": $Chasing,
-		"casting": $Casting
+		"casting": $Casting,
+		"boss_battle": $BossBattle,
+		"stun": $Stun
 	}
 
 func _change_state(state_name):

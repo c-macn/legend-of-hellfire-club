@@ -1,6 +1,5 @@
 """
 	MoveState.gd
-
 	The base state for all common movement needs
 """
 extends State
@@ -17,8 +16,8 @@ enum FACING_DIRECTIONS {
 	DIAGONAL_UP_RIGHT = 7
 }
 
-export(int) var speed_walking = 200
-export(int) var speed_running = 250
+export(int) var speed_walking = 150
+export(int) var speed_running = 200
 export(float) var friction = 0.1
 export(float) var acceleration = 0.1
 
@@ -63,7 +62,7 @@ func get_facing_direction(current_direction: Vector2) -> int:
 	var angle = current_direction.angle()
 	
 	if angle < 0:
-		angle += 2 * PI # make the angle positive for simplicity
+		angle += TAU # make the angle positive for simplicity
 	
 	return int(round(angle / PI * 4)) % 8 # ensure only values between 0 - 7 are returned
 

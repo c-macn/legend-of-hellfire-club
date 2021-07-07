@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "BaseRoom",
+"language": "GDScript",
+"path": "res://Rooms/Room.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Cultist",
 "language": "GDScript",
@@ -68,8 +73,14 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://Characters/StateMachine/StateMachine.gd"
+}, {
+"base": "State",
+"class": "Stun",
+"language": "GDScript",
+"path": "res://Characters/Cultist/StateMachine/Stun.gd"
 } ]
 _global_script_class_icons={
+"BaseRoom": "",
 "Cultist": "",
 "CultistCasting": "",
 "CultistChasing": "",
@@ -81,7 +92,8 @@ _global_script_class_icons={
 "MoveState": "",
 "Saoirse": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"Stun": ""
 }
 
 [application]
@@ -97,6 +109,7 @@ GameState="*res://AutoLoaders/game_state.gd"
 
 [debug]
 
+gdscript/warnings/unused_signal=false
 gdscript/warnings/return_value_discarded=false
 
 [display]

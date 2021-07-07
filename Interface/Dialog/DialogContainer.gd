@@ -1,5 +1,3 @@
-#TODO Refactor dis to make more sense
-
 extends Control
 
 signal dialouge_started
@@ -12,8 +10,8 @@ export(int) var reveal_speed: float = 15.0
 var current_dialog_set: Dictionary = {} setget set_dialog_set, get_dialog_set
 var current_dialog_key: String = "" setget set_dialog_key, get_dialog_key
 
-onready var character_portrait: TextureRect = $DialogPanel/CharacterPortraitContainer/CharacterPortrait/CenterContainer/TextureRect
-onready var character_name: RichTextLabel = $DialogPanel/CharacterPortraitContainer/NameContainer/RichTextLabel
+onready var character_portrait: TextureRect = $DialogPanel/CharacterPortrait/CenterContainer/TextureRect
+onready var character_name: RichTextLabel = $DialogPanel/NameContainer/RichTextLabel
 onready var dialog_label: RichTextLabel = $DialogPanel/TextContainer/RichTextLabel
 onready var reveal_tween: Tween = $RevealTween
 onready var next_indicator: TextureRect = $DialogPanel/NextIndicator
@@ -101,7 +99,7 @@ func animate_text(time_to_reveal: int) -> void:
 func end_reveal_animation() -> void:
 	reveal_tween.seek(reveal_tween.get_runtime())
 
-func on_DialogReceived(chararacter: String, dialog_key: String, use_alt_portrait: bool = false) -> void:
+func on_DialogReceived(chararacter: String, dialog_key: String, use_alt_portrait: bool = false, should_pause_cutscene = true) -> void:
 	var dialog_data: Dictionary = get_file_content()
 	var dialog_set: Dictionary = dialog_data.get(chararacter)
 	var portrait = dialog_set.portrait if !use_alt_portrait else dialog_set.portrait_alt
@@ -114,7 +112,9 @@ func on_DialogReceived(chararacter: String, dialog_key: String, use_alt_portrait
 	set_portrait(portrait)
 	set_dialog_container_visibility(true)
 	get_tree().call_group("actors", "scene_start")
-	emit_signal("dialouge_started")
+	
+	if should_pause_cutscene:
+		emit_signal("dialouge_started")
 
 func _end_dialouge() -> void:
 	get_tree().call_group("actors", "scene_over")
@@ -126,7 +126,7 @@ func get_dialouge_condition_result(group_name: String, method_name: String) -> b
 	var result = null
 
 	for node in get_tree().get_nodes_in_group(group_name):
-		if node.name == "Saoirse":
+		if node.has_method(method_name):
 			result = node.call(method_name)
 	
 	return result

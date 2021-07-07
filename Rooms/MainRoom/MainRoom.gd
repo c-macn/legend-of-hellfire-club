@@ -13,26 +13,27 @@ onready var navigation = get_tree().get_root().find_node("Navigation2D", true, f
 onready var spawn_points: Array = $SpawnPoints.get_children()
 onready var animation_player: AnimationPlayer = $CutsceneManager
 onready var the_head_cutscene_trigger: Area2D  = $CutsceneTriggers/TheHead
-onready var saoirse: KinematicBody2D = $Saoirse
-onready var camera: Camera2D = $Saoirse/Camera2D
+onready var saoirse: KinematicBody2D = $YSort/Saoirse
 onready var animtion_tree := $AnimationTree
 
 func _ready() -> void:
-	._ready()
-	yield(scene_transition, "transition_finished")
-	#setup_cutscene_triggers()
+	setup_cutscene_triggers()
+	dialouge_container.connect("dialouge_started", self, "_on_Dialouge_started")
 	dialouge_container.connect("dialouge_finished", self, "_on_Dialouge_finished")
 	saoirse.position = determine_spawn_location()
+	saoirse.set_remote_transform($Camera2D.get_path())
+	yield(scene_transition, "transition_finished")
 	
 	if !saoirse.is_connected("disguise_removed", self, "_on_disguise_removed"): 
 		saoirse.connect("disguise_removed", self, "_on_disguise_removed")
 		
 	if !saoirse.is_connected("banished", self, "_on_banishment"):
 		saoirse.connect("banished", self, "_on_banishment")
-
-	# if !GameState.get_cutscene_state("intro"):
-	# 	play_cutscene("intro")
-	# else:
+	
+	if GameState.get_has_met_cultist():
+		$CultistSpawner.spawn_percentage = 60
+		$CultistSpawner.saoirse_path = saoirse.get_path()
+	
 	saoirse.get_node("Light2D").enabled = true
 	saoirse.get_node("Light2D").energy = 1
 	$CanvasModulate.modulate = Color(30, 150, 80, 255)
@@ -54,18 +55,30 @@ func setup_cutscene_triggers() -> void:
 		the_head_cutscene_trigger.connect("cutscene_start", self, "play_cutscene")
 
 func play_cutscene(animation_name: String) -> void:
-	animtion_tree.active = true
-	animtion_tree["parameters/conditions/is_dialouge_finished"] = false
-	animtion_tree["parameters/playback"].start(animation_name)
+	animation_player.play(animation_name)
 
 func on_Cutscene_begins() -> void:
 	get_tree().call_group("actors", "disable_movement")
 	
 func on_Cutscene_ended() -> void:
 	get_tree().call_group("actors", "enable_movement")
+	GameState.set_has_met_cultist(true)
 
 func _on_Dialouge_finished() -> void:
-	animtion_tree["parameters/conditions/is_dialouge_finished"] = true
-	
+	animation_player.play()
+
+
+func _on_Dialouge_started() -> void:
+	animation_player.stop(false)
+
+
 func _on_banishment() -> void:
 	$CultistSpawner.despawn_cultitst()
+
+
+func phase_in_cultist() -> void:
+	$CutsceneCultist._phase_in_animation()
+	
+func phase_out_cultist() -> void:
+	$CutsceneCultist.phase_out()
+	$CutsceneCultist.queue_free()

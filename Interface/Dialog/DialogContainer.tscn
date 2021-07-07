@@ -29,10 +29,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -200.0
+margin_left = -300.0
 margin_top = -120.0
-margin_right = 200.0
-rect_min_size = Vector2( 400, 120 )
+margin_right = 300.0
+rect_min_size = Vector2( 600, 120 )
 texture = ExtResource( 3 )
 patch_margin_left = 10
 patch_margin_top = 10
@@ -43,27 +43,22 @@ __meta__ = {
 }
 
 [node name="NextIndicator" type="TextureRect" parent="DialogPanel"]
-margin_left = 370.0
-margin_top = 80.0
-margin_right = 257.0
-margin_bottom = 65.0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -30.0
+margin_top = -35.0
 texture = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CharacterPortraitContainer" type="VBoxContainer" parent="DialogPanel"]
+[node name="CharacterPortrait" type="NinePatchRect" parent="DialogPanel"]
 margin_left = 15.0
-margin_top = -15.0
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CharacterPortrait" type="NinePatchRect" parent="DialogPanel/CharacterPortraitContainer"]
-margin_right = 70.0
-margin_bottom = 90.0
+margin_top = 14.0
+margin_right = 85.0
+margin_bottom = 75.0
 rect_min_size = Vector2( 70, 90 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -72,8 +67,11 @@ patch_margin_left = 12
 patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="CenterContainer" type="CenterContainer" parent="DialogPanel/CharacterPortraitContainer/CharacterPortrait"]
+[node name="CenterContainer" type="CenterContainer" parent="DialogPanel/CharacterPortrait"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 60.0
@@ -82,15 +80,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="DialogPanel/CharacterPortraitContainer/CharacterPortrait/CenterContainer"]
+[node name="TextureRect" type="TextureRect" parent="DialogPanel/CharacterPortrait/CenterContainer"]
 margin_right = 60.0
 margin_bottom = 80.0
 texture = ExtResource( 4 )
 
-[node name="NameContainer" type="NinePatchRect" parent="DialogPanel/CharacterPortraitContainer"]
-margin_top = 94.0
-margin_right = 90.0
-margin_bottom = 112.0
+[node name="NameContainer" type="NinePatchRect" parent="DialogPanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -60.0
+margin_right = 60.0
+margin_bottom = 18.0
 rect_min_size = Vector2( 90, 18 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -100,11 +100,15 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="RichTextLabel" type="RichTextLabel" parent="DialogPanel/CharacterPortraitContainer/NameContainer"]
-margin_left = 5.0
-margin_top = 2.0
-margin_right = 100.0
-margin_bottom = 40.0
+[node name="RichTextLabel" type="RichTextLabel" parent="DialogPanel/NameContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -7.0
+margin_right = 50.0
+margin_bottom = 19.0
 rect_min_size = Vector2( 95, 38 )
 theme = ExtResource( 6 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
@@ -116,8 +120,8 @@ __meta__ = {
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 110.0
-margin_top = -45.0
-margin_right = 390.0
+margin_top = -40.0
+margin_right = 550.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 size_flags_vertical = 0
@@ -126,10 +130,10 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="DialogPanel/TextContainer"]
-margin_top = 2.0
-margin_right = 280.0
-margin_bottom = 82.0
-rect_min_size = Vector2( 280, 80 )
+margin_left = 2.0
+margin_right = 437.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 435, 80 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource( 6 )

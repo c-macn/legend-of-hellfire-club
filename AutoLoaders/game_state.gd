@@ -5,6 +5,8 @@ An autoloader script to track state between scenes for easy data sharing between
 """
 extends Node
 
+signal has_won_card_game
+
 const CUTSCENE_STATE = {
 	intro = false,
 	theHead = false,
@@ -39,26 +41,32 @@ var _has_brandy := false setget set_has_brandy, get_has_brandy
 
 var _has_blessed_shot_ability := false setget set_has_blessed_shot, get_has_blessed_shot
 
-var _has_met_cultist := true setget set_has_met_cultist, get_has_met_cultist
+var _has_met_cultist := false setget set_has_met_cultist, get_has_met_cultist
 
 func update_current_scene(updated_scene: int) -> void:
 	_previous_scene = _current_scene
 	_current_scene = updated_scene
 
+
 func get_previous_scene() -> int:
 	return _previous_scene
 
+
 func set_is_Saoirse_disguised(is_disguised: bool) -> void:
 	_is_Saoirse_disguised = is_disguised
-	
+
+
 func get_is_Saoirse_disguised() -> bool:
 	return _is_Saoirse_disguised
+
 
 func set_is_Cultist_chasing(is_chasing: bool) -> void:
 	_is_Cultist_chasing = is_chasing
 
+
 func get_is_Cultist_chasing() -> bool:
 	return _is_Cultist_chasing
+
 
 func set_box_state(current_scene: int, position: Vector2)  -> void:
 	_box_state.clear()
@@ -67,40 +75,60 @@ func set_box_state(current_scene: int, position: Vector2)  -> void:
 		"position": position
 	}
 
+
 func get_box_position() -> Vector2:
 	if _box_state.get("current_scene") == _current_scene:
 		return _box_state.get("position")
 	else:
 		return Vector2.ZERO
 
+
 # returns a boolean value if the cutscene has already been viewed
 func get_cutscene_state(cutscene_name: String) -> bool:
 	return CUTSCENE_STATE[cutscene_name]
 
+
 func update_cutscene_state(cutscene_name: String) -> void:
 	CUTSCENE_STATE[cutscene_name] = true
+
 
 func update_card_state(card_piece: String) -> void:
 	CARD_COLLECTION_STATE[card_piece] = true
 	get_tree().call_group("interface", "reveal", card_piece)
 
+
 func is_card_piece_collected(card_piece: String) -> bool:
 	return CARD_COLLECTION_STATE[card_piece]
 
+
 func set_has_brandy(has_brandy: bool) -> void:
 	_has_brandy = has_brandy
-	
+
+
 func get_has_brandy() -> bool:
 	return _has_brandy
+
 
 func set_has_blessed_shot(has_shot: bool) -> void:
 	_has_blessed_shot_ability = has_shot
 
+
 func get_has_blessed_shot() -> bool:
 	return _has_blessed_shot_ability
-	
-func set_has_met_cultist(has_cultist_been_met: bool) -> void:
-	_has_met_cultist = true
-	
+
+
+func set_has_met_cultist(has_met: bool) -> void:
+	_has_met_cultist = has_met
+
+
 func get_has_met_cultist() -> bool:
 	return _has_met_cultist
+
+
+func has_collected_all_cards() -> bool:
+	return CARD_COLLECTION_STATE.BottomLeft && CARD_COLLECTION_STATE.BottomRight && CARD_COLLECTION_STATE.TopLeft
+
+
+func has_won_card_came() -> void:
+	var has_all_cards = has_collected_all_cards()
+	emit_signal("has_won_card_game", has_all_cards)

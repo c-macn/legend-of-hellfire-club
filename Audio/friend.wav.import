@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/friend.wav-89cbeccb5f0407a4ee81f0caccee5aa8.sample"
+
+[deps]
+
+source_file="res://Audio/friend.wav"
+dest_files=[ "res://.import/friend.wav-89cbeccb5f0407a4ee81f0caccee5aa8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

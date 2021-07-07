@@ -4,6 +4,7 @@ class_name InfernalShot
 var is_ready_to_fire = false
 var speed: int = 600
 var velocity: Vector2 = Vector2()
+var is_lethal = true # flag to disable banishment, useful for cutscenes :)
 
 onready var visibility_notifier: VisibilityNotifier2D = $VisibilityNotifier2D
 onready var sprite: Sprite = $Sprite
@@ -33,11 +34,17 @@ func reveal() -> void:
 func shoot() -> void:
 	is_ready_to_fire = true
 	monitoring = true
-	
+
+
+func set_is_lethal(is_lethal_shot: bool) -> void:
+	is_lethal = is_lethal_shot
+
+
 func _on_InfernalShot_body_entered(body: KinematicBody2D) -> void:
 	if body and body.has_method("banish"):
-		body.banish()
-	
+		if is_lethal:
+			body.banish()
+			
 		queue_free()
 
 func _on_Shot_ready() -> void:

@@ -1,4 +1,5 @@
 extends Node
+class_name BaseRoom
 
 const BOX_OFFSET = 100
 
@@ -19,10 +20,12 @@ func _ready() -> void:
 	spawn_Box(GameState.get_box_position())
 	#$CanvasModulate.visible = true
 
+
 func spawn_Box(box_position: Vector2) -> void:
 	if box_position != Vector2.ZERO:
 		var Box = Box_scene.instance()
 		add_child(Box)
+
 
 func spawn_Saoirse(spawn_point) -> void:
 	Saoirse = Saoirse_scene.instance()
@@ -30,22 +33,27 @@ func spawn_Saoirse(spawn_point) -> void:
 	Saoirse.connect("disguise_removed", self, "_on_disguise_removed")
 	add_child(Saoirse)
 
+
 func set_camera_bounds() -> void:
-	if Saoirse != null and room_tilemap != null:
-		var tile_map: TileMap = get_node(room_tilemap)
-		var camera = Saoirse.get_node("Camera2D")
-		camera.set_bounds(tile_map.get_used_rect(), tile_map.cell_size)
+	pass
+
 
 func update_cutscene_state(animation_name: String) -> void:
 	GameState.update_cutscene_state(animation_name)
 
+
 func init_dialouge(character_name: String, dialouge_key: String) -> void:
-	dialouge_container.on_DialogReceived(character_name, dialouge_key)
+	if character_name == "saoirse":
+		dialouge_container.on_DialogReceived(character_name, dialouge_key, get_tree().get_nodes_in_group("Saoirse")[0].call("is_disguised"))
+	else:
+		dialouge_container.on_DialogReceived(character_name, dialouge_key)
+
 
 func setup_scene_transitions() -> void:
 	for exit in exits:
 		if !exit.is_connected("transition_to_scene", scene_transition, "transition_to_new_scene"):
 			exit.connect("transition_to_scene", scene_transition, "transition_to_new_scene")
+
 
 func _on_disguise_removed(position: Vector2) -> void:
 	var current_scene = GameState._current_scene # TODO add getter

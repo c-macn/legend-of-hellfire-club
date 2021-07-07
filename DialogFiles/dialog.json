@@ -27,6 +27,16 @@
     "the_head_1": {
       "value": "Tough crowd..."
     },
+    "the_head_2": {
+      "value": "Jaysus! don't sneak up on a girl like that",
+      "next": "the_head_3"
+    },
+    "the_head_3": {
+      "value": "You look like a bit of a piss head, have you seen my Ma and Da? They work here"
+    },
+    "the_card_grab": {
+      "value": "Oh you mean this card........"
+    },
     "demon_eye_0": {
       "value": "Jaysus, Mary, Mother of God! What in the blue fuck is that thing!?",
       "next": "demon_eye_1"
@@ -83,18 +93,48 @@
       "value": "I'm here to get my Ma and Da back, where are they? What have you done with them?"
     },
     "the_devil_8": {
-      "value": "Well, I don't have much of a choice in the matter. I'm in",
+      "value": "Well, I don't have much of a choice in the matter. I'm in, the cards will be Ace, Ace, Ten!",
       "next": "the_devil_9"
     },
     "the_devil_9": {
       "value": "HIT ME!"
     },
     "the_good_end_0": {
-      "value": "Wha... Where am I now...."
+      "value": "Wha... Where am I?",
+      "next": "the_good_end_1"
+    },
+    "the_good_end_1": {
+      "value": "You're not Parsons.. Who are you?"
+    },
+    "boss_battle_0": {
+      "value": "Alright Parsons', come on out!",
+      "next": "boss_battle_1"
+    },
+    "boss_battle_1": {
+      "value": "Come and fight me like a man"
+    },
+    "boss_battle_4": {
+      "value": "Let's dance aul lad"
+    },
+    "boss_battle_won": {
+      "value": "Alright Parsons this card is mine now, slip it into the deck and give it to your master"
+    },
+    "victory_message": {
+      "value": "Right, now to get Ma and Da..."
     }
   },
   "cultist": {
-    "portrait": "res://Characters/Saoirse/Cultist_Portrait.png",
+    "portrait": "res://Characters/Cultist/Cultist_Portrait.png",
+    "amusing": {
+      "value": "Very amusing..."
+    },
+    "the_head_4": {
+      "value": "I have no time for entertaining you child, your Ma and Da are probably dead like the rest. ",
+      "next": "card_expo"
+    },
+    "card_expo": {
+      "value": "Now, step away from the head. I must retrieve my masters card"
+    },
     "marked_0": {
       "value": "You have been marked child, I will know of your precence within these walls."
     },
@@ -104,6 +144,16 @@
     },
     "marked_2": {
       "value": "Do not test my patience young one, lest you wish to learn the fate of those who stood in our way"
+    },
+    "boss_battle_2": {
+      "value": "You petulant child! This is your final warning, give me the card pieces and leave",
+      "next": "boss_battle_3"
+    },
+    "boss_battle_3": {
+      "value": "Don't think just because you have some palor trick magic you can beat me"
+    },
+    "boss_battle_won": {
+      "value": "Ughguguh, ugghghughug. gughug"
     }
   },
   "servant": {
@@ -130,28 +180,40 @@
     "the_servant_6": {
       "value": "If you can that bottle for me, I'll help you out with Lord Parsons' the fella running around in his dressing gown if you didn't know already"
     },
-    "the_servant_8": {
-      "value": "Well, I'm sure you know the rumours of this place. Lord Parsons' uses this place to commune with the Devil, up until know we all thought he was a bit loopy..",
-      "next": "the_servant_9"
-    },
-    "the_servant_9": {
-      "value": "But who would've belived it when the quare fella himself joined in on the nights festivities..",
-      "next": "the_servant_10"
-    },
-    "the_servant_10": {
-      "value": "Now mind you, he didn't show up as you'd expect. He disquised himself, planned on cheating in the game of cards and when he was found out.. well you saw thre mess out there",
-      "next": "the_servant_11"
-    },
-    "the_servant_11": {
-      "value": "Lord Parsons was only delighted for himself to show up, he started praising him, apoligising for the behaviour of some of the lads... Then the talk of rituals began",
-      "next": "the_servant_12"
-    },
     "the_servant_12": {
-      "value": "Parsons and himself are planning on opening up a hell mouth to unleash the denizens of hell, We have one resident demon already and I don't want to see anymore",
+      "value": "Parsons and his master are planning on opening up a hell mouth to unleash the infernal denizens upon the earth, We have one resident demon already!",
       "next": "the_servant_13"
     },
     "the_servant_13": {
-      "value": "Look, I'll fill you in more when you get the Brandy, so can you hurry up? I know I'm dead but I don't have all night"
+      "value": "Now if you're thinkin' what's all this shite about card pieces. Well that's an interestin' one. Ya see the master fella has a special card he can turn any hand into a winner by using it.",
+      "next": "the_servant_14"
+    },
+    "the_servant_14": {
+      "value": "Now how will that help me ya say. If you can get all of them and repeat the incantation 'CARDUS.. INFERNUS.. STICKYUS'",
+      "next": "the_servant_15"
+    },
+    "the_servant_15": {
+      "value": "CARDUS....",
+      "next": "the_servant_16"
+    },
+    "the_servant_16": {
+      "value": "INFERNUS....",
+      "next": "the_servant_17"
+    },
+    "the_servant_17":  {
+      "value": "STICKYUS....",
+      "next": "the_servant_18"
+    },
+    "the_servant_18": {
+      "value": "Then POOF! they'll all pop together and you'll be the master of the card.",
+      "next": "the_servant_19"
+    },
+    "the_servant_19": {
+      "value": "Now a little secret for ya. Your Ma and Da are alive but held captive by the Parsons master. If you can get control of this card you can challenge him to a game for their freedom",
+      "next": "the_servant_20"
+    },
+    "the_servant_20": {
+      "value": "Look, I'll fill you in more when you get the Brandy, so can you hurry up? I know I'm dead but I don't have all night.."
     },
     "the_servant_ask_for_brandy": {
       "value": "So chick. Do you have that brandy?"
@@ -168,21 +230,27 @@
       "next": "the_servant_power_2"
     },
     "the_servant_power_2": {
-      "value": "Now hang on there and let me do this ritual, I hope these books I've been reading aren't all bollox"
+      "value": "Now hang on there and let me do this ritual, I hope these books I've been reading aren't all bollocks"
     },
     "the_servant_power_3": {
-      "value": "Now chick, just pick up the bottle and you'll have a fighting chance with Parsons... Let's go before it's too late"      
+      "value": "Now chick, just pick up the bottle and you'll have a fighting chance with Parsons... Let's go before it's too late"
+    },
+    "boss_battle_won": {
+      "value": "You done it chic. I'm afriad I'll have to leave ya now",
+      "next": "boss_battle_won_1"
+    },
+    "boss_battle_won_1": {
+      "value": "Thanks for setting my spirit free from this cursed place, now slip him the caaaarrr..."
     }
   },
   "devil": {
-    "portrait": "res://Characters/Saoirse/Devil_Portrait.png",
+    "portrait": "res://Characters/Satan/Devil_Portrait.png",
     "the_devil_1": {
       "value": "Not quite...",
       "next": "the_devil_2"
     },
     "the_devil_2": {
-      "value": "Parsons' get in here and bring me my cards!",
-      "next": ""
+      "value": "Parsons' get in here and bring me my cards!"
     },
     "the_devil_3": {
       "value": "Well, little one. What is it that brought you here?"
@@ -192,11 +260,11 @@
       "next": "the_devil_5"
     },
     "the_devil_5": {
-      "value": "Have you played blackjack before? Nevermind, let's simplify, I'll draw three cards for you.",
+      "value": "We're going to play 3 card blackjack. I'll draw three cards and you bet on what they'll be.",
       "next": "the_devil_6"
     },
     "the_devil_6": {
-      "value": "If the value of the cards is above 21, I win, if not.. You win and I'll send you to your parents...",
+      "value": "Guess correct and you win, it's all very simple...",
       "next": "the_devil_7"
     },
     "the_devil_7": {
@@ -217,10 +285,18 @@
       "value": "Say hello to Ma and Da for me..."
     }
   },
-  "mysteriousStranger": {
-    "portait": "",
+  "man": {
+    "portrait": "res://Characters/Satan/Devil_Portrait.png",
     "the_end": {
-      "value": "Only a fool makes a bargin with the Devil, welcome to hell little one."
+      "value": "Who I am matters not. But you! little one, have made a grave mistake.",
+      "next": "the_end_1"
+    },
+    "the_end_1": {
+      "value": "Only a fool would make a bargin with the devil and now I welcome you to Hell...",
+      "next": "the_end_2"
+    },
+    "the_end_2": {
+      "value": "I shall be your guide through this realm and I will help you find your Ma and Da. Come now, we must make haste"
     }
   }
 }
