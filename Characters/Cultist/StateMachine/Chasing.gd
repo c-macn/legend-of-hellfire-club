@@ -1,8 +1,8 @@
 extends State
 class_name CultistChasing
 
-const SPEED := 100
-const STEER_FORCE := 50.0
+const SPEED := 150
+const STEER_FORCE := 250.0
 
 enum FACING_DIRECTIONS {
 	RIGHT = 0,
@@ -52,11 +52,15 @@ func update(delta: float) -> void:
 
 func _navigate_to_Saoirse(delta: float, Saoirse_position: Vector2) -> void:
 	if owner.get_is_on_wall() or is_navigating:
+		var distance_to_Saoirse = owner.global_position.distance_to(Saoirse_position)
+		
 		if path_to_Saoirse.size() == 0:
 			is_navigating = true
-			path_to_Saoirse = _get_path_to_Saoirse(Saoirse_position)
+			if distance_to_Saoirse <= 2:
+				emit_signal("transition_to_state", "casting")
+			else:
+				path_to_Saoirse = _get_path_to_Saoirse(Saoirse_position)
 			
-		var distance_to_Saoirse = owner.global_position.distance_to(Saoirse_position)
 		var distance_to_point = owner.global_position.distance_to(path_to_Saoirse[0])
 		
 		velocity = (path_to_Saoirse[0] - owner.global_position).normalized() * SPEED
@@ -80,7 +84,6 @@ func _navigate_to_Saoirse(delta: float, Saoirse_position: Vector2) -> void:
 
 func _get_path_to_Saoirse(Saoirse_position: Vector2) -> PoolVector2Array:
 	var path = owner.navigation.get_simple_path(owner.global_position, Saoirse_position, false)
-	owner.debug_line.points = path
 	return path
 
 
@@ -124,7 +127,7 @@ func _get_facing_direction(current_direction: Vector2) -> int:
 	var angle = current_direction.angle()
 	
 	if angle < 0:
-		angle += 2 * PI # make the angle positive for simplicity
+		angle += TAU # make the angle positive for simplicity
 	
 	return int(round(angle / PI * 4)) % 8 # ensure only values between 0 - 7 are returned
 

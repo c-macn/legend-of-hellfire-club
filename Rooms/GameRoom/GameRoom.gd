@@ -4,4 +4,5 @@ onready var spawn_point: Position2D = $SpawnPoint
 
 func _ready() -> void:
 	.spawn_Saoirse(spawn_point.position)
-	.set_camera_bounds()
+	Saoirse.set_remote_transform($Camera2D.get_path())
+	$CultistSpawner.saoirse_path = Saoirse.get_path()

@@ -3,12 +3,11 @@ extends Node2D
 export(NodePath) var floor_map
 export(NodePath) var default_spawn_position
 export(NodePath) var navigation
+export(NodePath) var saoirse_path
 export(int) var spawn_percentage
-
 var floor_tiles: TileMap
 
 onready var Cultist := $Cultist
-onready var Saoirse := get_parent().get_node("YSort/Saoirse")
 onready var spawn_timer := $SpawnTimer
 onready var chase_timer := $ChaseTimer
 onready var rng = RandomNumberGenerator.new()
@@ -18,13 +17,18 @@ func _ready() -> void:
 		spawn_timer.start()
 		spawn_timer.connect("timeout", self, "_should_spawn_Cultist")
 		chase_timer.connect("timeout", self, "despawn_cultitst")
-		#Cultist.connect("spell_limit_reached", self, "_start_Spawn_Timer")
+		Cultist.connect("phased_out", self, "_start_Spawn_Timer")
+		Cultist.navigation = get_node(navigation)
 		
 	if floor_map:
 		floor_tiles = get_node(floor_map)
 		
 func get_Saoirses_position() -> Vector2:
-	return Saoirse.global_position
+	var Saoirse = get_parent().get_node(saoirse_path)
+	if Saoirse:
+		return Saoirse.global_position
+	else:
+		return Vector2.ZERO
 
 func despawn_cultitst() -> void:
 	Cultist.phase_out()
@@ -42,15 +46,17 @@ func _should_spawn_Cultist() -> void:
 
 func _spawn_cultist() -> void:
 	var position = get_Saoirses_position()
-	var spawn_position = _determine_spawn_position(position)
 	
-	if spawn_position != Vector2.ZERO:
-		Cultist.global_position = spawn_position
-	else:
-		Cultist.global_position = get_node(default_spawn_position).global_position
+	if not position == Vector2.ZERO: 
+		var spawn_position = _determine_spawn_position(position)
 		
-	Cultist.phase_in()
-	chase_timer.start()
+		if spawn_position != Vector2.ZERO:
+			Cultist.global_position = spawn_position
+		else:
+			Cultist.global_position = get_node(default_spawn_position).global_position
+			
+		Cultist.phase_in()
+		chase_timer.start()
 
 func is_position_valid(spawn_position: Vector2) -> bool:
 	return floor_tiles.get_cellv(spawn_position) != TileMap.INVALID_CELL
@@ -73,8 +79,8 @@ func _start_Spawn_Timer() -> void:
 func _determine_spawn_position(world_position: Vector2) -> Vector2:
 	if floor_tiles:
 		var tilemap_position := floor_tiles.world_to_map(world_position)
-		var x_mod = Vector2(2, 0)
-		var y_mod = Vector2(0, 2)
+		var x_mod = Vector2(1, 0)
+		var y_mod = Vector2(0, 1)
 		
 		var left_spawn_point = tilemap_position - x_mod
 		var right_spawn_point = tilemap_position + x_mod
