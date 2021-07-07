@@ -1,8 +1,8 @@
 extends State
 class_name CultistChasing
 
-const SPEED := 200
-const STEER_FORCE := 150.0
+const SPEED := 150
+const STEER_FORCE := 250.0
 
 enum FACING_DIRECTIONS {
 	RIGHT = 0,

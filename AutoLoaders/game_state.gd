@@ -117,8 +117,8 @@ func get_has_blessed_shot() -> bool:
 	return _has_blessed_shot_ability
 
 
-func set_has_met_cultist(has_cultist_been_met: bool) -> void:
-	_has_met_cultist = true
+func set_has_met_cultist(has_met: bool) -> void:
+	_has_met_cultist = has_met
 
 
 func get_has_met_cultist() -> bool:

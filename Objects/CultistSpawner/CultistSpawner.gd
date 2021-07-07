@@ -79,8 +79,8 @@ func _start_Spawn_Timer() -> void:
 func _determine_spawn_position(world_position: Vector2) -> Vector2:
 	if floor_tiles:
 		var tilemap_position := floor_tiles.world_to_map(world_position)
-		var x_mod = Vector2(2, 0)
-		var y_mod = Vector2(0, 2)
+		var x_mod = Vector2(1, 0)
+		var y_mod = Vector2(0, 1)
 		
 		var left_spawn_point = tilemap_position - x_mod
 		var right_spawn_point = tilemap_position + x_mod
