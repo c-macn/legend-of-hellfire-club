@@ -50,7 +50,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "servant_ritual"
-length = 25.0
+length = 11.5
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -128,8 +128,8 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.5, 6.5, 7.5, 8.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0.5, 6.5, 7.5, 8.5, 11 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "fade_in"
@@ -142,6 +142,9 @@ tracks/5/keys = {
 }, {
 "args": [  ],
 "method": "fade_out"
+}, {
+"args": [  ],
+"method": "on_Cutscene_ended"
 } ]
 }
 
