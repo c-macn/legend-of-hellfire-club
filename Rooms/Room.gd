@@ -60,3 +60,11 @@ func _on_disguise_removed(position: Vector2) -> void:
 	var new_position = Vector2(position.x + BOX_OFFSET, position.y)
 	GameState.set_box_state(current_scene, position)
 	spawn_Box(new_position)
+
+
+func fade_in() -> void:
+	scene_transition.fade_in()
+
+
+func fade_out() -> void:
+	scene_transition.fade_out()

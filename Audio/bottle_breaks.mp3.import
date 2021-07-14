@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/bottle_breaks.mp3-049bb3c56d9927a159d3dc719aba50ec.mp3str"
+
+[deps]
+
+source_file="res://Audio/bottle_breaks.mp3"
+dest_files=[ "res://.import/bottle_breaks.mp3-049bb3c56d9927a159d3dc719aba50ec.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

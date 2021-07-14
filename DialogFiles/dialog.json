@@ -35,7 +35,11 @@
       "value": "You look like a bit of a piss head, have you seen my Ma and Da? They work here"
     },
     "the_card_grab": {
-      "value": "Oh you mean this card........"
+      "value": "Oh you mean this card.....",
+      "next": "what_the"
+    },
+    "what_the": {
+      "value": "What's going on? why is this floating.."
     },
     "demon_eye_0": {
       "value": "Jaysus, Mary, Mother of God! What in the blue fuck is that thing!?",
@@ -43,13 +47,6 @@
     },
     "demon_eye_1": {
       "value": "What's making that noise?"
-    },
-    "demon_eye_2": {
-      "value": "Ok, a bottle moving on it's own. Not the strangest thing I've seen tonight."
-    },
-    "demon_eye_3": {
-      "value": "Aww. It's a little rat. Rat boy be carefu...",
-      "next": "demon_eye_4"
     },
     "demon_eye_4": {
       "value": "CHRIST!!!...",
@@ -72,7 +69,7 @@
       "value": "Good thing I'm already in this box!"
     },
     "the_servant_0": {
-      "value": "[shake rate=50]Uggh.[/shake], Feels like someone just walked over my grave. Wait.. what's going on!!!"
+      "value": "[shake rate=50]Uggh.[/shake], Feels like someone just walked over my grave. Wait.. why is it getting hot in here!"
     },
     "the_servant_7": {
       "value": "Alright I'll get that bottle for ya but first. Can you tell me what's going on here?"
@@ -136,14 +133,14 @@
       "value": "Now, step away from the head. I must retrieve my masters card"
     },
     "marked_0": {
-      "value": "You have been marked child, I will know of your precence within these walls."
+      "value": "You do not know what you are dealing with. You have been marked child, I will know of your precence within these walls."
     },
     "marked_1": {
       "value": "[shake rate=20]BEGONE![/shake]",
       "next": "marked_2"
     },
     "marked_2": {
-      "value": "Do not test my patience young one, lest you wish to learn the fate of those who stood in our way"
+      "value": "Do not test my patience young one, lest you wish to learn the fate of those who stood in our way!"
     },
     "boss_battle_2": {
       "value": "You petulant child! This is your final warning, give me the card pieces and leave",
@@ -178,10 +175,11 @@
       "next": "the_servant_6"
     },
     "the_servant_6": {
-      "value": "If you can that bottle for me, I'll help you out with Lord Parsons' the fella running around in his dressing gown if you didn't know already"
+      "value": "If you can get that bottle for me, I'll help you out with Lord Parsons' the fella running around in his dressing gown if you didn't know already",
+      "next": "the_servant_12"
     },
     "the_servant_12": {
-      "value": "Parsons and his master are planning on opening up a hell mouth to unleash the infernal denizens upon the earth, We have one resident demon already!",
+      "value": "Himself and his master are planning on opening up a hell mouth to unleash the infernal denizens upon the earth, We have one resident demon already!",
       "next": "the_servant_13"
     },
     "the_servant_13": {
@@ -189,7 +187,7 @@
       "next": "the_servant_14"
     },
     "the_servant_14": {
-      "value": "Now how will that help me ya say. If you can get all of them and repeat the incantation 'CARDUS.. INFERNUS.. STICKYUS'",
+      "value": "Now how will that help me ya say. If you can get all of them and repeat the incantation",
       "next": "the_servant_15"
     },
     "the_servant_15": {
@@ -209,7 +207,7 @@
       "next": "the_servant_19"
     },
     "the_servant_19": {
-      "value": "Now a little secret for ya. Your Ma and Da are alive but held captive by the Parsons master. If you can get control of this card you can challenge him to a game for their freedom",
+      "value": "Now a bit of good news. Your Ma and Da are alive but held captive by the Parsons' master. If you can get control of this card you can challenge him to a game for their freedom",
       "next": "the_servant_20"
     },
     "the_servant_20": {
@@ -219,24 +217,24 @@
       "value": "So chick. Do you have that brandy?"
     },
     "the_servant_has_brandy": {
-      "value": "Ah lovely, you have it hold on let me swig it down..."
+      "value": "Ah lovely! you have it. Hold on, let me swig it down..."
     },
     "the_servant_power_0": {
       "value": "Thanks for that chick. Now if you're wondering how I can help you. The answer is....... MAGIC!",
       "next": "the_servant_power_1"
     },
     "the_servant_power_1": {
-      "value": "I'm going to fuse my spirit with this...... Spirit, and when you give it a little splash it'll send out a blast of positive energy to counter-act Parsons' negative",
+      "value": "I'm going to fuse my spirit with this...... Spirit, and when you give it a little splash it'll send out a blast of positive energy to counter act Parsons' negative",
       "next": "the_servant_power_2"
     },
     "the_servant_power_2": {
-      "value": "Now hang on there and let me do this ritual, I hope these books I've been reading aren't all bollocks"
+      "value": "Now hang on there and let me do this ritual... I hope these books I've been reading aren't all bollocks!"
     },
     "the_servant_power_3": {
       "value": "Now chick, just pick up the bottle and you'll have a fighting chance with Parsons... Let's go before it's too late"
     },
     "boss_battle_won": {
-      "value": "You done it chic. I'm afriad I'll have to leave ya now",
+      "value": "You done it chic. I'm afriad I'll have to leave ya now.. ",
       "next": "boss_battle_won_1"
     },
     "boss_battle_won_1": {

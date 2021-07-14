@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/disguise.mp3-ef2b5b3f083c7e14b0da574ce87fbbcd.mp3str"
+
+[deps]
+
+source_file="res://Audio/disguise.mp3"
+dest_files=[ "res://.import/disguise.mp3-ef2b5b3f083c7e14b0da574ce87fbbcd.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

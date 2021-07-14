@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/blessed_shot.mp3-ea5127776237d3a93c2ffc4e4657d52f.mp3str"
+
+[deps]
+
+source_file="res://Audio/blessed_shot.mp3"
+dest_files=[ "res://.import/blessed_shot.mp3-ea5127776237d3a93c2ffc4e4657d52f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

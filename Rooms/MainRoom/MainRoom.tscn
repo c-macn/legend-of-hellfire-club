@@ -293,6 +293,7 @@ script = ExtResource( 6 )
 
 [node name="Saoirse" parent="YSort" instance=ExtResource( 7 )]
 position = Vector2( 546, 1107 )
+tilemap = NodePath("../Navigation2D/Floors")
 
 [node name="Navigation2D" type="Navigation2D" parent="YSort"]
 

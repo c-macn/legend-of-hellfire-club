@@ -3,7 +3,7 @@ extends MoveState
 func enter():
 	.set_current_speed(speed_walking)
 	velocity = Vector2.ZERO
-	animated_sprite = owner.owner.get_node("AnimatedSprite")
+	animated_sprite = owner.owner.get_node("AnimationPlayer")
 
 
 func exit():

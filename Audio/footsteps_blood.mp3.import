@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/footsteps_blood.mp3-9938edae1c0b5dc5c4f0084ef4a466ab.mp3str"
+
+[deps]
+
+source_file="res://Audio/footsteps_blood.mp3"
+dest_files=[ "res://.import/footsteps_blood.mp3-9938edae1c0b5dc5c4f0084ef4a466ab.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

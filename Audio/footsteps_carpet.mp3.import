@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/footsteps_carpet.mp3-7b52bc966d570d5491dba7ee62342930.mp3str"
+
+[deps]
+
+source_file="res://Audio/footsteps_carpet.mp3"
+dest_files=[ "res://.import/footsteps_carpet.mp3-7b52bc966d570d5491dba7ee62342930.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -23,7 +23,7 @@ export(float) var acceleration = 0.1
 
 var current_speed: int = speed_walking
 var velocity := Vector2.ZERO
-var animated_sprite: AnimatedSprite
+var animated_sprite: AnimationPlayer
 
 func exit():
 	set_current_speed(speed_walking)
@@ -65,7 +65,3 @@ func get_facing_direction(current_direction: Vector2) -> int:
 		angle += TAU # make the angle positive for simplicity
 	
 	return int(round(angle / PI * 4)) % 8 # ensure only values between 0 - 7 are returned
-
-
-func _on_sprite_changed(current_sprite: AnimatedSprite) -> void:
-	animated_sprite = current_sprite

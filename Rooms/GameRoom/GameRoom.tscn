@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Tilesets/BaseRoomTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Rooms/GameRoom/GameRoom.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Objects/DevilsCard/DevilCardBottomRight.png" type="Texture" id=4]
 [ext_resource path="res://Objects/DevilsCard/CardPiece.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Interface/CanvasLayer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Tilesets/Couch.png" type="Texture" id=7]
 [ext_resource path="res://Objects/CultistSpawner/CultistSpawner.tscn" type="PackedScene" id=8]
 
 [node name="GameRoom" type="Node2D"]
@@ -53,3 +54,11 @@ spawn_percentage = 80
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="Couch" type="Sprite" parent="."]
+position = Vector2( 764.686, 51.1054 )
+texture = ExtResource( 7 )
+
+[node name="Couch2" type="Sprite" parent="."]
+position = Vector2( 218.84, 42.7809 )
+texture = ExtResource( 7 )

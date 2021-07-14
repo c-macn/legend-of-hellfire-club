@@ -25,6 +25,7 @@ onready var tween := $Tween
 onready var state_machine: Node = $StateMachine
 onready var light: Light2D = $Light2D
 onready var hit_box: CollisionShape2D = $HitBox
+onready var audio_player := $AudioStreamPlayer
 
 func _ready():
 	add_to_group("cultists")
@@ -131,6 +132,8 @@ func shoot_target() -> void:
 	shot.transform = shot_spawner.global_transform
 	shot.scale = Vector2(1, 0.5)
 	shot.reveal()
+	$AudioStreamPlayer.stream = load("res://Audio/cursed_shot.mp3")
+	$AudioStreamPlayer.play()
 
 
 func reveal() -> void:
@@ -139,6 +142,12 @@ func reveal() -> void:
 
 func play_animation(animation_name: String) -> void:
 	animated_sprite.play(animation_name)
+
+
+func play_shot_sfx() -> void:
+	audio_player.stream = load("res://Audio/cursed_shot.mp3")
+	audio_player.play()
+
 
 func _phase_in_animation() -> void:
 	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 0, 1, 2,

@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Audio/footstep_1.mp3" type="AudioStream" id=1]
+[ext_resource path="res://Audio/footstep_5.mp3" type="AudioStream" id=2]
+[ext_resource path="res://Audio/footstep_4.mp3" type="AudioStream" id=3]
+[ext_resource path="res://Audio/footstep_3.mp3" type="AudioStream" id=4]
+[ext_resource path="res://Audio/footstep_2.mp3" type="AudioStream" id=5]
+[ext_resource path="res://Audio/Sfx.gd" type="Script" id=6]
+
+[node name="Sfx" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="footstep_0" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 1 )
+volume_db = -10.0
+
+[node name="footstep_1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+volume_db = -10.0
+
+[node name="footstep_2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+
+[node name="footstep_3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+
+[node name="footstep_4" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+volume_db = -10.0

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Rooms/SceneTransition/SceneTransition.gd" type="Script" id=1]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "blink"
 length = 3.0
 tracks/0/type = "bezier"
@@ -88,9 +88,8 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 1 )
 }
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=3]
 resource_local_to_scene = true
-resource_name = "fade_out"
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:color:r")
 tracks/0/interp = 1
@@ -132,7 +131,9 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 1 )
 }
 
-[node name="SceneTransition" type="ColorRect"]
+[node name="SceneTransition" type="ColorRect" groups=[
+"canvas_layer",
+]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.24116 )
@@ -142,6 +143,6 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/blink = SubResource( 3 )
+anims/blink = SubResource( 1 )
 anims/fade_in = SubResource( 2 )
-anims/fade_out = SubResource( 1 )
+anims/fade_out = SubResource( 3 )

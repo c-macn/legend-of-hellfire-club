@@ -6,7 +6,7 @@ enum SPAWN_POINTS {
 	DEMON_ROOM = 2
 }
 
-# pulled this value out of me hole
+
 const DEFAULT_SPAWN_POINT := Vector2(546, 1107)
 
 onready var navigation = get_tree().get_root().find_node("Navigation2D", true, false)
@@ -38,6 +38,7 @@ func _ready() -> void:
 	saoirse.get_node("Light2D").energy = 1
 	$CanvasModulate.modulate = Color(30, 150, 80, 255)
 
+
 func determine_spawn_location() -> Vector2:
 	var previous_scene = GameState.get_previous_scene()
 	
@@ -50,19 +51,24 @@ func determine_spawn_location() -> Vector2:
 	else:
 		return DEFAULT_SPAWN_POINT
 
+
 func setup_cutscene_triggers() -> void:
 	if !GameState.get_cutscene_state("theHead"):
 		the_head_cutscene_trigger.connect("cutscene_start", self, "play_cutscene")
 
+
 func play_cutscene(animation_name: String) -> void:
 	animation_player.play(animation_name)
 
+
 func on_Cutscene_begins() -> void:
 	get_tree().call_group("actors", "disable_movement")
-	
+
+
 func on_Cutscene_ended() -> void:
 	get_tree().call_group("actors", "enable_movement")
 	GameState.set_has_met_cultist(true)
+
 
 func _on_Dialouge_finished() -> void:
 	animation_player.play()
@@ -78,7 +84,8 @@ func _on_banishment() -> void:
 
 func phase_in_cultist() -> void:
 	$CutsceneCultist._phase_in_animation()
-	
+
+
 func phase_out_cultist() -> void:
 	$CutsceneCultist.phase_out()
 	$CutsceneCultist.queue_free()

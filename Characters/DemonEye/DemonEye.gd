@@ -24,6 +24,7 @@ func get_banish_target(target_path: NodePath) -> Node:
 
 func wake_up() -> void:
 	animated_sprite.play("open_eye")
+	$AudioStreamPlayer2D.play()
 
 func patrol() -> void:
 	animated_sprite.play("look")

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/balor_speaks.mp3-4ea2d9ac4fe339247fcae7c93282dfcc.mp3str"
+
+[deps]
+
+source_file="res://Audio/balor_speaks.mp3"
+dest_files=[ "res://.import/balor_speaks.mp3-4ea2d9ac4fe339247fcae7c93282dfcc.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

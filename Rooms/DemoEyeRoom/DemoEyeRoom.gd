@@ -11,7 +11,6 @@ onready var room_mask := $DemonEyeRoomMask
 
 func _ready() -> void:
 	._ready()
-	saoirse.phase_in()
 	yield(scene_transition, "transition_finished")
 	cutscene_camera.position = CUTSCENE_CAMERA_START_POSITION
 	room_mask.connect("soairse_detected", self, "set_target")
@@ -34,7 +33,7 @@ func set_target() -> void:
 	$DemonEye.set_target($Saoirse)
 
 func init_dialouge(character_name: String, dialouge_key: String) -> void:
-	dialouge_container.on_DialogReceived(character_name, dialouge_key, saoirse.is_disguised()) # probably shouldn't reference like this
+	dialouge_container.on_DialogReceived(character_name, dialouge_key, saoirse.is_disguised())
 
 func on_Cutscene_begins() -> void:
 	get_tree().paused = true

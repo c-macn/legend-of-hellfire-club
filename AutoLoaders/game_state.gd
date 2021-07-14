@@ -106,7 +106,8 @@ func set_has_brandy(has_brandy: bool) -> void:
 
 
 func get_has_brandy() -> bool:
-	return _has_brandy
+	#return _has_brandy
+	return true
 
 
 func set_has_blessed_shot(has_shot: bool) -> void:

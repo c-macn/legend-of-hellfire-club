@@ -7,29 +7,36 @@ signal disguise_removed(position)
 # used to tell the parent scene that Saoirse has been banished so the cultist can de-spawn
 signal banished
 
+export(NodePath) var tilemap
+
 const MAX_BANISHMENTS: int = 3
 
+var footsteps_sfx = preload("res://Audio/footsteps.mp3")
+var footsteps_carpet_sfx = preload("res://Audio/footsteps_carpet.mp3");
 var BlessedShot: PackedScene = preload("res://Entities/BlessedWaterShot/BlessedShot.tscn")
 var banish_count: int = 0
 var velocity := Vector2()
 var is_banished := false
-var default_frames := preload("res://Characters/Saoirse/Animations/Saoirse_Default_Frames.tres")
-var box_frames := preload("res://Characters/Saoirse/Animations/Saoirse_Box_Frames.tres")
+var default_frames := preload("res://Characters/Saoirse/Sprites/Saoirse Full Animation.png")
+var box_frames := preload("res://Characters/Saoirse/Sprites/Saoirse_inBOX Full Animation.png")
 var cutscene_waypoints: PoolVector2Array
 var is_movement_disabled: bool = false
 var spawn_point: Vector2
+var tilemap_node: TileMap
 
 onready var shot_spawner: Node2D = $ShotSpawner
-onready var animated_sprite: AnimatedSprite = $AnimatedSprite
+onready var animated_sprite: AnimationPlayer = $AnimationPlayer
 onready var state_machine: Node = $StateMachine
 onready var tween := $Tween
+onready var audio_player := $AudioStreamPlayer
 
 func _ready():
+	if tilemap:
+		tilemap_node = get_node(tilemap)
 	add_to_group("actors")
 	spawn_point = global_position
 	var active_frames = box_frames if GameState.get_is_Saoirse_disguised() else default_frames
-	_set_active_frames(active_frames)
-	phase_in()
+	_set_active_frames(active_frames, 19)
 
 func _input(_event) -> void:
 	if !is_movement_disabled:
@@ -39,13 +46,25 @@ func _input(_event) -> void:
 		if Input.is_action_just_pressed("obj_cancel"):
 			if is_disguised():
 				take_off_disguise()
-		
+
+
+#func _physics_process(_delta: float) -> void:
+#	if tilemap_node != null:
+#		var tile_position = tilemap_node.world_to_map(global_position)
+#		var tile_id = tilemap_node.get_cellv(tile_position)
+#		var tile_name = tilemap_node.tile_set.tile_get_name(tile_id)
+#		if (tile_name == "rug"):
+#			play_carpet_footsteps()
+#		if (tile_name == "blood_floor" or tile_name == "no_nav"):
+#			play_footsteps()
+
 func fire_water() -> void:
 	var shot = BlessedShot.instance()
 	shot_spawner.look_at(get_global_mouse_position())
 	shot.transform = shot_spawner.global_transform
 	shot_spawner.add_child(shot)
 	$ShootDelay.start()
+	play_shot_sfx()
 
 
 # when hit by cultist, move to spawn point
@@ -58,11 +77,9 @@ func banish(banish_increase: int = 1, respawn_position: Vector2 = spawn_point) -
 		banish_count += 1
 	
 	if banish_count < MAX_BANISHMENTS:
-		phase_out()
 		tween.interpolate_callback(self, 1, "reanimate", respawn_position)
 		emit_signal("banished")
 	else:
-		phase_out()
 		tween.interpolate_callback(self, 1, "game_over")
 		tween.interpolate_callback(self, 1, "reanimate", respawn_position)
 		
@@ -71,10 +88,8 @@ func banish(banish_increase: int = 1, respawn_position: Vector2 = spawn_point) -
 func reanimate(respawn_point: Vector2) -> void:
 	global_position = lerp(global_position, respawn_point, 0.5)
 	
-	phase_in()
-
-	tween.interpolate_property(self, "global_position", global_position, respawn_point, 0.5,
-		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	tween.interpolate_property(self, "global_position", global_position, respawn_point, 1,
+		Tween.TRANS_SINE, Tween.EASE_OUT)
 		
 	tween.start()
 	enable_movement()
@@ -84,22 +99,33 @@ func game_over() -> void:
 
 
 func move_to_point(target_position: Vector2) -> void:
+	var destination = (target_position - position).normalized()
+	var time = round(position.distance_to(target_position) / 100 * 1)
 	tween.connect("tween_completed", self, "has_reached_point")
-	tween.interpolate_property(self, "position", position, target_position, 1, Tween.TRANS_CUBIC, Tween.EASE_OUT) 
-	tween.start(); # convert to steer behavior
-	animated_sprite.play("walk_forward")
+	tween.interpolate_property(self, "position", position, target_position, time, Tween.TRANS_SINE, Tween.EASE_OUT) 
+	tween.start();
+	animated_sprite.play($FacingDirectionManager.get_animation(destination))
+	yield(tween, "tween_completed")
+	animated_sprite.stop()
+	$Sprite.frame = 10 # looking forward
 
 
 func put_on_disguise() -> void:
-	GameState.set_is_Saoirse_disguised(true)	
-	_set_active_frames(box_frames)
-
+	play_cardboard_sound()
+	fade_in_disguise()
+	yield(get_tree().create_timer(1.5), "timeout")
+	GameState.set_is_Saoirse_disguised(true)
+	_set_active_frames(box_frames, 16)
+	fade_out_disguise()
 
 func take_off_disguise() -> void:
+	play_cardboard_sound()
+	fade_in_disguise()
+	yield(get_tree().create_timer(1.5), "timeout")
 	GameState.set_is_Saoirse_disguised(false)
-	_set_active_frames(default_frames)
+	_set_active_frames(default_frames, 19)
 	emit_signal("disguise_removed", position)
-
+	fade_out_disguise()
 
 func is_disguised() -> bool:
 	return GameState.get_is_Saoirse_disguised()
@@ -121,26 +147,13 @@ func enable_movement() -> void:
 	is_movement_disabled = false
 
 
-func _set_active_frames(frames: SpriteFrames) -> void:
-	animated_sprite.frames = frames
+func _set_active_frames(frames: StreamTexture, h_count: int) -> void:
+	$Sprite.texture = frames
+	$Sprite.hframes = h_count
 
 
 func turn_off_light() -> void:
 	$Light2D.visible = false
-
-
-func phase_out() -> void:
-	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 1, 0, 1,
-			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-
-
-func phase_in() -> void:
-	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 0, 1, 1,
-			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-
-
-	if !tween.is_active():
-		tween.start()
 
 
 func _can_fire() -> bool:
@@ -158,3 +171,31 @@ func set_remote_transform(node_path: NodePath) -> void:
 func has_reached_point(_object, _key) -> void:
 	tween.disconnect("tween_completed", self, "has_reached_point")
 	animated_sprite.play("idle_walk_back")
+
+
+func fade_out_disguise() -> void:
+	enable_movement()
+	get_tree().call_group("canvas_layer", "fade_out")
+
+
+func fade_in_disguise() -> void:
+	disable_movement()
+	get_tree().call_group("canvas_layer", "fade_in")
+
+func play_cardboard_sound() -> void:
+	audio_player.stream = load("res://Audio/disguise.mp3")
+	audio_player.play()
+
+
+func play_shot_sfx() -> void:
+	audio_player.stream = load("res://Audio/blessed_shot.mp3")
+	audio_player.play()
+
+
+func play_footsteps() -> void:
+	$Sfx.play()
+
+
+func play_carpet_footsteps() -> void:
+	audio_player.stream = footsteps_carpet_sfx
+	audio_player.play()

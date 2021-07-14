@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Tilesets/BaseRoomTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Entities/Rat/DoomedRat.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Rooms/DemoEyeRoom/DemoEyeRoom.gd" type="Script" id=5]
 [ext_resource path="res://Characters/Saoirse/Saoirse.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Interface/CanvasLayer.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Audio/bottle_breaks.mp3" type="AudioStream" id=8]
 [ext_resource path="res://Objects/DevilsCard/CardPiece.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Objects/DevilsCard/DevilCardTopLeft.png" type="Texture" id=10]
 [ext_resource path="res://Objects/RoomMasks/DemonEyeRoomMask.tscn" type="PackedScene" id=11]
@@ -50,12 +51,9 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1.6 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "saoirse", "demon_eye_2" ],
-"method": "init_dialouge"
-} ]
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Camera2D:position")
@@ -239,26 +237,12 @@ tracks/1/keys = {
 } ]
 }
 tracks/2/type = "method"
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("DemonEye")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1.3 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "saoirse", "demon_eye_3" ],
-"method": "init_dialouge"
-} ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath("DemonEye")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 2, 5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
@@ -268,6 +252,20 @@ tracks/3/keys = {
 "args": [  ],
 "method": "tween_light_left"
 } ]
+}
+tracks/3/type = "audio"
+tracks/3/path = NodePath("AudioStreamPlayer2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 8 )
+} ],
+"times": PoolRealArray( 2.1 )
 }
 
 [sub_resource type="AnimationNodeAnimation" id=7]
@@ -349,7 +347,6 @@ position = Vector2( 432.488, 166.117 )
 position = Vector2( 399.924, 356.402 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color( 0.117647, 0.117647, 0.117647, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -389,7 +386,7 @@ card_piece_texture = ExtResource( 10 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 pause_mode = 2
-position = Vector2( 993.613, 341.106 )
+position = Vector2( 437.827, 133.762 )
 current = true
 limit_smoothed = true
 smoothing_enabled = true
@@ -405,3 +402,6 @@ parameters/conditions/is_dialouge_finished = false
 visible = false
 position = Vector2( 472.07, 301.946 )
 scale = Vector2( 37, 40 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )

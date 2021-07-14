@@ -26,6 +26,7 @@ func _cast_spell() -> void:
 		shot.transform = owner.get_node("ShotSpawner").global_transform
 		shot.scale = Vector2(1, 0.5)
 		shot.reveal()
+		owner.play_shot_sfx()
 		owner.cast_timeout.start()
 	else:
 		shots_cast = 0

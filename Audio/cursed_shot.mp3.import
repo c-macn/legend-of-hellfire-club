@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/cursed_shot.mp3-022d80a5ba3bc405026d33f4a3259cda.mp3str"
+
+[deps]
+
+source_file="res://Audio/cursed_shot.mp3"
+dest_files=[ "res://.import/cursed_shot.mp3-022d80a5ba3bc405026d33f4a3259cda.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

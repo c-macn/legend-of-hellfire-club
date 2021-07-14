@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/card_pickup.mp3-94c6f10cc19855cddfdb61c4c05c2b48.mp3str"
+
+[deps]
+
+source_file="res://Audio/card_pickup.mp3"
+dest_files=[ "res://.import/card_pickup.mp3-94c6f10cc19855cddfdb61c4c05c2b48.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
