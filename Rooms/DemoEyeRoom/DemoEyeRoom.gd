@@ -22,6 +22,7 @@ func _ready() -> void:
 		cutscene_camera.current = true
 		cutscene_camera.zoom = Vector2(1.6, 1.6)
 
+
 func init_cutscene() -> void:
 	dialouge_container.connect("dialouge_finished", self, "_on_Dialouge_finished")
 	dialouge_container.connect("dialouge_started", self, "_on_Dialouge_started")
@@ -29,20 +30,29 @@ func init_cutscene() -> void:
 	tree["parameters/conditions/is_dialouge_finished"] = false
 	tree["parameters/playback"].start("pan_to_demon")
 
+
 func set_target() -> void:
 	$DemonEye.set_target($Saoirse)
+
 
 func init_dialouge(character_name: String, dialouge_key: String) -> void:
 	dialouge_container.on_DialogReceived(character_name, dialouge_key, saoirse.is_disguised())
 
+
 func on_Cutscene_begins() -> void:
 	get_tree().paused = true
+	get_tree().call_group("UI", "hide_player_ui")
+
 
 func on_Cutscene_ended() -> void:
+	var has_met_cultist = GameState.get_has_met_cultist()
 	get_tree().paused = false
+	get_tree().call_group("UI", "hide_player_ui", has_met_cultist, has_met_cultist, GameState.get_has_brandy() || GameState.get_has_blessed_shot())
+
 
 func _on_Dialouge_finished() -> void:
 	tree["parameters/conditions/is_dialouge_finished"] = true
+
 
 func _on_Dialouge_started() -> void:
 	tree["parameters/conditions/is_dialouge_finished"] = false

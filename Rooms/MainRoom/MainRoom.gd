@@ -63,11 +63,13 @@ func play_cutscene(animation_name: String) -> void:
 
 func on_Cutscene_begins() -> void:
 	get_tree().call_group("actors", "disable_movement")
+	get_tree().call_group("UI", "hide_player_ui")
 
 
 func on_Cutscene_ended() -> void:
 	get_tree().call_group("actors", "enable_movement")
 	GameState.set_has_met_cultist(true)
+	get_tree().call_group("UI", "hide_player_ui", true, true, false)
 
 
 func _on_Dialouge_finished() -> void:

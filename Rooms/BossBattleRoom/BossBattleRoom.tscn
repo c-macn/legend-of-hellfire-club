@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Rooms/BossBattleRoom/.BossBattleRoom.gd" type="Script" id=1]
 [ext_resource path="res://Tilesets/BaseRoomTileset.tres" type="TileSet" id=2]
@@ -8,41 +8,12 @@
 [ext_resource path="res://icon.png" type="Texture" id=6]
 [ext_resource path="res://Interface/CanvasLayer.tscn" type="PackedScene" id=7]
 
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-
-uniform sampler2D dissolve_texture : hint_albedo;
-uniform float dissolve_value : hint_range(0,1);
-
-void fragment(){
-    vec4 main_texture = texture(TEXTURE, UV);
-    vec4 noise_texture = texture(dissolve_texture, UV);
-    main_texture.a *= floor(dissolve_value + min(1, noise_texture.x));
-    COLOR = main_texture;
-}"
-
-[sub_resource type="OpenSimplexNoise" id=2]
-period = 56.5
-persistence = 0.781
-lacunarity = 3.5
-
-[sub_resource type="NoiseTexture" id=3]
-resource_local_to_scene = true
-seamless = true
-noise = SubResource( 2 )
-
-[sub_resource type="ShaderMaterial" id=4]
-resource_local_to_scene = true
-shader = SubResource( 1 )
-shader_param/dissolve_value = 1.0
-shader_param/dissolve_texture = SubResource( 3 )
-
-[sub_resource type="Curve2D" id=5]
+[sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array(  )
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=2]
 resource_name = "cultist_intro"
 length = 3.0
 tracks/0/type = "method"
@@ -88,7 +59,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=3]
 resource_name = "ending"
 length = 5.0
 tracks/0/type = "method"
@@ -126,7 +97,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=4]
 resource_name = "fight_over"
 length = 4.0
 tracks/0/type = "method"
@@ -164,7 +135,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=5]
 resource_name = "fight_start"
 tracks/0/type = "method"
 tracks/0/path = NodePath("Cultists")
@@ -181,7 +152,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=6]
 length = 3.5
 tracks/0/type = "method"
 tracks/0/path = NodePath("Saoirse")
@@ -226,7 +197,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=7]
 resource_name = "lets_go"
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -243,7 +214,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=8]
 resource_name = "servant_ending"
 length = 1.5
 tracks/0/type = "method"
@@ -261,26 +232,42 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "cultist_intro"
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "ending"
 
-[sub_resource type="AnimationNodeAnimation" id=15]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "fight_over"
 
-[sub_resource type="AnimationNodeAnimation" id=16]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "fight_start"
 
-[sub_resource type="AnimationNodeAnimation" id=17]
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "intro"
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=14]
 animation = "lets_go"
 
-[sub_resource type="AnimationNodeAnimation" id=19]
+[sub_resource type="AnimationNodeAnimation" id=15]
 animation = "servant_ending"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+switch_mode = 2
+advance_condition = "is_dialouge_finished"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+switch_mode = 2
+advance_condition = "is_dialouge_finished"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+switch_mode = 2
+advance_condition = "is_dialouge_finished"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+switch_mode = 2
+advance_condition = "has_won_fight"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=20]
 switch_mode = 2
@@ -290,43 +277,27 @@ advance_condition = "is_dialouge_finished"
 switch_mode = 2
 advance_condition = "is_dialouge_finished"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
-switch_mode = 2
-advance_condition = "is_dialouge_finished"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
-switch_mode = 2
-advance_condition = "has_won_fight"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
-switch_mode = 2
-advance_condition = "is_dialouge_finished"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
-switch_mode = 2
-advance_condition = "is_dialouge_finished"
-
-[sub_resource type="AnimationNodeStateMachine" id=26]
-states/cultist_intro/node = SubResource( 13 )
+[sub_resource type="AnimationNodeStateMachine" id=22]
+states/cultist_intro/node = SubResource( 9 )
 states/cultist_intro/position = Vector2( 103, -676 )
-states/ending/node = SubResource( 14 )
+states/ending/node = SubResource( 10 )
 states/ending/position = Vector2( 561.726, -395 )
-states/fight_over/node = SubResource( 15 )
+states/fight_over/node = SubResource( 11 )
 states/fight_over/position = Vector2( 341, -395 )
-states/fight_start/node = SubResource( 16 )
+states/fight_start/node = SubResource( 12 )
 states/fight_start/position = Vector2( 103, -507.22 )
-states/intro/node = SubResource( 17 )
+states/intro/node = SubResource( 13 )
 states/intro/position = Vector2( 103, -776 )
-states/lets_go/node = SubResource( 18 )
+states/lets_go/node = SubResource( 14 )
 states/lets_go/position = Vector2( 103, -600 )
-states/servant_ending/node = SubResource( 19 )
+states/servant_ending/node = SubResource( 15 )
 states/servant_ending/position = Vector2( 103, -395 )
-transitions = [ "intro", "cultist_intro", SubResource( 20 ), "cultist_intro", "lets_go", SubResource( 21 ), "lets_go", "fight_start", SubResource( 22 ), "fight_start", "servant_ending", SubResource( 23 ), "servant_ending", "fight_over", SubResource( 24 ), "fight_over", "ending", SubResource( 25 ) ]
+transitions = [ "intro", "cultist_intro", SubResource( 16 ), "cultist_intro", "lets_go", SubResource( 17 ), "lets_go", "fight_start", SubResource( 18 ), "fight_start", "servant_ending", SubResource( 19 ), "servant_ending", "fight_over", SubResource( 20 ), "fight_over", "ending", SubResource( 21 ) ]
 start_node = "intro"
 end_node = "fight_start"
 graph_offset = Vector2( -647.835, -1096.81 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=27]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
 [node name="BossBattleRoom" type="Node2D"]
 position = Vector2( -53.033, 0 )
@@ -349,9 +320,6 @@ zoom = Vector2( 1.2, 1.2 )
 
 [node name="Saoirse" parent="." instance=ExtResource( 4 )]
 position = Vector2( 226, 336 )
-
-[node name="AnimatedSprite" parent="Saoirse" index="0"]
-material = SubResource( 4 )
 
 [node name="Fire" type="Node" parent="."]
 
@@ -662,7 +630,7 @@ texture = ExtResource( 6 )
 [node name="CultistPath" type="Path2D" parent="."]
 position = Vector2( 33.2172, 42.8259 )
 scale = Vector2( 0.784399, 0.913989 )
-curve = SubResource( 5 )
+curve = SubResource( 1 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="CultistPath"]
 
@@ -702,18 +670,18 @@ position = Vector2( 480.33, -515.397 )
 SaoirseNode = NodePath("../Saoirse")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/cultist_intro = SubResource( 6 )
-anims/ending = SubResource( 7 )
-anims/fight_over = SubResource( 8 )
-anims/fight_start = SubResource( 9 )
-anims/intro = SubResource( 10 )
-anims/lets_go = SubResource( 11 )
-anims/servant_ending = SubResource( 12 )
+anims/cultist_intro = SubResource( 2 )
+anims/ending = SubResource( 3 )
+anims/fight_over = SubResource( 4 )
+anims/fight_start = SubResource( 5 )
+anims/intro = SubResource( 6 )
+anims/lets_go = SubResource( 7 )
+anims/servant_ending = SubResource( 8 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 26 )
+tree_root = SubResource( 22 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 27 )
+parameters/playback = SubResource( 23 )
 parameters/conditions/has_won_fight = false
 parameters/conditions/is_dialouge_finished = false
 

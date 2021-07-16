@@ -11,7 +11,7 @@ func _ready() -> void:
 	.spawn_Saoirse(Saoirse_spawn_point.position)
 	Saoirse.set_remote_transform($Camera2D.get_path())
 	init_card_piece(GameState.CARD_COLLECTION_STATE.BottomLeft)
-	#$TileMap.saoirse_ref = Saoirse
+
 
 func init_card_piece(has_collected_card: bool) -> void:
 	if !has_collected_card:
@@ -43,10 +43,13 @@ func start_cutscene(cutscene_name: String) -> void:
 
 func on_Cutscene_begins() -> void:
 	get_tree().call_group("actors", "disable_movement")
+	get_tree().call_group("UI", "hide_player_ui")
 
 
 func on_Cutscene_ended() -> void:
+	var has_met_cultist = GameState.get_has_met_cultist()
 	get_tree().call_group("actors", "enable_movement")
+	get_tree().call_group("UI", "hide_player_ui", has_met_cultist, has_met_cultist, GameState.get_has_brandy() || GameState.get_has_blessed_shot())
 
 
 func _on_Dialouge_finished() -> void:

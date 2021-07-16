@@ -8,6 +8,7 @@ onready var card_a: TextureRect = $CenterContainer/CardMat/GridContainer/CardA
 onready var card_b: TextureRect = $CenterContainer/CardMat/GridContainer/CardB
 onready var card_c: AnimatedSprite = $CenterContainer/CardMat/GridContainer/CardC
 onready var has_collected_card_pieces = GameState.has_collected_all_cards()
+onready var winning_audio := $WinngSound
 
 func _ready() -> void:
 	original_module_value = card_a.self_modulate
@@ -18,16 +19,20 @@ func _ready() -> void:
 
 func reveal_cards() -> void:
 	_reveal_card(card_a)
+	winning_audio.play()
 	yield(card_tween, "tween_completed")
 	
 	_reveal_card(card_b)
+	winning_audio.play()
 	yield(card_tween, "tween_completed")
 	
 	if has_collected_card_pieces:
 		_reveal_winning_card()
+		winning_audio.play()
 		yield(get_tree().create_timer(10), "timeout") # bit of a hack because I'm very tired right now
 	else:
 		_reveal_losing_card()
+		$LosingSound.play()
 		yield(get_tree().create_timer(2), "timeout")
 	
 	self.visible = false

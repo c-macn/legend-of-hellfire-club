@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Interface/CardPuzzle/poker-table.png" type="Texture" id=1]
 [ext_resource path="res://Interface/CardPuzzle/card-slot.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Interface/CardPuzzle/CardPuzzle.gd" type="Script" id=4]
 [ext_resource path="res://Interface/CardPuzzle/seven-diamonds.png" type="Texture" id=5]
 [ext_resource path="res://Interface/CardPuzzle/devil-card-transformation.png" type="Texture" id=6]
+[ext_resource path="res://Audio/card_pickup.mp3" type="AudioStream" id=7]
+[ext_resource path="res://Audio/devil_laugh.mp3" type="AudioStream" id=8]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -302,3 +304,9 @@ frame = 20
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/reveal_winning_card = SubResource( 32 )
+
+[node name="WinngSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="LosingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )

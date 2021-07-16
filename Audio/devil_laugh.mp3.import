@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/devil_laugh.mp3-717ec9bb9fcbb03e7fd70e6667c97776.mp3str"
+
+[deps]
+
+source_file="res://Audio/devil_laugh.mp3"
+dest_files=[ "res://.import/devil_laugh.mp3-717ec9bb9fcbb03e7fd70e6667c97776.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -41,9 +41,9 @@ func set_is_lethal(is_lethal_shot: bool) -> void:
 
 
 func _on_InfernalShot_body_entered(body: KinematicBody2D) -> void:
-	if body and body.has_method("banish"):
+	if body and body.has_method("on_hit"):
 		if is_lethal:
-			body.banish()
+			body.on_hit()
 			
 		queue_free()
 

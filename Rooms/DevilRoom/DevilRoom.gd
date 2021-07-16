@@ -6,6 +6,7 @@ onready var scene_transition := $CanvasLayer/SceneTransition
 onready var cultist := $Cultists
 
 func _ready() -> void:
+	$CanvasLayer.hide_player_ui()
 	GameState.connect("has_won_card_game", self, "_play_ending")
 	_init_scene()
 	scene_transition.fade_out()

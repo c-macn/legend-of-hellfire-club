@@ -7,14 +7,17 @@ enum MENU_BUTTONS {
 }
 
 var _selected_button = 0
+var lives_count = load("res://CustomerResources/player_lives.tres")
 
 onready var buttons = $ButtonContainer.get_children()
 onready var button_cursor = $Cursor
 
 func _ready() -> void:
+	$CanvasLayer.hide_player_ui()
 	$CanvasLayer/SceneTransition.fade_out()
 	get_tree().get_root().connect("size_changed", self, "update_cursor_position_on_resize")
 	update_cursor_position(_selected_button)
+	lives_count.restore_lives()
 
 func _input(_event):
 	if Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("walk_left"):

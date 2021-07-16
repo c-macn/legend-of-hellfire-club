@@ -5,6 +5,9 @@ onready var tween := $DevilCard/Tween
 
 func _ready() -> void:
 	devil_card.connect("animation_finished", self, "_add_card_inventory_item")
+	var has_met_cultist = GameState.get_has_met_cultist()
+	hide_player_ui(has_met_cultist, has_met_cultist, GameState.get_has_brandy() || GameState.get_has_blessed_shot())
+
 
 func reveal_card() -> void:
 	var visible_modulate = Color(devil_card.self_modulate.r, devil_card.self_modulate.g, devil_card.self_modulate.b, 1.0)
@@ -27,8 +30,15 @@ func play_break_away() -> void:
 func add_card_inventory_item() -> void:
 	# render inventory marker to keep track of collected card pieces
 	pass
-	
+
+
 func reveal_puzzle() -> void:
 	$CardPuzzle.visible = true
 	yield(get_tree().create_timer(1.5), "timeout")
 	$CardPuzzle.reveal_cards()
+
+
+func hide_player_ui(show_lives = false, show_cards = false, show_brandy = false) -> void:
+	$LivesCounter.visible = show_lives
+	$CardPieces.visible = show_cards
+	$TextureRect.visible = show_brandy

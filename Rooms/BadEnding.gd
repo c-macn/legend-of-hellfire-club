@@ -4,6 +4,7 @@ onready var demon_eye := $DemonEye
 onready var scene_transition := $CanvasLayer/SceneTransition
 
 func _ready() -> void:
+	$CanvasLayer.hide_player_ui()
 	$AnimationPlayer.connect("animation_finished", self, "_animation_finished")
 	$AudioStreamPlayer2D.play()
 	scene_transition.fade_out()

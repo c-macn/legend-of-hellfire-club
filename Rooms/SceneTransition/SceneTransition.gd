@@ -8,7 +8,7 @@ func _ready() -> void:
 	visible = true
 
 
-func transition_to_new_scene(scene: String) -> void:	
+func transition_to_new_scene(scene: String) -> void:
 	fade_in()
 	yield(animation_player, "animation_finished")
 	get_tree().change_scene(scene)
