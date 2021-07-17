@@ -5,8 +5,8 @@ onready var scene_transition := $CanvasLayer/SceneTransition
 onready var animation_player := $AnimationPlayer
 
 func _ready() -> void:
-	$CanvasLayer.hide_player_ui()
 	$AudioStreamPlayer3D.play()
+	$CanvasLayer.hide_player_ui()
 	scene_transition.blink()
 	yield(get_tree().create_timer(1.0), "timeout")
 	animation_player.connect("animation_finished", self, "_on_animation_changed")

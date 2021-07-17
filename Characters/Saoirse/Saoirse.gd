@@ -86,13 +86,13 @@ func on_hit() -> void:
 		yield(get_tree().create_timer(0.5), "timeout")
 		enable_movement()
 	else:
-		get_tree().call_deferred("UI", "fade_in")
-		yield(get_tree().create_timer(1), "timeout")
-		get_tree().call_deferred("change_scene", "res://Rooms/BadEnding.tscn")
+		insta_death()
 
 
 func insta_death() -> void:
-	emit_signal("banished")
+	get_tree().call_deferred("UI", "fade_in")
+	yield(get_tree().create_timer(1), "timeout")
+	get_tree().call_deferred("change_scene", "res://Rooms/BadEnding.tscn")
 
 
 func reanimate(respawn_point: Vector2) -> void:

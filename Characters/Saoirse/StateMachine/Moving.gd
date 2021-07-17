@@ -24,8 +24,9 @@ func update(_delta: float) -> void:
 		 
 	if not direction == Vector2.ZERO:
 #		velocity = lerp(velocity, direction * current_speed, acceleration)
+		var animation_name = "box_" + get_animation() if GameState.get_is_Saoirse_disguised() else get_animation()
 		velocity = direction * current_speed
-		animated_sprite.play(get_animation())
+		animated_sprite.play(animation_name)
 		owner.owner.move_and_slide(velocity)
 	else:
 		emit_signal("transition_to_state", "idle")
