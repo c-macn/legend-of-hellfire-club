@@ -15,18 +15,22 @@ func _ready() -> void:
 	set_as_toplevel(true)
 	lock_rotation(90) # ensure the shot is always facing forward
 
+
 func _physics_process(delta) -> void:
 	position += transform.x * speed * delta
+
 
 func lock_rotation(degrees: float) -> void:
 	sprite.rotation_degrees = degrees
 	collision_poly.rotation_degrees = sprite.rotation_degrees
+
 
 func _on_BlessedShot_body_entered(body: KinematicBody2D) -> void:
 	if body != null:
 		if body.is_in_group("cultists"):
 			body.cleanse()
 	queue_free()
+
 
 func _on_left_bounds() -> void:
 	queue_free()

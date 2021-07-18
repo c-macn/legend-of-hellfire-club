@@ -85,6 +85,7 @@ func phase_in() -> void:
 	if !tween.is_active():
 		tween.start()
 
+
 func boss_phase_in(spawn_position: Vector2) -> void:	
 	global_position = spawn_position
 	
@@ -108,6 +109,7 @@ func get_Saoirses_position() -> Vector2:
 
 
 func cleanse() -> void:
+	HitFreeze.freeze()
 	if is_stunned:
 		cleanse_count += 1
 		hit_box.call_deferred("set_disabled", true)

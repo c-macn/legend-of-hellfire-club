@@ -79,6 +79,7 @@ func banish(banish_increase: int = 1, respawn_position: Vector2 = spawn_point) -
 
 
 func on_hit() -> void:
+	HitFreeze.freeze()
 	disable_movement()
 	lives_count.reduce_lives_count()
 	
@@ -183,7 +184,7 @@ func set_remote_transform(node_path: NodePath) -> void:
 
 func has_reached_point(_object, _key) -> void:
 	tween.disconnect("tween_completed", self, "has_reached_point")
-	animated_sprite.play("idle_walk_back")
+	#animated_sprite.frame = 10 # idle frame forward
 
 
 func fade_out_disguise() -> void:
