@@ -18,11 +18,18 @@ __meta__ = {
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 texture = ExtResource( 2 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Button" type="Button" parent="."]
+margin_right = 245.0
+margin_bottom = 52.0
+theme = ExtResource( 8 )
+text = "Test Button"
 
 [node name="ButtonContainer" type="GridContainer" parent="."]
 anchor_top = 0.5
@@ -42,12 +49,14 @@ margin_bottom = 52.0
 [node name="Play" type="Button" parent="ButtonContainer/VBoxContainer"]
 margin_right = 173.0
 margin_bottom = 52.0
+focus_next = NodePath("../../VBoxContainer2/Settings")
+focus_previous = NodePath("../../VBoxContainer4/Quit")
 theme = ExtResource( 8 )
-custom_styles/normal = ExtResource( 3 )
 custom_colors/font_color_hover = Color( 0.984314, 0.984314, 0.984314, 1 )
 custom_colors/font_color_pressed = Color( 0.984314, 0.984314, 0.984314, 1 )
+shortcut_in_tooltip = false
+action_mode = 0
 button_mask = 0
-keep_pressed_outside = true
 text = "Play"
 
 [node name="Position2D" type="Position2D" parent="ButtonContainer/VBoxContainer"]
@@ -61,6 +70,8 @@ margin_bottom = 108.0
 [node name="Settings" type="Button" parent="ButtonContainer/VBoxContainer2"]
 margin_right = 173.0
 margin_bottom = 52.0
+focus_next = NodePath("../../VBoxContainer3/Credits")
+focus_previous = NodePath("../../VBoxContainer/Play")
 theme = ExtResource( 8 )
 custom_styles/normal = ExtResource( 3 )
 button_mask = 0
@@ -77,6 +88,8 @@ margin_bottom = 164.0
 [node name="Credits" type="Button" parent="ButtonContainer/VBoxContainer3"]
 margin_right = 173.0
 margin_bottom = 52.0
+focus_next = NodePath("../../VBoxContainer4/Quit")
+focus_previous = NodePath("../../VBoxContainer2/Settings")
 theme = ExtResource( 8 )
 custom_styles/normal = ExtResource( 3 )
 button_mask = 0
@@ -93,6 +106,8 @@ margin_bottom = 220.0
 [node name="Quit" type="Button" parent="ButtonContainer/VBoxContainer4"]
 margin_right = 173.0
 margin_bottom = 52.0
+focus_next = NodePath("../../VBoxContainer/Play")
+focus_previous = NodePath("../../VBoxContainer3/Credits")
 theme = ExtResource( 8 )
 custom_styles/normal = ExtResource( 3 )
 button_mask = 0
@@ -102,11 +117,16 @@ text = "Quit"
 position = Vector2( -10, 25 )
 
 [node name="Cursor" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 6 )
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 7 )]
 
+[connection signal="mouse_entered" from="ButtonContainer/VBoxContainer/Play" to="." method="_on_Play_hovered"]
 [connection signal="pressed" from="ButtonContainer/VBoxContainer/Play" to="." method="_on_Credits_clicked"]
+[connection signal="mouse_entered" from="ButtonContainer/VBoxContainer2/Settings" to="." method="_on_Settings_hovered"]
 [connection signal="pressed" from="ButtonContainer/VBoxContainer2/Settings" to="." method="_on_Credits_clicked"]
+[connection signal="mouse_entered" from="ButtonContainer/VBoxContainer3/Credits" to="." method="_on_Credits_hovered"]
 [connection signal="pressed" from="ButtonContainer/VBoxContainer3/Credits" to="." method="_on_Credits_clicked"]
+[connection signal="mouse_entered" from="ButtonContainer/VBoxContainer4/Quit" to="." method="_on_Quit_hovered"]
 [connection signal="pressed" from="ButtonContainer/VBoxContainer4/Quit" to="." method="_on_Credits_clicked"]

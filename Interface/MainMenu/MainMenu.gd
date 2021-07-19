@@ -8,7 +8,6 @@ enum MENU_BUTTONS {
 }
 
 var _selected_button = 0
-var currently_selected_element: RichTextLabel
 var lives_count = load("res://CustomerResources/player_lives.tres")
 
 onready var buttons = $ButtonContainer.get_children()
@@ -21,23 +20,26 @@ func _ready() -> void:
 	update_cursor_position(_selected_button)
 	lives_count.restore_lives()
 
+
 func _input(_event):
-	if Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("walk_left"):
+	if Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_up"):
 		set_previous_button(_selected_button)
 	
-	if Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("walk_right"):
+	if Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("ui_down"):
 		set_next_button(_selected_button)
 		
 	if Input.is_action_just_pressed("ui_accept"):
 		trigger_button_action(_selected_button)
-		
+
+
 func set_next_button(current_button: int) -> void:
 	_selected_button = current_button + 1
 	
 	if _selected_button > buttons.size() -1:
 		_selected_button = 0
 		
-	update_cursor_position(_selected_button)
+	#update_cursor_position(_selected_button)
+
 
 func set_previous_button(current_button: int) -> void:
 	_selected_button = current_button - 1
@@ -45,16 +47,18 @@ func set_previous_button(current_button: int) -> void:
 	if _selected_button < 0:
 		_selected_button = buttons.size() - 1
 		
-	update_cursor_position(_selected_button)
+	#update_cursor_position(_selected_button)
+
 
 func update_cursor_position(current_button: int) -> void:
 	var draw_position = buttons[current_button].get_node("Position2D").global_position
 	button_cursor.position = draw_position
-	var button_name = get_button_label_node_name(current_button)
-	buttons[current_button].get_node(button_name).set_pressed(true)
+	_grab_button_focus(current_button)
+
 
 func update_cursor_position_on_resize() -> void:
-	update_cursor_position(_selected_button)
+	pass
+	#update_cursor_position(_selected_button)
 
 
 func trigger_button_action(current_button: int) -> void:
@@ -107,3 +111,28 @@ func _quit_game() -> void:
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 		get_tree().quit() # default behavior
+
+
+func _grab_button_focus(current_button: int) -> void:
+	var button_name = get_button_label_node_name(current_button)
+	buttons[current_button].get_node(button_name).grab_focus()
+
+
+func _on_Play_hovered() -> void:
+	_selected_button = MENU_BUTTONS.PLAY
+	update_cursor_position(MENU_BUTTONS.PLAY)
+
+
+func _on_Settings_hovered() -> void:
+	_selected_button = MENU_BUTTONS.SETTINGS
+	update_cursor_position(MENU_BUTTONS.SETTINGS)
+
+
+func _on_Credits_hovered() -> void:
+	_selected_button = MENU_BUTTONS.CREDITS
+	update_cursor_position(MENU_BUTTONS.CREDITS)
+
+
+func _on_Quit_hovered() -> void:
+	_selected_button = MENU_BUTTONS.QUIT
+	update_cursor_position(MENU_BUTTONS.QUIT)
