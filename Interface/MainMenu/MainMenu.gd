@@ -63,7 +63,7 @@ func update_cursor_position_on_resize() -> void:
 
 func trigger_button_action(current_button: int) -> void:
 	if current_button == MENU_BUTTONS.PLAY:
-		_on_Story_clicked()
+		_on_Play_clicked()
 	
 	if current_button == MENU_BUTTONS.SETTINGS:
 		_on_Play_clicked()
@@ -76,19 +76,19 @@ func trigger_button_action(current_button: int) -> void:
 
 
 func _on_Play_clicked() -> void:
-	load_scene(GameConstants.SCENES.MAIN_ROOM)
+	load_scene("res://Rooms/MainRoom/MainRoom.tscn")
 
 
 func _on_Story_clicked() -> void:
-	load_scene(GameConstants.SCENES.MAIN_ROOM)
+	load_scene("res://Rooms/MainRoom/MainRoom.tscn")
 
 
 func _on_Credits_clicked() -> void:
-	load_scene(GameConstants.SCENES.BOSS_BATTLE)
+	load_scene("res://Rooms/MainRoom/MainRoom.tscn")
 
 
-func load_scene(scene_index: int) -> void:
-	get_tree().change_scene(GameConstants.get_scene(scene_index))
+func load_scene(scene_name: String) -> void:
+	get_tree().change_scene(scene_name)
 
 
 func get_button_label_node_name(current_button: int) -> String:
