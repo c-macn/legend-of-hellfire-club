@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Interface/Dialog/TextBox.png" type="Texture" id=1]
 [ext_resource path="res://Interface/Theme.tres" type="Theme" id=2]
+[ext_resource path="res://Interface/MainMenu/Settings.gd" type="Script" id=3]
 
 [node name="Settings" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -16,10 +18,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -240.0
-margin_top = -260.0
+margin_top = -275.0
 margin_right = 240.0
-margin_bottom = 260.0
-rect_min_size = Vector2( 480, 500 )
+margin_bottom = 275.0
+rect_min_size = Vector2( 480, 550 )
 texture = ExtResource( 1 )
 patch_margin_top = 4
 patch_margin_bottom = 3
@@ -29,11 +31,11 @@ __meta__ = {
 
 [node name="GridContainer" type="GridContainer" parent="NinePatchRect"]
 margin_left = 25.0
-margin_top = 75.0
+margin_top = 80.0
 margin_right = 455.0
 margin_bottom = 265.0
 custom_constants/vseparation = 10
-custom_constants/hseparation = 200
+custom_constants/hseparation = 160
 columns = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -51,8 +53,8 @@ __meta__ = {
 }
 
 [node name="WalkForwardAssignButton" type="Button" parent="NinePatchRect/GridContainer"]
-margin_left = 350.0
-margin_right = 412.0
+margin_left = 310.0
+margin_right = 372.0
 margin_bottom = 52.0
 theme = ExtResource( 2 )
 text = "W"
@@ -72,9 +74,9 @@ __meta__ = {
 }
 
 [node name="WalkLeftAssignButton" type="Button" parent="NinePatchRect/GridContainer"]
-margin_left = 350.0
+margin_left = 310.0
 margin_top = 62.0
-margin_right = 412.0
+margin_right = 372.0
 margin_bottom = 114.0
 theme = ExtResource( 2 )
 text = "W"
@@ -94,9 +96,9 @@ __meta__ = {
 }
 
 [node name="WalkBackAssignButton" type="Button" parent="NinePatchRect/GridContainer"]
-margin_left = 350.0
+margin_left = 310.0
 margin_top = 124.0
-margin_right = 412.0
+margin_right = 372.0
 margin_bottom = 176.0
 theme = ExtResource( 2 )
 text = "W"
@@ -115,10 +117,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="WalkrightAssignButton" type="Button" parent="NinePatchRect/GridContainer"]
-margin_left = 350.0
+[node name="WalkRightAssignButton" type="Button" parent="NinePatchRect/GridContainer"]
+margin_left = 310.0
 margin_top = 186.0
-margin_right = 412.0
+margin_right = 372.0
 margin_bottom = 238.0
 theme = ExtResource( 2 )
 text = "W"
@@ -138,9 +140,9 @@ __meta__ = {
 }
 
 [node name="InteractAssignButton" type="Button" parent="NinePatchRect/GridContainer"]
-margin_left = 350.0
+margin_left = 310.0
 margin_top = 248.0
-margin_right = 412.0
+margin_right = 372.0
 margin_bottom = 300.0
 theme = ExtResource( 2 )
 text = "W"
@@ -160,12 +162,27 @@ __meta__ = {
 }
 
 [node name="ShootAssignButton" type="Button" parent="NinePatchRect/GridContainer"]
-margin_left = 350.0
+margin_left = 310.0
 margin_top = 310.0
-margin_right = 412.0
+margin_right = 372.0
 margin_bottom = 362.0
 theme = ExtResource( 2 )
 text = "W"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cancel" type="Button" parent="NinePatchRect"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -40.0
+margin_top = 45.0
+margin_bottom = 52.0
+rect_scale = Vector2( 0.3, 0.3 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource( 2 )
+text = "X"
 __meta__ = {
 "_edit_use_anchors_": false
 }
