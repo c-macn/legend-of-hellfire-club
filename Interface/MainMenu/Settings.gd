@@ -1,19 +1,36 @@
 extends Control
 
+var key_translations = {
+	"BraceLeft": "[",
+	"BraceRight": "]",
+	"Minus": "-",
+	"Equal": "=",
+	"Semicolon": ";",
+	"Slash": "/",
+	"BackSlash": "\\",
+	"Control": "Ctrl",
+	"PageUp": "PgUp",
+	"PageDown": "PgDn",
+	"Unknown": "N/A",
+	"Comma": ",",
+	"Period": ".",
+	"Apostrophe": "'",
+	"QuoteLeft": "\"",
+}
+
 onready var walk_forward_assign_button := $NinePatchRect/GridContainer/WalkForwardAssignButton
 onready var walk_left_assign_button := $NinePatchRect/GridContainer/WalkLeftAssignButton
 onready var walk_down_assign_button := $NinePatchRect/GridContainer/WalkBackAssignButton
 onready var walk_right_assign_button := $NinePatchRect/GridContainer/WalkRightAssignButton
 onready var interact_assign_button := $NinePatchRect/GridContainer/InteractAssignButton
 onready var shoot_assign_button := $NinePatchRect/GridContainer/ShootAssignButton
+onready var assign_key_popup := $AssingControlDialog
+
 
 func _ready() -> void:
-	walk_forward_assign_button.set_text(get_input_key_string("walk_up"))
-	walk_left_assign_button.set_text(get_input_key_string("walk_left"))
-	walk_down_assign_button.set_text(get_input_key_string("walk_down"))
-	walk_right_assign_button.set_text(get_input_key_string("walk_right"))
-	interact_assign_button.set_text(get_input_key_string("obj_interact"))
-	shoot_assign_button.set_text(get_input_key_string("fire"))
+	_assign_button_text()
+	_connect_button_signals()
+	assign_key_popup.connect("key_changed", self, "_assign_button_text")
 
 
 func get_input_key_string(key_action: String) -> String:
@@ -28,10 +45,43 @@ func get_input_key_string(key_action: String) -> String:
 
 
 func get_mouse_button_text(action_event: InputEventMouseButton) -> String:
-	if action_event.button_index == BUTTON_LEFT:
+	var button_index = action_event.button_index
+	if button_index == BUTTON_LEFT:
 		return "LMB"
-	if action_event.button_index == BUTTON_RIGHT:
+	if button_index == BUTTON_RIGHT:
 		return "RMB"
-	if action_event.button_index == BUTTON_MIDDLE:
+	if button_index == BUTTON_MIDDLE:
 		return "MMB"
 	return "?"
+
+
+func _assign_button_text() -> void:
+	walk_forward_assign_button.set_text(_get_key_display_string("walk_up"))
+	walk_left_assign_button.set_text(_get_key_display_string("walk_left"))
+	walk_down_assign_button.set_text(_get_key_display_string("walk_down"))
+	walk_right_assign_button.set_text(_get_key_display_string("walk_right"))
+	interact_assign_button.set_text(_get_key_display_string("obj_interact"))
+	shoot_assign_button.set_text(_get_key_display_string("fire"))
+
+
+func _connect_button_signals() -> void:
+	walk_forward_assign_button.connect("button_down", self, "_open_popup", ["walk_up"])
+	walk_left_assign_button.connect("button_down", self, "_open_popup", ["walk_left"])
+	walk_down_assign_button.connect("button_down", self, "_open_popup", ["walk_down"])
+	walk_right_assign_button.connect("button_down", self, "_open_popup", ["walk_right"])
+	interact_assign_button.connect("button_down", self, "_open_popup", ["obj_interact"])
+	shoot_assign_button.connect("button_down", self, "_open_popup", ["fire"])
+
+
+func _open_popup(action_name: String) -> void:
+	$AssingControlDialog.set_action_label(action_name)
+	$AssingControlDialog.popup()
+
+
+func _get_key_display_string(action_name: String) -> String:
+	var key_name = get_input_key_string(action_name)
+	
+	if key_translations.get(key_name):
+		return key_translations.get(key_name)
+	else:
+		return key_name

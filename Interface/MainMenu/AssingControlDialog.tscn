@@ -1,0 +1,77 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Interface/Theme.tres" type="Theme" id=1]
+[ext_resource path="res://Interface/MainMenu/AssingControlDialog.gd" type="Script" id=2]
+
+[node name="AssingControlDialog" type="PopupDialog"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -216.5
+margin_top = -102.5
+margin_right = 216.5
+margin_bottom = 102.5
+theme = ExtResource( 1 )
+popup_exclusive = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -87.992
+margin_top = 47.4003
+margin_right = 17.008
+margin_bottom = 109.4
+rect_scale = Vector2( 0.6, 0.6 )
+text = "Save"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CancelButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 12.1273
+margin_top = 47.93
+margin_right = 117.127
+margin_bottom = 109.93
+rect_scale = Vector2( 0.6, 0.6 )
+text = "Cancel"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DescriptionLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -198.783
+margin_top = 15.7145
+margin_right = 615.217
+margin_bottom = 82.7145
+rect_scale = Vector2( 0.5, 0.5 )
+text = "Press the key you wish to assign to [action]"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeyChoice" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -16.0
+margin_right = 20.0
+margin_bottom = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
