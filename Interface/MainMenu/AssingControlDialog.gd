@@ -57,7 +57,7 @@ func _set_key_choice(key_string: String) -> void:
 		key_choice_label.anchor_left = 0.42
 		key_choice_label.anchor_right = 0.42
 		
-	elif key_string.length() > 6:
+	elif key_string.length() >= 6:
 		key_choice_label.anchor_left = 0.35
 		key_choice_label.anchor_right = 0.35
 		

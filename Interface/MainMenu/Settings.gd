@@ -1,8 +1,10 @@
 extends Control
 
+signal hide_menu
+
 var key_translations = {
-	"BraceLeft": "[",
-	"BraceRight": "]",
+	"BraceLeft": "",
+	"BraceRight": "",
 	"Minus": "-",
 	"Equal": "=",
 	"Semicolon": ";",
@@ -25,7 +27,7 @@ onready var walk_right_assign_button := $NinePatchRect/GridContainer/WalkRightAs
 onready var interact_assign_button := $NinePatchRect/GridContainer/InteractAssignButton
 onready var shoot_assign_button := $NinePatchRect/GridContainer/ShootAssignButton
 onready var assign_key_popup := $AssingControlDialog
-
+onready var cancel_button := $NinePatchRect/Cancel
 
 func _ready() -> void:
 	_assign_button_text()
@@ -71,6 +73,7 @@ func _connect_button_signals() -> void:
 	walk_right_assign_button.connect("button_down", self, "_open_popup", ["walk_right"])
 	interact_assign_button.connect("button_down", self, "_open_popup", ["obj_interact"])
 	shoot_assign_button.connect("button_down", self, "_open_popup", ["fire"])
+	cancel_button.connect("button_down", self, "_hide_menu")
 
 
 func _open_popup(action_name: String) -> void:
@@ -85,3 +88,7 @@ func _get_key_display_string(action_name: String) -> String:
 		return key_translations.get(key_name)
 	else:
 		return key_name
+
+
+func _hide_menu() -> void:
+	emit_signal("hide_menu")

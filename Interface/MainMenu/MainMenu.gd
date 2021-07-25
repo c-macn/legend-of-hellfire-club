@@ -12,6 +12,7 @@ var lives_count = load("res://CustomerResources/player_lives.tres")
 
 onready var buttons = $ButtonContainer.get_children()
 onready var button_cursor = $Cursor
+onready var animation := $AnimationPlayer
 
 func _ready() -> void:
 	$CanvasLayer.hide_player_ui()
@@ -19,6 +20,8 @@ func _ready() -> void:
 	get_tree().get_root().connect("size_changed", self, "update_cursor_position_on_resize")
 	update_cursor_position(_selected_button)
 	lives_count.restore_lives()
+	$Settings.connect("hide_menu", self, "_hide_controls")
+	$AnimationPlayer.play("buttons_slide_in")
 
 
 func _input(_event):
@@ -66,7 +69,9 @@ func trigger_button_action(current_button: int) -> void:
 		_on_Play_clicked()
 	
 	if current_button == MENU_BUTTONS.SETTINGS:
-		_on_Play_clicked()
+		$AnimationPlayer.play_backwards("buttons_slide_in")
+		yield($AnimationPlayer, "animation_finished")
+		$AnimationPlayer.play("settings_slide_in")
 		
 	if current_button == MENU_BUTTONS.CREDITS:
 		_on_Credits_clicked()
@@ -136,3 +141,9 @@ func _on_Credits_hovered() -> void:
 func _on_Quit_hovered() -> void:
 	_selected_button = MENU_BUTTONS.QUIT
 	update_cursor_position(MENU_BUTTONS.QUIT)
+
+
+func _hide_controls() -> void:
+	animation.play_backwards("settings_slide_in")
+	yield(animation, "animation_finished")
+	animation.play("buttons_slide_in")

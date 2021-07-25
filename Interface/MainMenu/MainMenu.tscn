@@ -1,11 +1,80 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Interface/MainMenu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Interface/MainMenu/title_screen_no_text.png" type="Texture" id=2]
 [ext_resource path="res://Interface/MainMenu/Button.tres" type="StyleBox" id=3]
+[ext_resource path="res://Interface/MainMenu/Settings.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Interface/MainMenu/SelectedButtonIndicator.png" type="Texture" id=6]
 [ext_resource path="res://Interface/CanvasLayer.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Interface/Theme.tres" type="Theme" id=8]
+
+[sub_resource type="Animation" id=1]
+resource_name = "buttons_slide_in"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("ButtonContainer/VBoxContainer:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -200, 187 ), Vector2( 20, 187 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ButtonContainer/VBoxContainer2:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -200, 243 ), Vector2( -200, 243 ), Vector2( 20, 243 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ButtonContainer/VBoxContainer3:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -200, 299 ), Vector2( -200, 299 ), Vector2( 20, 299 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ButtonContainer/VBoxContainer4:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -200, 355 ), Vector2( -200, 355 ), Vector2( 20, 355 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "settings_slide_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Settings:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 700, 0 ), Vector2( 0, 0 ) ]
+}
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -25,21 +94,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ButtonContainer" type="GridContainer" parent="."]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = 20.0
-margin_top = -53.0
-margin_right = 200.0
-margin_bottom = 102.0
+[node name="ButtonContainer" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ButtonContainer"]
-margin_right = 173.0
-margin_bottom = 52.0
+margin_left = 20.0
+margin_top = 187.0
+margin_right = 193.0
+margin_bottom = 239.0
 mouse_filter = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Play" type="Button" parent="ButtonContainer/VBoxContainer"]
 margin_right = 173.0
@@ -58,10 +128,14 @@ text = "Play"
 position = Vector2( -10, 25 )
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="ButtonContainer"]
-margin_top = 56.0
-margin_right = 173.0
-margin_bottom = 108.0
+margin_left = -200.0
+margin_top = 243.0
+margin_right = -27.0
+margin_bottom = 295.0
 mouse_filter = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Settings" type="Button" parent="ButtonContainer/VBoxContainer2"]
 margin_right = 173.0
@@ -71,19 +145,20 @@ focus_previous = NodePath("../../VBoxContainer/Play")
 theme = ExtResource( 8 )
 custom_styles/normal = ExtResource( 3 )
 button_mask = 0
-text = "Settings"
+text = "Controls"
 
 [node name="Position2D" type="Position2D" parent="ButtonContainer/VBoxContainer2"]
 position = Vector2( -10, 25 )
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="ButtonContainer"]
-margin_top = 112.0
-margin_right = 173.0
-margin_bottom = 164.0
+margin_left = -200.0
+margin_top = 299.0
+margin_right = -49.0
+margin_bottom = 351.0
 mouse_filter = 0
 
 [node name="Credits" type="Button" parent="ButtonContainer/VBoxContainer3"]
-margin_right = 173.0
+margin_right = 151.0
 margin_bottom = 52.0
 focus_next = NodePath("../../VBoxContainer4/Quit")
 focus_previous = NodePath("../../VBoxContainer2/Settings")
@@ -96,9 +171,10 @@ text = "Credits"
 position = Vector2( -10, 25 )
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="ButtonContainer"]
-margin_top = 168.0
-margin_right = 173.0
-margin_bottom = 220.0
+margin_left = -200.0
+margin_top = 355.0
+margin_right = -27.0
+margin_bottom = 407.0
 mouse_filter = 0
 
 [node name="Quit" type="Button" parent="ButtonContainer/VBoxContainer4"]
@@ -119,6 +195,14 @@ visible = false
 texture = ExtResource( 6 )
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 7 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/buttons_slide_in = SubResource( 1 )
+anims/settings_slide_in = SubResource( 2 )
+
+[node name="Settings" parent="." instance=ExtResource( 4 )]
+margin_left = 700.0
+margin_right = 700.0
 
 [connection signal="mouse_entered" from="ButtonContainer/VBoxContainer/Play" to="." method="_on_Play_hovered"]
 [connection signal="mouse_entered" from="ButtonContainer/VBoxContainer2/Settings" to="." method="_on_Settings_hovered"]
