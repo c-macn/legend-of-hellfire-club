@@ -1,8 +1,221 @@
-[gd_scene format=2]
+[gd_scene load_steps=5 format=2]
 
-[node name="Credits" type="Control"]
+[ext_resource path="res://Interface/Theme.tres" type="Theme" id=1]
+[ext_resource path="res://Interface/Dialog/TextBox.png" type="Texture" id=2]
+[ext_resource path="res://Interface/Credits/Credits.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "play_credits"
+length = 5.0
+
+[node name="CreditsContainer" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -275.0
+margin_right = 300.0
+margin_bottom = 275.0
+rect_min_size = Vector2( 480, 550 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainCredits" type="Control" parent="NinePatchRect"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="NinePatchRect/MainCredits"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 59.5
+margin_top = 99.1071
+margin_right = 500.5
+margin_bottom = 131.107
+theme = ExtResource( 1 )
+text = "A game by Cursed Roots"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainCreditsContainer" type="GridContainer" parent="NinePatchRect/MainCredits"]
+margin_left = 31.1479
+margin_top = 175.561
+margin_right = 574.148
+margin_bottom = 351.561
+rect_min_size = Vector2( 410, 0 )
+custom_constants/hseparation = 35
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArtistLabel" type="Label" parent="NinePatchRect/MainCredits/MainCreditsContainer"]
+margin_right = 226.0
+margin_bottom = 32.0
+theme = ExtResource( 1 )
+text = "Art"
+
+[node name="ArtistCreditLabel" type="Label" parent="NinePatchRect/MainCredits/MainCreditsContainer"]
+margin_left = 261.0
+margin_right = 543.0
+margin_bottom = 32.0
+theme = ExtResource( 1 )
+text = "Marc Kavanagh"
+
+[node name="CodeLabel" type="Label" parent="NinePatchRect/MainCredits/MainCreditsContainer"]
+margin_top = 36.0
+margin_right = 226.0
+margin_bottom = 68.0
+theme = ExtResource( 1 )
+text = "Code"
+
+[node name="CodeCreditLabel" type="Label" parent="NinePatchRect/MainCredits/MainCreditsContainer"]
+margin_left = 261.0
+margin_top = 36.0
+margin_right = 543.0
+margin_bottom = 68.0
+theme = ExtResource( 1 )
+text = "Chris McNulty"
+
+[node name="GDLabel" type="Label" parent="NinePatchRect/MainCredits/MainCreditsContainer"]
+margin_top = 72.0
+margin_right = 226.0
+margin_bottom = 104.0
+theme = ExtResource( 1 )
+text = "Game Design"
+
+[node name="GDCreditLabel" type="Label" parent="NinePatchRect/MainCredits/MainCreditsContainer"]
+margin_left = 261.0
+margin_top = 72.0
+margin_right = 543.0
+margin_bottom = 104.0
+theme = ExtResource( 1 )
+text = "Chris & Marc"
+
+[node name="MusicLabel" type="Label" parent="NinePatchRect/MainCredits/MainCreditsContainer"]
+margin_top = 108.0
+margin_right = 226.0
+margin_bottom = 140.0
+theme = ExtResource( 1 )
+text = "Music"
+
+[node name="MusicCreditLabel" type="Label" parent="NinePatchRect/MainCredits/MainCreditsContainer"]
+margin_left = 261.0
+margin_top = 108.0
+margin_right = 543.0
+margin_bottom = 140.0
+theme = ExtResource( 1 )
+text = "Chris & Marc"
+
+[node name="WritingLabel" type="Label" parent="NinePatchRect/MainCredits/MainCreditsContainer"]
+margin_top = 144.0
+margin_right = 226.0
+margin_bottom = 176.0
+theme = ExtResource( 1 )
+text = "Writing"
+
+[node name="WritingCreditLabel" type="Label" parent="NinePatchRect/MainCredits/MainCreditsContainer"]
+margin_left = 261.0
+margin_top = 144.0
+margin_right = 543.0
+margin_bottom = 176.0
+theme = ExtResource( 1 )
+text = "Chris & Marc"
+
+[node name="AdditionaCodeCredits" type="Control" parent="NinePatchRect"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="NinePatchRect/AdditionaCodeCredits"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -143.5
+margin_top = 109.376
+margin_right = 143.5
+margin_bottom = 141.376
+theme = ExtResource( 1 )
+text = "Additional Code"
+
+[node name="Label2" type="Label" parent="NinePatchRect/AdditionaCodeCredits"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -265.612
+margin_top = 159.57
+margin_right = 484.388
+margin_bottom = 296.57
+rect_scale = Vector2( 0.6, 0.6 )
+theme = ExtResource( 1 )
+text = "Fire Shader - https://godotshaders.com/shader/2d-fire/"
+autowrap = true
+
+[node name="AdditionalResouceCredits" type="Control" parent="NinePatchRect"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="NinePatchRect/AdditionalResouceCredits"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 96.5768
+margin_top = 98.8883
+margin_right = 652.577
+margin_bottom = 130.888
+rect_scale = Vector2( 0.8, 0.8 )
+theme = ExtResource( 1 )
+text = "Additional Resouces"
+
+[node name="Label2" type="Label" parent="NinePatchRect/AdditionalResouceCredits"]
+margin_left = 29.2169
+margin_top = 148.068
+margin_right = 579.217
+margin_bottom = 285.068
+theme = ExtResource( 1 )
+text = "Sfx: https://dyd-credits.surge.sh/"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NextButton" type="Button" parent="NinePatchRect"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -189.408
+margin_top = -156.271
+margin_right = -45.4084
+margin_bottom = -104.271
+theme = ExtResource( 1 )
+text = "Skip"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/play_credits = SubResource( 1 )
+
+[connection signal="pressed" from="NinePatchRect/NextButton" to="." method="_on_NextButton_pressed"]
