@@ -22,7 +22,7 @@ func init_dialouge(character_name: String, dialouge_set: String) -> void:
 func fade_out() -> void:
 	scene_transition.fade_in()
 	yield(get_tree().create_timer(1.5), "timeout")
-	get_tree().call_deferred("change_scene", "res://Interface/MainMenu/MainMenu.tscn")
+	get_tree().call_deferred("change_scene", "res://Interface/Credits/Credits.tscn")
 
 
 func _on_animation_changed(animation_name: String) -> void:
