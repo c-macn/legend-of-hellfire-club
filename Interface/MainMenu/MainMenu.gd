@@ -69,9 +69,7 @@ func trigger_button_action(current_button: int) -> void:
 		_on_Play_clicked()
 	
 	if current_button == MENU_BUTTONS.SETTINGS:
-		$AnimationPlayer.play_backwards("buttons_slide_in")
-		yield($AnimationPlayer, "animation_finished")
-		$AnimationPlayer.play("settings_slide_in")
+		_on_Settings_clicked()
 		
 	if current_button == MENU_BUTTONS.CREDITS:
 		_on_Credits_clicked()
@@ -84,12 +82,14 @@ func _on_Play_clicked() -> void:
 	load_scene("res://Rooms/MainRoom/MainRoom.tscn")
 
 
-func _on_Story_clicked() -> void:
-	load_scene("res://Rooms/MainRoom/MainRoom.tscn")
-
-
 func _on_Credits_clicked() -> void:
 	load_scene("res://Rooms/MainRoom/MainRoom.tscn")
+
+
+func _on_Settings_clicked() -> void:
+	$AnimationPlayer.play_backwards("buttons_slide_in")
+	yield($AnimationPlayer, "animation_finished")
+	$AnimationPlayer.play("settings_slide_in")
 
 
 func load_scene(scene_name: String) -> void:

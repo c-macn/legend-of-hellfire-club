@@ -51,19 +51,7 @@ func _cancel() -> void:
 
 func _set_key_choice(key_string: String) -> void:
 	key_choice_label.set_text(key_string)
-	
-	# hack!? to auto center
-	if key_string.length() == 5:
-		key_choice_label.anchor_left = 0.42
-		key_choice_label.anchor_right = 0.42
-		
-	elif key_string.length() >= 6:
-		key_choice_label.anchor_left = 0.35
-		key_choice_label.anchor_right = 0.35
-		
-	else:
-		key_choice_label.anchor_left = 0.5
-		key_choice_label.anchor_right = 0.5
+	_center_label(key_choice_label.rect_size)
 
 
 func _set_mouse_choice(button_index: int) -> void:
@@ -76,9 +64,7 @@ func _set_mouse_choice(button_index: int) -> void:
 	if button_index == BUTTON_MIDDLE:
 		key_choice_label.set_text("MMB")
 	
-	key_choice_label.anchor_left = 0.45
-	key_choice_label.anchor_right = 0.45
-
+	_center_label(key_choice_label.rect_size)
 
 func _assign_key(action: String, key: InputEvent) -> void:
 	if !InputMap.get_action_list(action).empty():
@@ -111,3 +97,15 @@ func _get_action_name_display(action_label: String) -> String:
 		return "Shoot"
 		
 	return "?"
+
+
+func _center_label(label_size: Vector2) -> void:
+	key_choice_label.anchor_left = 0.5
+	key_choice_label.anchor_right = 0.5
+	key_choice_label.anchor_top = 0.5
+	key_choice_label.anchor_bottom = 0.5
+	
+	key_choice_label.margin_left = -label_size.x / 2
+	key_choice_label.margin_right = -label_size.x / 2
+	key_choice_label.margin_top = -label_size.y / 2
+	key_choice_label.margin_bottom = -label_size.y / 2

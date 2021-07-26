@@ -121,7 +121,6 @@ custom_colors/font_color_hover = Color( 0.984314, 0.984314, 0.984314, 1 )
 custom_colors/font_color_pressed = Color( 0.984314, 0.984314, 0.984314, 1 )
 shortcut_in_tooltip = false
 action_mode = 0
-button_mask = 0
 text = "Play"
 
 [node name="Position2D" type="Position2D" parent="ButtonContainer/VBoxContainer"]
@@ -144,7 +143,7 @@ focus_next = NodePath("../../VBoxContainer3/Credits")
 focus_previous = NodePath("../../VBoxContainer/Play")
 theme = ExtResource( 8 )
 custom_styles/normal = ExtResource( 3 )
-button_mask = 0
+action_mode = 0
 text = "Controls"
 
 [node name="Position2D" type="Position2D" parent="ButtonContainer/VBoxContainer2"]
@@ -164,7 +163,7 @@ focus_next = NodePath("../../VBoxContainer4/Quit")
 focus_previous = NodePath("../../VBoxContainer2/Settings")
 theme = ExtResource( 8 )
 custom_styles/normal = ExtResource( 3 )
-button_mask = 0
+action_mode = 0
 text = "Credits"
 
 [node name="Position2D" type="Position2D" parent="ButtonContainer/VBoxContainer3"]
@@ -184,7 +183,7 @@ focus_next = NodePath("../../VBoxContainer/Play")
 focus_previous = NodePath("../../VBoxContainer3/Credits")
 theme = ExtResource( 8 )
 custom_styles/normal = ExtResource( 3 )
-button_mask = 0
+action_mode = 0
 text = "Quit"
 
 [node name="Position2D" type="Position2D" parent="ButtonContainer/VBoxContainer4"]
@@ -205,7 +204,11 @@ margin_left = 700.0
 margin_right = 700.0
 
 [connection signal="mouse_entered" from="ButtonContainer/VBoxContainer/Play" to="." method="_on_Play_hovered"]
+[connection signal="pressed" from="ButtonContainer/VBoxContainer/Play" to="." method="_on_Play_clicked"]
 [connection signal="mouse_entered" from="ButtonContainer/VBoxContainer2/Settings" to="." method="_on_Settings_hovered"]
+[connection signal="pressed" from="ButtonContainer/VBoxContainer2/Settings" to="." method="_on_Settings_clicked"]
+[connection signal="button_down" from="ButtonContainer/VBoxContainer3/Credits" to="." method="_on_Credits_clicked"]
 [connection signal="mouse_entered" from="ButtonContainer/VBoxContainer3/Credits" to="." method="_on_Credits_hovered"]
+[connection signal="pressed" from="ButtonContainer/VBoxContainer3/Credits" to="." method="_on_Credits_clicked"]
 [connection signal="mouse_entered" from="ButtonContainer/VBoxContainer4/Quit" to="." method="_on_Quit_hovered"]
-[connection signal="pressed" from="ButtonContainer/VBoxContainer4/Quit" to="." method="_on_Credits_clicked"]
+[connection signal="pressed" from="ButtonContainer/VBoxContainer4/Quit" to="." method="_quit_game"]
