@@ -1,12 +1,12 @@
 extends Control
 
-onready var main_credits = $NinePatchRect/MainCredits
-onready var additional_code = $NinePatchRect/AdditionaCodeCredits
-onready var additional_resouces = $NinePatchRect/AdditionalResouceCredits
+onready var scene_transition = $SceneTransition
 
 func _ready() -> void:
-	pass
+	scene_transition.fade_out()
+	yield(scene_transition, "transition_finished")
+	$AnimationPlayer.play("play_credits")
 
 
 func _on_NextButton_pressed():
-	pass
+	scene_transition.transition_to_new_scene("res://Interface/MainMenu/MainMenu.tscn")

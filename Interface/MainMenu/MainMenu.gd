@@ -83,7 +83,7 @@ func _on_Play_clicked() -> void:
 
 
 func _on_Credits_clicked() -> void:
-	load_scene("res://Rooms/MainRoom/MainRoom.tscn")
+	$CanvasLayer/SceneTransition.transition_to_new_scene("res://Interface/Credits/Credits.tscn")
 
 
 func _on_Settings_clicked() -> void:
