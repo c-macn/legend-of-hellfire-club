@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color: hint_color;
+uniform float flash_state: hint_range(0, 1) = 0.0;
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV);
+	COLOR.rgb = mix(COLOR, flash_color, flash_state).rgb;
+}"
+
+[resource]
+resource_local_to_scene = true
+resource_name = "SaoirseHit"
+shader = SubResource( 1 )
+shader_param/flash_color = Color( 0.0313726, 0.239216, 0.329412, 1 )
+shader_param/flash_state = 0.0

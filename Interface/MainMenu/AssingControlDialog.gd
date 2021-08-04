@@ -51,7 +51,7 @@ func _cancel() -> void:
 
 func _set_key_choice(key_string: String) -> void:
 	key_choice_label.set_text(key_string)
-	_center_label(key_choice_label.rect_size)
+	#_center_label(key_choice_label.rect_size)
 
 
 func _set_mouse_choice(button_index: int) -> void:
@@ -64,7 +64,7 @@ func _set_mouse_choice(button_index: int) -> void:
 	if button_index == BUTTON_MIDDLE:
 		key_choice_label.set_text("MMB")
 	
-	_center_label(key_choice_label.rect_size)
+	#_center_label(key_choice_label.rect_size)
 
 func _assign_key(action: String, key: InputEvent) -> void:
 	if !InputMap.get_action_list(action).empty():

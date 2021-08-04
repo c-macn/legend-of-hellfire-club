@@ -90,4 +90,5 @@ func phase_in_cultist() -> void:
 
 func phase_out_cultist() -> void:
 	$CutsceneCultist.phase_out()
+	yield(get_tree().create_timer(1), "timeout")
 	$CutsceneCultist.queue_free()

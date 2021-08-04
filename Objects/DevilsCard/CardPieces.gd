@@ -22,11 +22,13 @@ func render_existing_cards(card_state: Dictionary) -> void:
 		if card_state[card]:
 			_set_card_piece_alpha(card)
 
+
 func _get_card_piece(card_piece_name: String) -> Node:
 	if card_piece_name.length() == 0:
 		return card_container
 	else:
 		return card_container.get_node(card_piece_name)
+
 
 func _set_card_piece_alpha(card_piece_name: String) -> void:
 	var card_piece = _get_card_piece(card_piece_name)

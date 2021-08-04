@@ -74,6 +74,7 @@ func get_is_on_wall() -> bool:
 
 
 func phase_in() -> void:
+	animated_sprite.material = load("res://Shaders/Dissolve.tres")
 	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 0, 1, 2,
 			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 			
@@ -86,7 +87,8 @@ func phase_in() -> void:
 		tween.start()
 
 
-func boss_phase_in(spawn_position: Vector2) -> void:	
+func boss_phase_in(spawn_position: Vector2) -> void:
+	animated_sprite.material = load("res://Shaders/Dissolve.tres")
 	global_position = spawn_position
 	
 	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 0, 1, 2,
@@ -109,7 +111,10 @@ func get_Saoirses_position() -> Vector2:
 
 
 func cleanse() -> void:
+	animated_sprite.material = load("res://Shaders/Hit.tres")
 	HitFreeze.freeze()
+	$AnimationPlayer.play("hit")
+	
 	if is_stunned:
 		cleanse_count += 1
 		hit_box.call_deferred("set_disabled", true)

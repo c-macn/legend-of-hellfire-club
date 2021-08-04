@@ -32,10 +32,6 @@ func _ready() -> void:
 	play_cutscene("intro")
 
 
-func _process(delta) -> void:
-	pass
-
-
 func init_dialouge(character_name: String, dialouge_key: String) -> void:
 	dialouge_container.on_DialogReceived(character_name, dialouge_key)
 

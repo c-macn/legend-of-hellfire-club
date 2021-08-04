@@ -9,7 +9,9 @@ signal banished
 
 export(NodePath) var tilemap
 
-const MAX_BANISHMENTS: int = 3
+const MAX_BANISHMENTS := 3
+const DEFAULT_FRAME_COUNT = 19
+const BOX_FRAME_COUNT = 16
 
 var lives_count = load("res://CustomerResources/player_lives.tres")
 var footsteps_sfx = preload("res://Audio/footsteps.mp3")
@@ -37,17 +39,14 @@ func _ready():
 	add_to_group("actors")
 	spawn_point = global_position
 	var active_frames = box_frames if GameState.get_is_Saoirse_disguised() else default_frames
-	_set_active_frames(active_frames, 19)
+	var frame_count = BOX_FRAME_COUNT if GameState.get_is_Saoirse_disguised() else DEFAULT_FRAME_COUNT
+	_set_active_frames(active_frames, frame_count)
 
 
 func _input(_event) -> void:
 	if !is_movement_disabled:
 		if Input.is_action_just_pressed("fire") and _can_fire() and GameState.get_has_blessed_shot():
 			fire_water()
-		
-		if Input.is_action_just_pressed("obj_cancel"):
-			if is_disguised():
-				take_off_disguise()
 
 
 func fire_water() -> void:
@@ -83,14 +82,21 @@ func on_hit() -> void:
 	disable_movement()
 	lives_count.reduce_lives_count()
 	
-	if lives_count.get_lives_count() >= 0:
-		yield(get_tree().create_timer(0.5), "timeout")
+	$AnimationPlayer.play("hit")
+	yield(get_tree().create_timer(0.5), "timeout")
+	
+	if lives_count.get_lives_count() > 0:
 		enable_movement()
 	else:
 		insta_death()
 
 
+func mark() -> void:
+	$AnimationPlayer.play("hit")
+
+
 func insta_death() -> void:
+	$AnimationPlayer.play("hit")
 	get_tree().call_deferred("UI", "fade_in")
 	yield(get_tree().create_timer(1), "timeout")
 	get_tree().call_deferred("change_scene", "res://Rooms/BadEnding.tscn")
@@ -127,18 +133,15 @@ func put_on_disguise() -> void:
 	fade_in_disguise()
 	yield(get_tree().create_timer(1.5), "timeout")
 	GameState.set_is_Saoirse_disguised(true)
-	_set_active_frames(box_frames, 16)
+	_set_active_frames(box_frames, BOX_FRAME_COUNT)
 	fade_out_disguise()
 
 
 func take_off_disguise() -> void:
 	play_cardboard_sound()
 	fade_in_disguise()
-	yield(get_tree().create_timer(1.5), "timeout")
 	GameState.set_is_Saoirse_disguised(false)
-	_set_active_frames(default_frames, 19)
-	emit_signal("disguise_removed", position)
-	fade_out_disguise()
+	_set_active_frames(default_frames, DEFAULT_FRAME_COUNT)
 
 
 func is_disguised() -> bool:

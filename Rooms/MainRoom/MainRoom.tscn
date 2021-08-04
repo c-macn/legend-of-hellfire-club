@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Tilesets/BaseRoomTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://CutsceneTriggers/CutsceneTriggger.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Objects/DevilsCard/DevilCardBottomLeft.png" type="Texture" id=13]
 [ext_resource path="res://Objects/DevilsCard/DevilCardTopRight.png" type="Texture" id=14]
 [ext_resource path="res://Objects/DevilsCard/DevilCardTopLeft.png" type="Texture" id=15]
+[ext_resource path="res://Audio/Catedral.mp3" type="AudioStream" id=16]
 
 [sub_resource type="Animation" id=1]
 resource_name = "intro"
@@ -440,3 +441,7 @@ smoothing_enabled = true
 floor_map = NodePath("../YSort/Navigation2D/Floors")
 default_spawn_position = NodePath("../DefaultCultistSpawnPosition")
 navigation = NodePath("../YSort/Navigation2D")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+autoplay = true

@@ -42,14 +42,14 @@
       "value": "What's going on? why is this floating.."
     },
     "demon_eye_0": {
-      "value": "Jaysus, Mary, Mother of God! What in the blue fuck is that thing!?",
+      "value": "Ah there's a card piece... Jaysus, Mary, Mother of God! What in the blue fuck is that thing!?",
       "next": "demon_eye_1"
     },
     "demon_eye_1": {
       "value": "What's making that noise?"
     },
     "demon_eye_4": {
-      "value": "CHRIST!!!...",
+      "value": "JAYSUS!!!",
       "next": "demon_eye_5"
     },
     "demon_eye_5": {

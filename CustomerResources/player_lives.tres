@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource( 1 )
-lives_count = 0
+lives_count = 3

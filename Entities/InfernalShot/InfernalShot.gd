@@ -44,6 +44,8 @@ func _on_InfernalShot_body_entered(body: KinematicBody2D) -> void:
 	if body and body.has_method("on_hit"):
 		if is_lethal:
 			body.on_hit()
+		else: 
+			body.mark()
 			
 		queue_free()
 

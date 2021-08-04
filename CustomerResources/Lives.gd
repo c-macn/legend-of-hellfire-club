@@ -18,4 +18,4 @@ func get_lives_count() -> int:
 
 
 func restore_lives() -> void:
-	lives_count = 2
+	lives_count = 3

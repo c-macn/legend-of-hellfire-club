@@ -11,6 +11,7 @@ onready var light_pivot: Node2D = $LightPivot
 onready var banish_time := $BanishTimer
 
 func _ready() -> void:
+	turn_off_light()
 	animated_sprite.play("default")
 	light_pivot.rotation_degrees = INITIAL_ROTATION_DEGREES
 	banish_time.connect("timeout", self, "_banish_target")
@@ -31,6 +32,7 @@ func wake_up() -> void:
 
 
 func patrol() -> void:
+	turn_on_light()
 	animated_sprite.play("look")
 	tween_light_right()
 
@@ -67,11 +69,10 @@ func tween_light_center(next_tween_direction: String) -> void:
 		tween.start()
 
 
-func look_at_target(target_node: NodePath) -> void:
-	var target = get_parent().get_node(target_node)
-	tween.stop_all()
-	
-	light_pivot.look_at(target.position)
+func look_at_target(target_position: Vector2) -> void:
+	if not target_position == Vector2.ZERO:
+		tween.stop_all()
+		light_pivot.look_at(target_position)
 
 
 func set_target(target: KinematicBody2D) -> void:
@@ -81,6 +82,10 @@ func set_target(target: KinematicBody2D) -> void:
 
 func turn_off_light() -> void:
 	light_pivot.get_node("Light2D").enabled = false
+
+
+func turn_on_light() -> void:
+	light_pivot.get_node("Light2D").enabled = true
 
 
 func set_bad_ending_frame() -> void:

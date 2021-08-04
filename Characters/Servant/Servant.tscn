@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Characters/Servant/Animations/ServantGhost.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Particles/fire.png" type="Texture" id=2]
@@ -10,8 +10,23 @@
 radius = 13.4888
 height = 30.1519
 
-[sub_resource type="Animation" id=2]
-resource_name = "burning"
+[sub_resource type="Animation" id=4]
+resource_name = "hover"
+length = 0.6
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0 ],
+"method": "hover_in_position"
+} ]
+}
 
 [sub_resource type="Animation" id=3]
 length = 2.0
@@ -28,6 +43,10 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 0.552941, 0.682353, 0.905882, 1 ), Color( 0.552941, 0.682353, 0.905882, 0.537255 ), Color( 0.552941, 0.682353, 0.905882, 1 ) ]
 }
+
+[sub_resource type="Animation" id=2]
+resource_name = "spook"
+length = 2.0
 
 [node name="Servant" type="KinematicBody2D"]
 material = ExtResource( 4 )
@@ -53,7 +72,8 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 0.5
-anims/burning = SubResource( 2 )
+anims/hover = SubResource( 4 )
 anims/idle = SubResource( 3 )
+anims/spook = SubResource( 2 )
 
 [node name="Tween" type="Tween" parent="."]

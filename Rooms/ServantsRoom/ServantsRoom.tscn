@@ -341,6 +341,7 @@ card_piece_texture = ExtResource( 9 )
 [node name="CutsceneTriggger" parent="." instance=ExtResource( 6 )]
 position = Vector2( 320, 216 )
 scale = Vector2( 30.68, 1.09571 )
+collision_layer = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 pause_mode = 2

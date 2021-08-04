@@ -18,7 +18,7 @@ func _ready() -> void:
 	scene_transition.fade_out()
 	setup_scene_transitions()
 	spawn_Box(GameState.get_box_position())
-	#$CanvasModulate.visible = true
+	$CanvasModulate.visible = true
 
 
 func spawn_Box(box_position: Vector2) -> void:
@@ -30,7 +30,6 @@ func spawn_Box(box_position: Vector2) -> void:
 func spawn_Saoirse(spawn_point) -> void:
 	Saoirse = Saoirse_scene.instance()
 	Saoirse.position = spawn_point
-	Saoirse.connect("disguise_removed", self, "_on_disguise_removed")
 	add_child(Saoirse)
 
 
@@ -53,13 +52,6 @@ func setup_scene_transitions() -> void:
 	for exit in exits:
 		if !exit.is_connected("transition_to_scene", scene_transition, "transition_to_new_scene"):
 			exit.connect("transition_to_scene", scene_transition, "transition_to_new_scene")
-
-
-func _on_disguise_removed(position: Vector2) -> void:
-	var current_scene = GameState._current_scene # TODO add getter
-	var new_position = Vector2(position.x + BOX_OFFSET, position.y)
-	GameState.set_box_state(current_scene, position)
-	spawn_Box(new_position)
 
 
 func fade_in() -> void:

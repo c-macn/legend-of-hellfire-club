@@ -11,9 +11,10 @@ onready var room_mask := $DemonEyeRoomMask
 
 func _ready() -> void:
 	._ready()
-	yield(scene_transition, "transition_finished")
 	cutscene_camera.position = CUTSCENE_CAMERA_START_POSITION
 	room_mask.connect("soairse_detected", self, "set_target")
+	$Exits/Area2D.connect("transition_to_scene", self, "_on_scene_transition")
+	yield(scene_transition, "transition_finished")
 	
 	if !GameState.get_cutscene_state("doomedRat"):
 		init_cutscene()
@@ -21,6 +22,7 @@ func _ready() -> void:
 		doomed_rat.queue_free()
 		cutscene_camera.current = true
 		cutscene_camera.zoom = Vector2(1.6, 1.6)
+		$DemonEye.patrol()
 
 
 func init_cutscene() -> void:
@@ -56,3 +58,8 @@ func _on_Dialouge_finished() -> void:
 
 func _on_Dialouge_started() -> void:
 	tree["parameters/conditions/is_dialouge_finished"] = false
+
+
+func _on_scene_transition(_scene_arg: int) -> void:
+	if $Saoirse.is_disguised() && GameState.CARD_COLLECTION_STATE.get('TopLeft'):
+		$Saoirse.take_off_disguise()

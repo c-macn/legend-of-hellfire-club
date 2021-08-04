@@ -4,7 +4,6 @@ onready var devil_card := $DevilCard/TextureRect
 onready var tween := $DevilCard/Tween
 
 func _ready() -> void:
-	devil_card.connect("animation_finished", self, "_add_card_inventory_item")
 	var has_met_cultist = GameState.get_has_met_cultist()
 	hide_player_ui(has_met_cultist, has_met_cultist, GameState.get_has_brandy() || GameState.get_has_blessed_shot())
 
@@ -25,11 +24,6 @@ func play_break_away() -> void:
 	devil_card.play("break-away")
 	yield(devil_card, "animation_finished")
 	$AudioStreamPlayer.stop()
-
-
-func add_card_inventory_item() -> void:
-	# render inventory marker to keep track of collected card pieces
-	pass
 
 
 func reveal_puzzle() -> void:

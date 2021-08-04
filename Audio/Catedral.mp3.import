@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Catedral.mp3-d67bbd4d3059b30d66de99bd0258d0d6.mp3str"
+
+[deps]
+
+source_file="res://Audio/Catedral.mp3"
+dest_files=[ "res://.import/Catedral.mp3-d67bbd4d3059b30d66de99bd0258d0d6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

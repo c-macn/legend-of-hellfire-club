@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/glass_rolling_floor.mp3-bc14f0e7ddd2b45d54dddb8e9c816ae1.mp3str"
+
+[deps]
+
+source_file="res://Audio/glass_rolling_floor.mp3"
+dest_files=[ "res://.import/glass_rolling_floor.mp3-bc14f0e7ddd2b45d54dddb8e9c816ae1.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
