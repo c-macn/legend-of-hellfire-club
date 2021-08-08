@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Interface/MainMenu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Interface/MainMenu/title_screen_no_text.png" type="Texture" id=2]
 [ext_resource path="res://Interface/MainMenu/Button.tres" type="StyleBox" id=3]
 [ext_resource path="res://Interface/MainMenu/Settings.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Interface/MainMenu/SelectedButtonIndicator.png" type="Texture" id=6]
-[ext_resource path="res://Interface/CanvasLayer.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Rooms/SceneTransition/SceneTransition.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Interface/Theme.tres" type="Theme" id=8]
 
 [sub_resource type="Animation" id=1]
@@ -84,6 +83,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SceneTransition" parent="CanvasLayer" instance=ExtResource( 5 )]
+mouse_filter = 2
+
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -102,9 +106,9 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ButtonContainer"]
-margin_left = 20.0
+margin_left = -200.0
 margin_top = 187.0
-margin_right = 193.0
+margin_right = -27.0
 margin_bottom = 239.0
 mouse_filter = 0
 __meta__ = {
@@ -127,9 +131,9 @@ text = "Play"
 position = Vector2( -10, 25 )
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="ButtonContainer"]
-margin_left = 20.0
+margin_left = -200.0
 margin_top = 243.0
-margin_right = 193.0
+margin_right = -27.0
 margin_bottom = 295.0
 mouse_filter = 0
 __meta__ = {
@@ -150,9 +154,9 @@ text = "Controls"
 position = Vector2( -10, 25 )
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="ButtonContainer"]
-margin_left = 20.0
+margin_left = -200.0
 margin_top = 299.0
-margin_right = 171.0
+margin_right = -49.0
 margin_bottom = 351.0
 mouse_filter = 0
 
@@ -170,9 +174,9 @@ text = "Credits"
 position = Vector2( -10, 25 )
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="ButtonContainer"]
-margin_left = -16.6666
+margin_left = -200.0
 margin_top = 355.0
-margin_right = 156.333
+margin_right = -27.0004
 margin_bottom = 407.0
 mouse_filter = 0
 
@@ -188,12 +192,6 @@ text = "Quit"
 
 [node name="Position2D" type="Position2D" parent="ButtonContainer/VBoxContainer4"]
 position = Vector2( -10, 25 )
-
-[node name="Cursor" type="Sprite" parent="."]
-visible = false
-texture = ExtResource( 6 )
-
-[node name="CanvasLayer" parent="." instance=ExtResource( 7 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/buttons_slide_in = SubResource( 1 )

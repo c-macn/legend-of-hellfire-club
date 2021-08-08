@@ -11,11 +11,9 @@ var _selected_button = 0
 var lives_count = load("res://CustomerResources/player_lives.tres")
 
 onready var buttons = $ButtonContainer.get_children()
-onready var button_cursor = $Cursor
 onready var animation := $AnimationPlayer
 
 func _ready() -> void:
-	$CanvasLayer.hide_player_ui()
 	$CanvasLayer/SceneTransition.fade_out()
 	$Settings.connect("hide_menu", self, "_hide_controls")
 	$AnimationPlayer.play("buttons_slide_in")
@@ -26,7 +24,6 @@ func _ready() -> void:
 
 func update_cursor_position(current_button: int) -> void:
 	var draw_position = buttons[current_button].get_node("Position2D").global_position
-	button_cursor.position = draw_position
 	_grab_button_focus(current_button)
 
 

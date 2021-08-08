@@ -8,12 +8,14 @@ onready var cutscene_manager: AnimationPlayer = $CutsceneManager
 onready var cutscene_camera := $Camera2D
 onready var tree = $AnimationTree
 onready var room_mask := $DemonEyeRoomMask
+onready var remove_box :=  $RemoveBox
 
 func _ready() -> void:
 	._ready()
 	cutscene_camera.position = CUTSCENE_CAMERA_START_POSITION
 	room_mask.connect("soairse_detected", self, "set_target")
 	$Exits/Area2D.connect("transition_to_scene", self, "_on_scene_transition")
+	$RemoveBox.connect("body_entered", self, "_remove_disguise")
 	yield(scene_transition, "transition_finished")
 	
 	if !GameState.get_cutscene_state("doomedRat"):
@@ -63,3 +65,11 @@ func _on_Dialouge_started() -> void:
 func _on_scene_transition(_scene_arg: int) -> void:
 	if $Saoirse.is_disguised() && GameState.CARD_COLLECTION_STATE.get('TopLeft'):
 		$Saoirse.take_off_disguise()
+
+
+func _remove_disguise(body: KinematicBody2D) -> void:
+	if GameConstants.is_Saoirse(body):
+		var s: Saoirse = body
+		if GameState.CARD_COLLECTION_STATE.TopLeft && s.is_disguised():
+			s.take_off_disguise()
+			$RemoveBox.queue_free()

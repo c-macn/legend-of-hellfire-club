@@ -138,10 +138,12 @@ func put_on_disguise() -> void:
 
 
 func take_off_disguise() -> void:
+	disable_movement()
 	play_cardboard_sound()
 	fade_in_disguise()
 	GameState.set_is_Saoirse_disguised(false)
 	_set_active_frames(default_frames, DEFAULT_FRAME_COUNT)
+	enable_movement()
 
 
 func is_disguised() -> bool:
