@@ -54,6 +54,7 @@ func stun():
 
 
 func phase_out() -> void:
+	animated_sprite.material = load("res://Shaders/Dissolve.tres")
 	if is_stunned:
 		is_stunned = false
 		
@@ -115,10 +116,14 @@ func cleanse() -> void:
 	HitFreeze.freeze()
 	$AnimationPlayer.play("hit")
 	
+	yield(get_tree().create_timer(0.8), "timeout")
+	
 	if is_stunned:
 		cleanse_count += 1
 		hit_box.call_deferred("set_disabled", true)
 		emit_signal("cleansed", cleanse_count)
+	else:
+		phase_out()
 
 
 func set_to_idle() -> void:

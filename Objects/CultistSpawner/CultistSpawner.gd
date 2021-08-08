@@ -22,7 +22,8 @@ func _ready() -> void:
 		
 	if floor_map:
 		floor_tiles = get_node(floor_map)
-		
+
+
 func get_Saoirses_position() -> Vector2:
 	var Saoirse = get_parent().get_node(saoirse_path)
 	if Saoirse:
@@ -30,11 +31,13 @@ func get_Saoirses_position() -> Vector2:
 	else:
 		return Vector2.ZERO
 
+
 func despawn_cultitst() -> void:
 	Cultist.phase_out()
 	chase_timer.stop()
 	_increase_spawn_percentage()
 	_increase_wait_time()
+
 
 func _should_spawn_Cultist() -> void:
 	rng.randomize()
@@ -43,6 +46,7 @@ func _should_spawn_Cultist() -> void:
 	if spawn_chance <= spawn_percentage:
 		_spawn_cultist()
 		spawn_timer.stop()
+
 
 func _spawn_cultist() -> void:
 	var position = get_Saoirses_position()
@@ -58,24 +62,29 @@ func _spawn_cultist() -> void:
 		Cultist.phase_in()
 		chase_timer.start()
 
+
 func is_position_valid(spawn_position: Vector2) -> bool:
 	return floor_tiles.get_cellv(spawn_position) != TileMap.INVALID_CELL
+
 
 func _increase_spawn_percentage() -> void:
 	spawn_percentage -= 10
 	
 	if spawn_percentage <= 0:
 		spawn_percentage = 10
-		
+
+
 func _increase_wait_time() -> void:
 	spawn_timer.wait_time += 1
 	spawn_timer.start(spawn_timer.wait_time)
-	
+
+
 func _start_Spawn_Timer() -> void:
 	_increase_spawn_percentage()
 	_increase_wait_time()
 	chase_timer.stop()
-	
+
+
 func _determine_spawn_position(world_position: Vector2) -> Vector2:
 	if floor_tiles:
 		var tilemap_position := floor_tiles.world_to_map(world_position)
