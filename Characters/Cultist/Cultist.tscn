@@ -20,16 +20,11 @@
 [ext_resource path="res://Characters/Cultist/BossBattle.gd" type="Script" id=18]
 [ext_resource path="res://Characters/StateMachine/State.gd" type="Script" id=19]
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
+"frames": [ ExtResource( 9 ) ],
 "loop": true,
-"name": "walk_back",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "walk_up_left",
+"name": "walk_down_right",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ) ],
@@ -37,14 +32,24 @@ animations = [ {
 "name": "walk_forward",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "walk_left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "walk_back",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "walk_right",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ ExtResource( 5 ) ],
 "loop": true,
-"name": "walk_left",
+"name": "walk_up_left",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ) ],
@@ -55,11 +60,6 @@ animations = [ {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "walk_up_right",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "walk_down_right",
 "speed": 5.0
 } ]
 
@@ -94,7 +94,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CapsuleShape2D" id=4]
-radius = 3.81838
+radius = 12.0821
 height = 26.8504
 
 [node name="Cultists" type="KinematicBody2D"]
@@ -106,7 +106,7 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 material = ExtResource( 12 )
-frames = SubResource( 6 )
+frames = SubResource( 1 )
 animation = "walk_back"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -114,7 +114,7 @@ anims/hit = SubResource( 2 )
 anims/stunned = SubResource( 3 )
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 11.8954 )
+position = Vector2( 0, 11.4499 )
 shape = SubResource( 4 )
 one_way_collision_margin = 0.5
 

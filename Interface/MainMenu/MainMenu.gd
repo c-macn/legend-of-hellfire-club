@@ -7,6 +7,9 @@ enum MENU_BUTTONS {
 	QUIT = 3
 }
 
+const OPENING_CRAW_SCENE = "res://Rooms/OpeningCrawl/Crawl.tscn"
+const BOSS_BATTLE_SCENE = "res://Rooms/BossBattleRoom/BossBattleRoom.tscn"
+
 var _selected_button = 0
 var lives_count = load("res://CustomerResources/player_lives.tres")
 
@@ -28,7 +31,8 @@ func update_cursor_position(current_button: int) -> void:
 
 
 func _on_Play_clicked() -> void:
-	load_scene("res://Rooms/OpeningCrawl/Crawl.tscn")
+	var scene_to_load = OPENING_CRAW_SCENE if !GameState.has_collected_all_cards() else BOSS_BATTLE_SCENE
+	load_scene(scene_to_load)
 
 
 func _on_Credits_clicked() -> void:
