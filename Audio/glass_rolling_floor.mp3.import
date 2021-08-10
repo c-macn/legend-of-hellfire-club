@@ -11,5 +11,5 @@ dest_files=[ "res://.import/glass_rolling_floor.mp3-bc14f0e7ddd2b45d54dddb8e9c81
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0

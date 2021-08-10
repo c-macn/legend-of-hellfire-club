@@ -24,9 +24,6 @@ func _ready() -> void:
 	saoirse.set_remote_transform($Camera2D.get_path())
 	yield(scene_transition, "transition_finished")
 	
-	if !saoirse.is_connected("disguise_removed", self, "_on_disguise_removed"): 
-		saoirse.connect("disguise_removed", self, "_on_disguise_removed")
-		
 	if !saoirse.is_connected("banished", self, "_on_banishment"):
 		saoirse.connect("banished", self, "_on_banishment")
 	

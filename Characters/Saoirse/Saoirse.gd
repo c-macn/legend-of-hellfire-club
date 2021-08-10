@@ -12,6 +12,8 @@ export(NodePath) var tilemap
 const MAX_BANISHMENTS := 3
 const DEFAULT_FRAME_COUNT = 19
 const BOX_FRAME_COUNT = 16
+const BOX_FORWARD_FRAME = 4
+const DEFAULT_FORWARD_FRAME = 10
 
 var lives_count = load("res://CustomerResources/player_lives.tres")
 var footsteps_sfx = preload("res://Audio/footsteps.mp3")
@@ -52,6 +54,7 @@ func _input(_event) -> void:
 func fire_water() -> void:
 	var shot = BlessedShot.instance()
 	shot_spawner.look_at(get_global_mouse_position())
+	$Sprite.frame = $FacingDirectionManager.get_frame(shot_spawner.rotation)
 	shot.transform = shot_spawner.global_transform
 	shot_spawner.add_child(shot)
 	$ShootDelay.start()
@@ -125,7 +128,7 @@ func move_to_point(target_position: Vector2) -> void:
 	animated_sprite.play($FacingDirectionManager.get_animation(destination))
 	yield(tween, "tween_completed")
 	animated_sprite.stop()
-	$Sprite.frame = 10 # looking forward
+	set_forward_frame() # looking forward
 
 
 func put_on_disguise() -> void:
@@ -143,7 +146,8 @@ func take_off_disguise() -> void:
 	fade_in_disguise()
 	GameState.set_is_Saoirse_disguised(false)
 	_set_active_frames(default_frames, DEFAULT_FRAME_COUNT)
-	enable_movement()
+	emit_signal("disguise_removed")
+	
 
 
 func is_disguised() -> bool:
@@ -218,3 +222,10 @@ func play_footsteps() -> void:
 func play_carpet_footsteps() -> void:
 	audio_player.stream = footsteps_carpet_sfx
 	audio_player.play()
+
+
+func set_forward_frame() -> void:
+	if not is_disguised():
+		$Sprite.frame = DEFAULT_FORWARD_FRAME
+	else:
+		$Sprite.frame = BOX_FORWARD_FRAME

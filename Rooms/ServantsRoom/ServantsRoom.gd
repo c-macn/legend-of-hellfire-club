@@ -7,9 +7,11 @@ onready var animation_player := $AnimationPlayer
 onready var servant := $Servant
 
 func _ready() -> void:
+	GameState.update_current_scene(GameConstants.SCENES.SERVANTS_ROOM)
 	animation_player.connect("animation_finished", self, "_on_animation_finished")
 	.spawn_Saoirse(Saoirse_spawn_point.position)
 	Saoirse.set_remote_transform($Camera2D.get_path())
+	Saoirse.turn_off_light()
 	init_card_piece(GameState.CARD_COLLECTION_STATE.BottomLeft)
 
 
@@ -23,7 +25,7 @@ func init_card_piece(has_collected_card: bool) -> void:
 		if GameState.get_has_blessed_shot():
 			servant.queue_free()
 		else:
-			servant.modulate.a = 1
+			servant.modulate = Color(servant.modulate.r, servant.modulate.g, servant.modulate.b, 1)
 			servant.set_frames("res://Characters/Servant/Animations/ServantGhost.tres")
 			servant.remove_shader()
 			init_cutscene_trigger("ask_brandy")
@@ -76,6 +78,11 @@ func add_blessed_shot_bottle() -> void:
 	
 	servant.queue_free()
 	add_child(bottle)
+
+
+func set_Saoirse_forward() -> void:
+	Saoirse.set_forward_frame()
+
 
 
 func _on_animation_finished(animation_name: String) -> void:

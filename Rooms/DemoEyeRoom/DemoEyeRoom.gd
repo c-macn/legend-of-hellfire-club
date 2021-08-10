@@ -12,9 +12,9 @@ onready var remove_box :=  $RemoveBox
 
 func _ready() -> void:
 	._ready()
+	saoirse.connect("disguise_removed", self, "_transition_to_scene")
 	cutscene_camera.position = CUTSCENE_CAMERA_START_POSITION
 	room_mask.connect("soairse_detected", self, "set_target")
-	$Exits/Area2D.connect("transition_to_scene", self, "_on_scene_transition")
 	$RemoveBox.connect("body_entered", self, "_remove_disguise")
 	yield(scene_transition, "transition_finished")
 	
@@ -72,4 +72,9 @@ func _remove_disguise(body: KinematicBody2D) -> void:
 		var s: Saoirse = body
 		if GameState.CARD_COLLECTION_STATE.TopLeft && s.is_disguised():
 			s.take_off_disguise()
-			$RemoveBox.queue_free()
+
+
+func _transition_to_scene() -> void:
+	GameState.update_current_scene(GameConstants.SCENES.DEMON_ROOM)
+	$RemoveBox.queue_free()
+	get_tree().call_deferred("change_scene", "res://Rooms/MainRoom/MainRoom.tscn")

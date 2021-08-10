@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/256419__jagadamba__fire-burning-in-stove.mp3-53a775b83fe7bc90cbcca5581a7c3664.mp3str"
+
+[deps]
+
+source_file="res://Audio/256419__jagadamba__fire-burning-in-stove.mp3"
+dest_files=[ "res://.import/256419__jagadamba__fire-burning-in-stove.mp3-53a775b83fe7bc90cbcca5581a7c3664.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

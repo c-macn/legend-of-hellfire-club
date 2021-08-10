@@ -1,16 +1,17 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Characters/Servant/Animations/ServantGhost.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Particles/fire.png" type="Texture" id=2]
 [ext_resource path="res://Shaders/FireShader.tres" type="Material" id=3]
 [ext_resource path="res://Shaders/Light.tres" type="Material" id=4]
+[ext_resource path="res://Audio/256419__jagadamba__fire-burning-in-stove.mp3" type="AudioStream" id=5]
 [ext_resource path="res://Characters/Servant/Servant.gd" type="Script" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 13.4888
 height = 30.1519
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 resource_name = "hover"
 length = 0.6
 tracks/0/type = "method"
@@ -44,9 +45,20 @@ tracks/0/keys = {
 "values": [ Color( 0.552941, 0.682353, 0.905882, 1 ), Color( 0.552941, 0.682353, 0.905882, 0.537255 ), Color( 0.552941, 0.682353, 0.905882, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "spook"
+[sub_resource type="Animation" id=4]
 length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
 
 [node name="Servant" type="KinematicBody2D"]
 material = ExtResource( 4 )
@@ -55,13 +67,17 @@ collision_mask = 2147483653
 script = ExtResource( 8 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-modulate = Color( 0.552941, 0.682353, 0.905882, 1 )
+modulate = Color( 0.552941, 0.682353, 0.905882, 0.537255 )
 frames = ExtResource( 1 )
+animation = "spook"
+frame = 4
 speed_scale = 0.5
+playing = true
 
 [node name="Fire" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.65098 )
 material = ExtResource( 3 )
-position = Vector2( -1.40508, 6.69909 )
+position = Vector2( 0.799785, -0.860435 )
 scale = Vector2( 10, 8 )
 texture = ExtResource( 2 )
 
@@ -72,8 +88,12 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 0.5
-anims/hover = SubResource( 4 )
+anims/hover = SubResource( 5 )
 anims/idle = SubResource( 3 )
-anims/spook = SubResource( 2 )
+anims/spook = SubResource( 4 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+volume_db = -25.0

@@ -20,10 +20,7 @@ func reveal_card() -> void:
 
 
 func play_break_away() -> void:
-	$AudioStreamPlayer.play()
 	devil_card.play("break-away")
-	yield(devil_card, "animation_finished")
-	$AudioStreamPlayer.stop()
 
 
 func reveal_puzzle() -> void:

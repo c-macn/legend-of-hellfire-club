@@ -11,5 +11,5 @@ dest_files=[ "res://.import/rat_gore.mp3-58c35aa9a1beb846ab01f041a176d759.mp3str
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

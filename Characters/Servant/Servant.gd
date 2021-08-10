@@ -43,5 +43,11 @@ func remove_shader() -> void:
 
 	tween.start()
 
+
+func play_fire_sounds() -> void:
+	$AudioStreamPlayer2D.play()
+
+
 func _destroy_fire() -> void:
 	$Fire.queue_free()
+	$AudioStreamPlayer2D.queue_free()

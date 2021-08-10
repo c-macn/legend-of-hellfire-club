@@ -563,7 +563,7 @@ script = ExtResource( 1 )
 material = SubResource( 2 )
 texture = ExtResource( 8 )
 hframes = 19
-frame = 6
+frame = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.316921, 7.34592 )
@@ -579,7 +579,7 @@ material = ExtResource( 5 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="ShootDelay" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.5
 one_shot = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
