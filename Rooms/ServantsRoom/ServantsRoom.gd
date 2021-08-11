@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func init_card_piece(has_collected_card: bool) -> void:
 	if !has_collected_card:
-		cutscene_trigger.monitoring = false
+		cutscene_trigger.call_deferred("set_monitoring", false)
 		servant.disable_collisions()
 		servant.set_frames("res://Characters/Servant/Animations/ServantSkin.tres")
 		card_piece.connect("card_collected", self, "init_cutscene_trigger", ["the_servant"])
@@ -32,7 +32,7 @@ func init_card_piece(has_collected_card: bool) -> void:
 
 
 func init_cutscene_trigger(cutscene_to_start: String) -> void:
-	cutscene_trigger.monitoring = true
+	cutscene_trigger.call_deferred("set_monitoring", true)
 	cutscene_trigger.cutscene_animation_name = cutscene_to_start
 	cutscene_trigger.connect("cutscene_start", self, "start_cutscene")
 

@@ -30,6 +30,7 @@ func _ready() -> void:
 	cultist_clone_2.connect("phased_out", self, "_Cultist_clone_2_phased_out")
 	
 	play_cutscene("intro")
+	$AudioStreamPlayer.play()
 
 
 func init_dialouge(character_name: String, dialouge_key: String) -> void:

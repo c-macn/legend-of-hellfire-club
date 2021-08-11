@@ -38,11 +38,11 @@ void fragment()
 	COLOR = color;
 }"
 
-[sub_resource type="Gradient" id=6]
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0.355049, 0.798046 )
 
-[sub_resource type="GradientTexture" id=7]
-gradient = SubResource( 6 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
 [sub_resource type="OpenSimplexNoise" id=4]
 seed = 10
@@ -61,4 +61,4 @@ shader_param/middle_color = Color( 0.866667, 0.498039, 0.0352941, 1 )
 shader_param/darker_color = Color( 0.615686, 0.180392, 0.0352941, 1 )
 shader_param/spread = 0.572
 shader_param/noise_tex = SubResource( 5 )
-shader_param/gradient_tex = SubResource( 7 )
+shader_param/gradient_tex = SubResource( 3 )

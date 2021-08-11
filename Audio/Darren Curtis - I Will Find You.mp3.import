@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Darren Curtis - I Will Find You.mp3-cf98dd338aacd7182fef1a17da6813a3.mp3str"
+
+[deps]
+
+source_file="res://Audio/Darren Curtis - I Will Find You.mp3"
+dest_files=[ "res://.import/Darren Curtis - I Will Find You.mp3-cf98dd338aacd7182fef1a17da6813a3.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -284,7 +284,7 @@
     }
   },
   "man": {
-    "portrait": "res://Characters/Satan/Devil_Portrait.png",
+    "portrait": "res://Characters/Cultist/WB_Portrait.png",
     "the_end": {
       "value": "Who I am matters not. But you! little one, have made a grave mistake.",
       "next": "the_end_1"

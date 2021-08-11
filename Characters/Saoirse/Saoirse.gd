@@ -16,8 +16,6 @@ const BOX_FORWARD_FRAME = 4
 const DEFAULT_FORWARD_FRAME = 10
 
 var lives_count = load("res://CustomerResources/player_lives.tres")
-var footsteps_sfx = preload("res://Audio/footsteps.mp3")
-var footsteps_carpet_sfx = preload("res://Audio/footsteps_carpet.mp3");
 var BlessedShot: PackedScene = preload("res://Entities/BlessedWaterShot/BlessedShot.tscn")
 var banish_count: int = 0
 var velocity := Vector2()
@@ -218,10 +216,6 @@ func play_shot_sfx() -> void:
 func play_footsteps() -> void:
 	$Sfx.play()
 
-
-func play_carpet_footsteps() -> void:
-	audio_player.stream = footsteps_carpet_sfx
-	audio_player.play()
 
 
 func set_forward_frame() -> void:

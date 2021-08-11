@@ -5,8 +5,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sfx Attribution: Devil You're dealt</title>
+  <link href="./bulma.min.css" rel="stylesheet">
+  <style>
+    dl {
+      display: flex;
+      flex-direction: row;
+    }
+
+    dd {
+      margin-left: 0.5rem;
+      margin-right: 1rem;
+    }
+    dt {
+      font-weight: 700;
+    }
+
+    a, dd {
+      font-weight: 500;
+    }
+  </style>
 </head>
 <body>
-  <p> There will be some attribution here some day</p>
+  <div id="attribution-columns" class="columns is-multiline"></div>
 </body>
+<script src="attribution.js"></script>
 </html>
