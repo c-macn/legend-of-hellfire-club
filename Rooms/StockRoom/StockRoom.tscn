@@ -17,7 +17,6 @@ position = Vector2( -32.9633, 161.253 )
 scale = Vector2( 3.01214, 2.32147 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color( 0.117647, 0.117647, 0.117647, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
