@@ -4,7 +4,6 @@ onready var Saoirse_spawn_point: Position2D = $SaoirseSpawnPoint
 onready var brandy := $Brandy
 
 func _ready() -> void:
-	._ready()
 	.spawn_Saoirse(Saoirse_spawn_point.position)
 	Saoirse.set_remote_transform($Camera2D.get_path())
 	_init_brandy_bottle(GameState.get_has_brandy())

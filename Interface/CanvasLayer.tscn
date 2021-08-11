@@ -119,6 +119,7 @@ mouse_filter = 2
 "UI",
 ] instance=ExtResource( 3 )]
 mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
 
 [node name="DevilCard" type="Control" parent="."]
 anchor_left = 0.5

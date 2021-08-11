@@ -37,6 +37,7 @@ func _ready():
 	if tilemap:
 		tilemap_node = get_node(tilemap)
 	add_to_group("actors")
+	enable_movement()
 	spawn_point = global_position
 	var active_frames = box_frames if GameState.get_is_Saoirse_disguised() else default_frames
 	var frame_count = BOX_FRAME_COUNT if GameState.get_is_Saoirse_disguised() else DEFAULT_FRAME_COUNT

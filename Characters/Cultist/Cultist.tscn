@@ -22,11 +22,6 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "walk_down_right",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "walk_forward",
@@ -60,6 +55,11 @@ animations = [ {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "walk_up_right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "walk_down_right",
 "speed": 5.0
 } ]
 
@@ -101,7 +101,7 @@ height = 26.8504
 scale = Vector2( 1.5, 1.5 )
 z_index = 1
 collision_layer = 2
-collision_mask = 21
+collision_mask = 17
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

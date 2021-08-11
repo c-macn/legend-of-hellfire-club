@@ -15,6 +15,7 @@ onready var exits := $Exits.get_children()
 onready var scene_transition := $CanvasLayer/SceneTransition
 
 func _ready() -> void:
+	yield(get_tree().create_timer(0.2), "timeout")
 	scene_transition.fade_out()
 	setup_scene_transitions()
 	spawn_Box(GameState.get_box_position())

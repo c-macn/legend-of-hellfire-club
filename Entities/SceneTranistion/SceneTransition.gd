@@ -11,6 +11,7 @@ func _ready() -> void:
 	
 func _on_Saoirse_entered(body: KinematicBody2D) -> void:
 	if _is_Body_Saoirse(body):
+		body.disable_movement();
 		GameState.update_current_scene(scene_to)
 		emit_signal("transition_to_scene", GameConstants.get_scene(scene_to))
 

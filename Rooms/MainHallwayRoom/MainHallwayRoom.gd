@@ -9,7 +9,6 @@ enum SPAWN_POINTS {
 onready var spawn_points: Array = $SpawnPoints.get_children()
 
 func _ready() -> void:
-	._ready()
 	.spawn_Saoirse(determine_spawn_point(GameState.get_previous_scene()))
 	Saoirse.set_remote_transform($Camera2D.get_path())
 	$Exits/ToMainRoom.scene_to = get_main_room_scene_transition()

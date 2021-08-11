@@ -11,7 +11,6 @@ onready var room_mask := $DemonEyeRoomMask
 onready var remove_box :=  $RemoveBox
 
 func _ready() -> void:
-	._ready()
 	saoirse.connect("disguise_removed", self, "_transition_to_scene")
 	cutscene_camera.position = CUTSCENE_CAMERA_START_POSITION
 	room_mask.connect("soairse_detected", self, "set_target")
