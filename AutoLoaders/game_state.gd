@@ -132,3 +132,18 @@ func has_collected_all_cards() -> bool:
 func has_won_card_came() -> void:
 	var has_all_cards = has_collected_all_cards()
 	emit_signal("has_won_card_game", has_all_cards)
+
+
+func reset_state() -> void:
+	set_has_brandy(false)
+	set_has_blessed_shot(false)
+	
+	CUTSCENE_STATE.intro = false
+	CUTSCENE_STATE.doomedRat = false
+	CUTSCENE_STATE.theHead = false
+	CUTSCENE_STATE.theServant = false
+	
+	CARD_COLLECTION_STATE.BottomLeft = false
+	CARD_COLLECTION_STATE.BottomRight = false
+	CARD_COLLECTION_STATE.TopLeft = false
+	CARD_COLLECTION_STATE.TopLeft = false

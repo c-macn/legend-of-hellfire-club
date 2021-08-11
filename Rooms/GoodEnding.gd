@@ -5,6 +5,7 @@ onready var scene_transition := $CanvasLayer/SceneTransition
 onready var animation_player := $AnimationPlayer
 
 func _ready() -> void:
+	GameState.reset_state()
 	$AudioStreamPlayer3D.play()
 	$CanvasLayer.hide_player_ui()
 	scene_transition.blink()

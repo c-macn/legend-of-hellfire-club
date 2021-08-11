@@ -17,6 +17,9 @@ onready var buttons = $ButtonContainer.get_children()
 onready var animation := $AnimationPlayer
 
 func _ready() -> void:
+	if GameState.has_collected_all_cards():
+		$ButtonContainer/VBoxContainer/Play.text = "Continue"
+		
 	$CanvasLayer/SceneTransition.fade_out()
 	$Settings.connect("hide_menu", self, "_hide_controls")
 	$AnimationPlayer.play("buttons_slide_in")
