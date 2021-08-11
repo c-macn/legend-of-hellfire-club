@@ -1,5 +1,9 @@
 extends CanvasLayer
 
+var outline_texture = preload("res://Objects/BrandyBottle/BrandyOutline.png")
+var brandy_texture = preload("res://Objects/BrandyBottle/BrandyBottle.png")
+var blessed_texture = preload("res://Objects/BrandyBottle/BlessedBottle.png")
+
 onready var devil_card := $DevilCard/TextureRect
 onready var tween := $DevilCard/Tween
 
@@ -32,4 +36,12 @@ func reveal_puzzle() -> void:
 
 func hide_player_ui(hide_panel = false, hide_brandy = false) -> void:
 	$UIPanel.visible = hide_panel
-	$UIPanel/TextureRect.visible = hide_brandy
+	
+	if GameState.get_has_blessed_shot():
+		$UIPanel/TextureRect.texture = blessed_texture
+		
+	elif GameState.get_has_brandy():
+		$UIPanel/TextureRect.texture = brandy_texture
+		
+	else:
+		$UIPanel/TextureRect.texture = outline_texture

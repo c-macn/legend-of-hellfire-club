@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Tilesets/BaseRoomTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Entities/SceneTranistion/SceneTransition.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Rooms/MainHallwayRoom/MainHallwayRoom.gd" type="Script" id=3]
 [ext_resource path="res://Interface/CanvasLayer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Audio/Catedral.mp3" type="AudioStream" id=5]
 [ext_resource path="res://Objects/Door/Door.gd" type="Script" id=6]
 [ext_resource path="res://Objects/InteractableObject.tscn" type="PackedScene" id=7]
 
@@ -62,3 +63,7 @@ scene_name = "DevilRoom"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -20.0

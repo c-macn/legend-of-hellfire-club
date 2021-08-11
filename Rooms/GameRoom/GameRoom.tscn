@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Tilesets/BaseRoomTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Rooms/GameRoom/GameRoom.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Interface/CanvasLayer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Tilesets/Couch.png" type="Texture" id=7]
 [ext_resource path="res://Objects/CultistSpawner/CultistSpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Audio/Catedral.mp3" type="AudioStream" id=9]
 
 [node name="GameRoom" type="Node2D"]
 script = ExtResource( 2 )
@@ -62,3 +63,7 @@ texture = ExtResource( 7 )
 [node name="Couch2" type="Sprite" parent="."]
 position = Vector2( 218.84, 42.7809 )
 texture = ExtResource( 7 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -20.0
