@@ -5,7 +5,8 @@ onready var tween := $DevilCard/Tween
 
 func _ready() -> void:
 	var has_met_cultist = GameState.get_has_met_cultist()
-	hide_player_ui(has_met_cultist, has_met_cultist, GameState.get_has_brandy() || GameState.get_has_blessed_shot())
+	var has_brandy_or_shot = GameState.get_has_brandy() or GameState.get_has_blessed_shot()
+	hide_player_ui(has_met_cultist, has_brandy_or_shot)
 
 
 func reveal_card() -> void:
@@ -29,7 +30,6 @@ func reveal_puzzle() -> void:
 	$CardPuzzle.reveal_cards()
 
 
-func hide_player_ui(show_lives = false, show_cards = false, show_brandy = false) -> void:
-	$LivesCounter.visible = show_lives
-	$CardPieces.visible = show_cards
-	$TextureRect.visible = show_brandy
+func hide_player_ui(hide_panel = false, hide_brandy = false) -> void:
+	$UIPanel.visible = hide_panel
+	$UIPanel/TextureRect.visible = hide_brandy

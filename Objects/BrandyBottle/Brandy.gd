@@ -16,5 +16,5 @@ func _collected_brandy(body: KinematicBody2D) -> void:
 				GameState.set_has_brandy(true)
 				
 			emit_signal("brandy_collected")
-			get_tree().call_group("UI", "hide_player_ui", GameState.get_has_met_cultist(), GameState.get_has_met_cultist(), true)
+			get_tree().call_group("UI", "hide_player_ui", GameState.get_has_met_cultist(), true)
 			queue_free()

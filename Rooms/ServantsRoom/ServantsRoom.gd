@@ -51,7 +51,7 @@ func on_Cutscene_begins() -> void:
 func on_Cutscene_ended() -> void:
 	var has_met_cultist = GameState.get_has_met_cultist()
 	get_tree().call_group("actors", "enable_movement")
-	get_tree().call_group("UI", "hide_player_ui", has_met_cultist, has_met_cultist, GameState.get_has_brandy() || GameState.get_has_blessed_shot())
+	get_tree().call_group("UI", "hide_player_ui", has_met_cultist, GameState.get_has_brandy() || GameState.get_has_blessed_shot())
 
 
 func _on_Dialouge_finished() -> void:
