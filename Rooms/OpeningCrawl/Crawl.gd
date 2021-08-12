@@ -2,6 +2,7 @@ extends Control
 
 func _ready() -> void:
 	$AudioStreamPlayer.play()
+	$AnimationPlayer.play("crawl")
 
 
 func _on_Skip_pressed():

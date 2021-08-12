@@ -1,8 +1,24 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Interface/Theme.tres" type="Theme" id=1]
 [ext_resource path="res://Audio/darren-curtis-i-am-not-what-i-thought.mp3" type="AudioStream" id=2]
 [ext_resource path="res://Rooms/OpeningCrawl/Crawl.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "crawl"
+length = 40.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 39 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 70, 92.5 ), Vector2( 70, -768 ) ]
+}
 
 [node name="OpeningCrawl" type="Control"]
 anchor_right = 1.0
@@ -41,11 +57,29 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -250.0
-margin_top = -138.5
+margin_top = -147.5
 margin_right = 250.0
-margin_bottom = 138.5
+margin_bottom = 1179.5
+rect_min_size = Vector2( 500, 1327 )
 theme = ExtResource( 1 )
-text = "Welcome dreamers,
+text = "Welcome Dreamers,
+
+Our tale begins in a club nestled in the Dublin mountains on Montpelier Hill.  A club whose patrons are rumoured to dance with the Devil. 
+
+
+
+
+
+There is one sotry in which the Devil himself came down to the club and burnt it to the ground but
+that is not this one. 
+
+Our story is about a girl trying to find her parents after they didn't come home from the club. 
+
+She awoke at the witching hour and from her window could see a raging firestorm above the club. 
+
+Armed only with a torch and determination she marched up the hill and entered the club...
+
+- W.B Y
 "
 autowrap = true
 __meta__ = {
@@ -54,5 +88,8 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/crawl = SubResource( 1 )
 
 [connection signal="pressed" from="Button" to="." method="_on_Skip_pressed"]
