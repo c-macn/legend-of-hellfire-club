@@ -14,9 +14,9 @@ func _ready() -> void:
 
 
 func reveal_card() -> void:
-	var visible_modulate = Color(devil_card.self_modulate.r, devil_card.self_modulate.g, devil_card.self_modulate.b, 1.0)
+	var visible_modulate = Color(devil_card.modulate.r, devil_card.modulate.g, devil_card.modulate.b, 1.0)
 	
-	tween.interpolate_property(devil_card, "self_modulate", devil_card.self_modulate, visible_modulate, 0.5,
+	tween.interpolate_property(devil_card, "modulate", devil_card.modulate, visible_modulate, 0.5,
 		Tween.TRANS_LINEAR, Tween.EASE_IN)
 		
 	tween.interpolate_callback(self, 0.6, "play_break_away")

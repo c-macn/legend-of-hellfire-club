@@ -161,8 +161,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1.6, 2.5, 3.5, 7.9, 8, 8.5, 9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 1.6, 2.5, 3.5, 4.1, 7.9, 8, 8.5, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "phase_in_cultist"
@@ -172,6 +172,9 @@ tracks/2/keys = {
 }, {
 "args": [ "cultist", "the_head_4" ],
 "method": "init_dialouge"
+}, {
+"args": [  ],
+"method": "reveal_card"
 }, {
 "args": [ "cultist", "marked_0" ],
 "method": "init_dialouge"
@@ -311,7 +314,6 @@ tile_data = PoolIntArray( -851980, 22, 0, -851979, 22, 0, -851978, 22, 0, -85197
 [node name="Line2D" type="Line2D" parent="YSort/Navigation2D"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 modulate = Color( 0.09, 0.1, 0.18, 1 )
 position = Vector2( 21.3813, 12.4726 )
 color = Color( 0.117647, 0.117647, 0.117647, 1 )
@@ -418,6 +420,7 @@ SaoirseNode = NodePath("../YSort/Saoirse")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 556.885, 1060.85 )
 current = true
+zoom = Vector2( 0.8, 0.8 )
 smoothing_enabled = true
 
 [node name="CultistSpawner" parent="." instance=ExtResource( 9 )]

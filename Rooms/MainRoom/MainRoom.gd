@@ -89,3 +89,7 @@ func phase_out_cultist() -> void:
 	$CutsceneCultist.phase_out()
 	yield(get_tree().create_timer(1), "timeout")
 	$CutsceneCultist.queue_free()
+
+
+func reveal_card() -> void:
+	$CanvasLayer.reveal_card()
