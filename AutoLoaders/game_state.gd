@@ -114,8 +114,7 @@ func set_has_blessed_shot(has_shot: bool) -> void:
 
 
 func get_has_blessed_shot() -> bool:
-#	return _has_blessed_shot_ability
-	return true
+	return _has_blessed_shot_ability
 
 
 func set_has_met_cultist(has_met: bool) -> void:
