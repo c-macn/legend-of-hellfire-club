@@ -41,8 +41,6 @@ func update(_delta: float) -> void:
 	
 	if Saoirse_position != Vector2.ZERO:
 		shot_spawner.look_at(Saoirse_position)
-#		var direction = (Saoirse_position - owner.position).normalized() * 200
-#		owner.animated_sprite.play(_get_animation(direction))
 
 
 func _cast_spell() -> void:
@@ -55,7 +53,12 @@ func _cast_spell() -> void:
 	shot_count += 1
 	
 	if shot_count % 3 == 0:
-		owner.stun() # can't transition to state for some reason
+		timer.stop()
+		
+		if owner.is_clone:
+			owner.clone_phase_out()
+		else:
+			owner.stun() # can't transition to state for some reason
 	else:
 		owner.phase_out()
 

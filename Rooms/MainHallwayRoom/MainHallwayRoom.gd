@@ -26,7 +26,4 @@ func determine_spawn_point(previous_scene: int) -> Vector2:
 
 
 func get_main_room_scene_transition() -> int:
-	if GameState.has_collected_all_cards() and GameState.get_has_blessed_shot():
-		return GameConstants.SCENES.BOSS_BATTLE
-	else:
-		return GameConstants.SCENES.MAIN_ROOM
+	return GameConstants.SCENES.MAIN_ROOM

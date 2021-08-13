@@ -5,6 +5,7 @@ signal phased_out
 signal cleansed(count)
 
 export(NodePath) var SaoirseNode
+export(bool) var is_clone = false
 
 const MAX_SHOTS: int = 3
 
@@ -38,6 +39,11 @@ func _ready():
 		Saoirse_ref = get_node(SaoirseNode)
 	
 	stun_timer.connect("timeout", self, "phase_out")
+	
+	if is_clone:
+		light.color = Color('#e15858')
+	else:
+		light.color = Color('#ffffff')
 
 
 func _physics_process(_delta):
@@ -94,10 +100,15 @@ func boss_phase_in(spawn_position: Vector2) -> void:
 	
 	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 0, 1, 2,
 			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-			
-	tween.interpolate_property(light, 'energy', 0, 1, 2,
-			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-			
+	
+	if is_clone:
+		light.color = Color('#e15858')
+	else:
+		light.color = Color('#ffffff')
+	
+	tween.interpolate_property(light, 'energy', 0, 1, 3,
+			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	
 	tween.interpolate_callback(self, 1, "_boss_phased_in")
 	
 	if !tween.is_active():
@@ -112,18 +123,19 @@ func get_Saoirses_position() -> Vector2:
 
 
 func cleanse() -> void:
-	animated_sprite.material = load("res://Shaders/Hit.tres")
-	HitFreeze.freeze()
-	$AnimationPlayer.play("hit")
-	
-	yield(get_tree().create_timer(0.8), "timeout")
-	
-	if is_stunned:
-		cleanse_count += 1
-		hit_box.call_deferred("set_disabled", true)
-		emit_signal("cleansed", cleanse_count)
-	else:
-		phase_out()
+	if not is_clone:
+		animated_sprite.material = load("res://Shaders/Hit.tres")
+		HitFreeze.freeze()
+		$AnimationPlayer.play("hit")
+		
+		yield(get_tree().create_timer(0.8), "timeout")
+		
+		if is_stunned:
+			cleanse_count += 1
+			hit_box.call_deferred("set_disabled", true)
+			emit_signal("cleansed", cleanse_count)
+		else:
+			phase_out()
 
 
 func set_to_idle() -> void:
@@ -185,3 +197,16 @@ func _phased_in() -> void:
 func _boss_phased_in() -> void:
 	hit_box.set_disabled(false)
 	state_machine._change_state("boss_battle")
+
+
+func clone_phase_out() -> void:
+	animated_sprite.material = load("res://Shaders/Dissolve.tres")
+	
+	tween.interpolate_property(animated_sprite.material, 'shader_param/dissolve_value', 1, 0, 3,
+			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+			
+	tween.interpolate_property(light, 'energy', 1, 0, 3,
+			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	
+	if !tween.is_active():
+		tween.start()

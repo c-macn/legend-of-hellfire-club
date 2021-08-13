@@ -26,8 +26,8 @@ func _ready() -> void:
 	dialouge_container.connect("dialouge_started", self, "_on_Dialouge_started")
 	cultist.connect("cleansed", self, "_Cultist_cleansed")
 	cultist.connect("phased_out", self, "_Cultist_phased_out")
-	cultist_clone.connect("phased_out", self, "_Cultist_clone_phased_out")
-	cultist_clone_2.connect("phased_out", self, "_Cultist_clone_2_phased_out")
+	cultist_clone.connect("phased_out", self, "spawn_cultist_clone")
+	cultist_clone_2.connect("phased_out", self, "spawn_cultist_clone_2")
 	
 	play_cutscene("intro")
 	$AudioStreamPlayer.play()
@@ -64,14 +64,6 @@ func _Cultist_phased_out() -> void:
 	cultist.boss_phase_in(_determine_spawn_point(spawn_points, "one"))
 
 
-func _Cultist_clone_phased_out() -> void:
-	cultist_clone.boss_phase_in(_determine_spawn_point(spawn_points, "two"))
-
-
-func _Cultist_clone_2_phased_out() -> void:
-	cultist_clone_2.boss_phase_in(_determine_spawn_point(spawn_points, "three"))
-
-
 func _determine_spawn_point(available_spawn_points: Array, cultist_key: String) -> Vector2:
 	randomize()
 	
@@ -88,15 +80,25 @@ func _is_occupied_position(index: int) -> bool:
 	var is_occupied = index_map.values().find(index)
 	return false if is_occupied == -1 else true
 
+func spawn_cultist_clone() -> void:
+	if not cultist.is_stunned:
+		cultist_clone.boss_phase_in(_determine_spawn_point(spawn_points, "two"))
+
+
+func spawn_cultist_clone_2() -> void:
+	if not cultist.is_stunned:
+		cultist_clone_2.boss_phase_in(_determine_spawn_point(spawn_points, "three"))
+
 
 func _Cultist_cleansed(cleansed_count: int) -> void:
 	if cleansed_count == 1:
-		cultist_clone.phase_out()
-	
-	elif cleansed_count == 2:
-		cultist_clone_2.phase_out()
+		cultist_clone.boss_phase_in(_determine_spawn_point(spawn_points, "two"))
 
-	elif cleansed_count == 3:
+	elif cleansed_count == 2:
+		cultist_clone.boss_phase_in(_determine_spawn_point(spawn_points, "two"))
+		cultist_clone_2.boss_phase_in(_determine_spawn_point(spawn_points, "three"))
+
+	if cleansed_count >= 3:
 		cultist.set_to_idle()
 		cultist_clone.queue_free()
 		cultist_clone_2.queue_free()

@@ -11,6 +11,7 @@ func _ready() -> void:
 	var has_met_cultist = GameState.get_has_met_cultist()
 	var has_brandy_or_shot = GameState.get_has_brandy() or GameState.get_has_blessed_shot()
 	hide_player_ui(has_met_cultist, has_brandy_or_shot)
+	$SceneTransition.connect("transition_started", self, "_trigger_dialouge")
 
 
 func reveal_card() -> void:
@@ -45,3 +46,8 @@ func hide_player_ui(hide_panel = false, hide_brandy = false) -> void:
 		
 	else:
 		$UIPanel/TextureRect.texture = outline_texture
+
+
+func _trigger_dialouge() -> void:
+	if GameState._current_scene == GameConstants.SCENES.BOSS_BATTLE:
+		$DialogContainer.on_DialogReceived("saoirse", "pre_boss")

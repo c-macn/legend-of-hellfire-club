@@ -1,6 +1,7 @@
 extends ColorRect
 
 signal transition_finished
+signal transition_started
 
 onready var animation_player := $AnimationPlayer
 
@@ -10,6 +11,7 @@ func _ready() -> void:
 
 func transition_to_new_scene(scene: String) -> void:
 	fade_in()
+	emit_signal("transition_finished")
 	yield(animation_player, "animation_finished")
 	get_tree().change_scene(scene)
 

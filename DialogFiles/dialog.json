@@ -118,6 +118,9 @@
     },
     "victory_message": {
       "value": "Right, now to get Ma and Da..."
+    },
+    "pre_boss": {
+      "value": "Alright. Parsons has the final piece I better go find him."
     }
   },
   "cultist": {
