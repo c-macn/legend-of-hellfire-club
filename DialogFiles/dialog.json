@@ -290,7 +290,7 @@
     }
   },
   "yeats": {
-    "portrait": "res://Characters/Cultist/WB_Portrait.png",
+    "portrait": "res://Characters/WBYates/WB_portait.png",
     "the_end": {
       "value": "Worry not. I am a member of the Hermetic Order of the Golden Dawn and I am offering you a branch of friendship. You can call me Yeats",
       "next": "the_end_1"

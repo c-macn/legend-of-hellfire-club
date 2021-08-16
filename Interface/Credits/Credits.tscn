@@ -121,7 +121,7 @@ __meta__ = {
 }
 
 [node name="MainCreditsContainer" type="GridContainer" parent="NinePatchRect/MainCredits"]
-margin_left = 31.1479
+margin_left = 25.0
 margin_top = 175.561
 margin_right = 574.148
 margin_bottom = 351.561
@@ -133,74 +133,74 @@ __meta__ = {
 }
 
 [node name="ArtistLabel" type="Label" parent="NinePatchRect/MainCredits/MainCreditsContainer"]
-margin_right = 226.0
+margin_right = 241.0
 margin_bottom = 32.0
 theme = ExtResource( 1 )
 text = "Art"
 
 [node name="ArtistCreditLabel" type="Label" parent="NinePatchRect/MainCredits/MainCreditsContainer"]
-margin_left = 261.0
-margin_right = 543.0
+margin_left = 276.0
+margin_right = 558.0
 margin_bottom = 32.0
 theme = ExtResource( 1 )
 text = "Marc Kavanagh"
 
 [node name="CodeLabel" type="Label" parent="NinePatchRect/MainCredits/MainCreditsContainer"]
 margin_top = 36.0
-margin_right = 226.0
+margin_right = 241.0
 margin_bottom = 68.0
 theme = ExtResource( 1 )
 text = "Code"
 
 [node name="CodeCreditLabel" type="Label" parent="NinePatchRect/MainCredits/MainCreditsContainer"]
-margin_left = 261.0
+margin_left = 276.0
 margin_top = 36.0
-margin_right = 543.0
+margin_right = 558.0
 margin_bottom = 68.0
 theme = ExtResource( 1 )
 text = "Chris McNulty"
 
 [node name="GDLabel" type="Label" parent="NinePatchRect/MainCredits/MainCreditsContainer"]
 margin_top = 72.0
-margin_right = 226.0
+margin_right = 241.0
 margin_bottom = 104.0
 theme = ExtResource( 1 )
 text = "Game Design"
 
 [node name="GDCreditLabel" type="Label" parent="NinePatchRect/MainCredits/MainCreditsContainer"]
-margin_left = 261.0
+margin_left = 276.0
 margin_top = 72.0
-margin_right = 543.0
+margin_right = 558.0
 margin_bottom = 104.0
 theme = ExtResource( 1 )
 text = "Chris & Marc"
 
 [node name="MusicLabel" type="Label" parent="NinePatchRect/MainCredits/MainCreditsContainer"]
 margin_top = 108.0
-margin_right = 226.0
+margin_right = 241.0
 margin_bottom = 140.0
 theme = ExtResource( 1 )
-text = "Music"
+text = "Ending Music"
 
 [node name="MusicCreditLabel" type="Label" parent="NinePatchRect/MainCredits/MainCreditsContainer"]
-margin_left = 261.0
+margin_left = 276.0
 margin_top = 108.0
-margin_right = 543.0
+margin_right = 558.0
 margin_bottom = 140.0
 theme = ExtResource( 1 )
 text = "Chris & Marc"
 
 [node name="WritingLabel" type="Label" parent="NinePatchRect/MainCredits/MainCreditsContainer"]
 margin_top = 144.0
-margin_right = 226.0
+margin_right = 241.0
 margin_bottom = 176.0
 theme = ExtResource( 1 )
 text = "Writing"
 
 [node name="WritingCreditLabel" type="Label" parent="NinePatchRect/MainCredits/MainCreditsContainer"]
-margin_left = 261.0
+margin_left = 276.0
 margin_top = 144.0
-margin_right = 543.0
+margin_right = 558.0
 margin_bottom = 176.0
 theme = ExtResource( 1 )
 text = "Chris & Marc"
@@ -260,20 +260,25 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="NinePatchRect/AdditionalResouceCredits"]
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-margin_left = 96.5768
-margin_top = 98.8883
-margin_right = 652.577
-margin_bottom = 130.888
+anchor_bottom = 0.5
+margin_left = 130.844
+margin_top = 76.6042
+margin_right = 686.845
+margin_bottom = 108.604
 rect_scale = Vector2( 0.8, 0.8 )
 theme = ExtResource( 1 )
 text = "Additional Resouces"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label2" type="Label" parent="NinePatchRect/AdditionalResouceCredits"]
-margin_left = 29.2169
-margin_top = 148.068
-margin_right = 579.217
-margin_bottom = 285.068
+margin_left = 41.9541
+margin_top = 147.438
+margin_right = 591.954
+margin_bottom = 284.438
 theme = ExtResource( 1 )
 text = "Sfx: https://dyd-credits.surge.sh/"
 autowrap = true

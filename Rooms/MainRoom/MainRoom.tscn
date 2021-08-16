@@ -247,6 +247,20 @@ tracks/6/keys = {
 "update": 0,
 "values": [  ]
 }
+tracks/7/type = "method"
+tracks/7/path = NodePath("TheHead")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 4.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "remove_card"
+} ]
+}
 
 [sub_resource type="AnimationNodeAnimation" id=4]
 animation = "the_head_end"
@@ -424,6 +438,7 @@ SaoirseNode = NodePath("../YSort/Saoirse")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 556.885, 1060.85 )
 current = true
+zoom = Vector2( 0.8, 0.8 )
 smoothing_enabled = true
 
 [node name="CultistSpawner" parent="." instance=ExtResource( 9 )]

@@ -37,8 +37,7 @@ func get_animation(target_vector: Vector2) -> String:
 
 func get_frame(target_rotation: float) -> int:
 	var facing_direction = get_facing_direction_from_rotation(target_rotation)
-	
-	print("Angle", facing_direction)
+
 	match facing_direction:
 		FACING_DIRECTIONS.DOWN:
 			return 0
@@ -58,6 +57,30 @@ func get_frame(target_rotation: float) -> int:
 			return 16
 		_:
 			return 0
+
+
+func get_animation_from_rotation(target_rotation: float) -> String:
+	var facing_direction = get_facing_direction_from_rotation(target_rotation)
+	
+	match facing_direction:
+		FACING_DIRECTIONS.DOWN:
+			return "walk_back"
+		FACING_DIRECTIONS.UP:
+			return "walk_forward"
+		FACING_DIRECTIONS.LEFT:
+			return "walk_left"
+		FACING_DIRECTIONS.RIGHT:
+			return "walk_right"
+		FACING_DIRECTIONS.DIAGONAL_DOWN_LEFT:
+			return "walk_down_left"
+		FACING_DIRECTIONS.DIAGONAL_DOWN_RIGHT:
+			return "walk_down_right"
+		FACING_DIRECTIONS.DIAGONAL_UP_LEFT:
+			return "walk_up_left"
+		FACING_DIRECTIONS.DIAGONAL_UP_RIGHT:
+			return "walk_up_right"
+		_:
+			return "default"
 
 
 func get_facing_direction(target_vector: Vector2) -> int:

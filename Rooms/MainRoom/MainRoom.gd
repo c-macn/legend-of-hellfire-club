@@ -28,7 +28,7 @@ func _ready() -> void:
 		saoirse.connect("banished", self, "_on_banishment")
 	
 	if GameState.get_has_met_cultist():
-		$CultistSpawner.spawn_percentage = 60
+		$CultistSpawner.spawn_percentage = 95
 		$CultistSpawner.saoirse_path = saoirse.get_path()
 	
 	saoirse.get_node("Light2D").enabled = true

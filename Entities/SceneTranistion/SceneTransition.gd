@@ -13,7 +13,7 @@ func _on_Saoirse_entered(body: KinematicBody2D) -> void:
 	if _is_Body_Saoirse(body):
 		body.disable_movement();
 		
-		if GameState.has_collected_all_cards():
+		if GameState.has_collected_all_cards() && GameState.get_has_blessed_shot():
 			scene_to = GameConstants.SCENES.BOSS_BATTLE
 			
 		GameState.update_current_scene(scene_to)
