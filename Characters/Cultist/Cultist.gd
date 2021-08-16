@@ -6,6 +6,7 @@ signal cleansed(count)
 
 export(NodePath) var SaoirseNode
 export(bool) var is_clone = false
+export(bool) var is_boss = false
 
 const MAX_SHOTS: int = 3
 
@@ -127,7 +128,6 @@ func cleanse() -> void:
 		animated_sprite.material = load("res://Shaders/Hit.tres")
 		HitFreeze.freeze()
 		$AnimationPlayer.play("hit")
-		
 		yield(get_tree().create_timer(0.8), "timeout")
 		
 		if is_stunned:
@@ -135,7 +135,8 @@ func cleanse() -> void:
 			hit_box.call_deferred("set_disabled", true)
 			emit_signal("cleansed", cleanse_count)
 		else:
-			phase_out()
+			if not is_boss:
+				phase_out()
 
 
 func set_to_idle() -> void:

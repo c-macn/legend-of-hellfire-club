@@ -19,13 +19,14 @@ func update(_delta: float) -> void:
 	
 	if Input.is_action_pressed("sprint"):
 		set_current_speed(speed_running)
+		animated_sprite.playback_speed = 1.5
 	else:
 		set_current_speed(speed_walking)
+		animated_sprite.playback_speed = 1.0
 		 
 	if not direction == Vector2.ZERO:
-#		velocity = lerp(velocity, direction * current_speed, acceleration)
 		var animation_name = "box_" + get_animation() if GameState.get_is_Saoirse_disguised() else get_animation()
-		velocity = direction * current_speed
+		velocity = lerp(velocity, direction * current_speed, acceleration)
 		animated_sprite.play(animation_name)
 		owner.owner.move_and_slide(velocity)
 	else:

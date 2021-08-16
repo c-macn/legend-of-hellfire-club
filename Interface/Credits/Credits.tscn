@@ -238,6 +238,18 @@ theme = ExtResource( 1 )
 text = "Fire Shader - https://godotshaders.com/shader/2d-fire/"
 autowrap = true
 
+[node name="Label3" type="Label" parent="NinePatchRect/AdditionaCodeCredits"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -265.612
+margin_top = 159.57
+margin_right = 484.388
+margin_bottom = 296.57
+rect_scale = Vector2( 0.6, 0.6 )
+theme = ExtResource( 1 )
+text = "Fire Shader - https://godotshaders.com/shader/2d-fire/"
+autowrap = true
+
 [node name="AdditionalResouceCredits" type="Control" parent="NinePatchRect"]
 modulate = Color( 1, 1, 1, 0 )
 margin_right = 40.0
@@ -295,7 +307,7 @@ margin_top = -33.5
 margin_right = 315.088
 margin_bottom = 33.5
 theme = ExtResource( 1 )
-text = "Thanks  to our player tester
+text = "Thanks  to our play tester
 Samuel Semere"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -312,7 +324,7 @@ margin_top = -16.0
 margin_right = 388.214
 margin_bottom = 16.0
 theme = ExtResource( 1 )
-text = "Thank you for playing"
+text = "Thank you for playing!"
 __meta__ = {
 "_edit_use_anchors_": false
 }

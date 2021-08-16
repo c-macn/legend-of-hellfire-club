@@ -196,10 +196,13 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 3, 9 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 3, 8.9, 9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [ "saoirse", "the_head_2" ],
+"method": "init_dialouge"
+}, {
+"args": [ "saoirse", "the_head_end" ],
 "method": "init_dialouge"
 }, {
 "args": [ "theHead" ],
@@ -314,6 +317,7 @@ tile_data = PoolIntArray( -851980, 22, 0, -851979, 22, 0, -851978, 22, 0, -85197
 [node name="Line2D" type="Line2D" parent="YSort/Navigation2D"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 modulate = Color( 0.09, 0.1, 0.18, 1 )
 position = Vector2( 21.3813, 12.4726 )
 color = Color( 0.117647, 0.117647, 0.117647, 1 )
@@ -371,7 +375,7 @@ position = Vector2( 43.406, 288.298 )
 
 [node name="TheHead" parent="CutsceneTriggers" instance=ExtResource( 2 )]
 position = Vector2( 516.962, 505.178 )
-scale = Vector2( 44.96, 3.08 )
+scale = Vector2( 53.3694, 1.69968 )
 cutscene_animation_name = "the_head"
 
 [node name="CutsceneWaypoints" type="Node" parent="."]
@@ -420,7 +424,6 @@ SaoirseNode = NodePath("../YSort/Saoirse")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 556.885, 1060.85 )
 current = true
-zoom = Vector2( 0.8, 0.8 )
 smoothing_enabled = true
 
 [node name="CultistSpawner" parent="." instance=ExtResource( 9 )]

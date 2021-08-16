@@ -12,7 +12,6 @@ var attack_count = 0
 onready var dialouge_container: Control = $CanvasLayer/DialogContainer
 onready var cultist: Cultist = $Cultists
 onready var cultist_clone: Cultist = $CultistsClone
-onready var cultist_clone_2: Cultist = $CultistsClone2
 onready var animation_tree := $AnimationTree
 onready var animation_player := $AnimationPlayer
 onready var spawn_points: Array = get_node("SpawnPoints").get_children()
@@ -27,7 +26,6 @@ func _ready() -> void:
 	cultist.connect("cleansed", self, "_Cultist_cleansed")
 	cultist.connect("phased_out", self, "_Cultist_phased_out")
 	cultist_clone.connect("phased_out", self, "spawn_cultist_clone")
-	cultist_clone_2.connect("phased_out", self, "spawn_cultist_clone_2")
 	
 	play_cutscene("intro")
 	$AudioStreamPlayer.play()
@@ -85,23 +83,14 @@ func spawn_cultist_clone() -> void:
 		cultist_clone.boss_phase_in(_determine_spawn_point(spawn_points, "two"))
 
 
-func spawn_cultist_clone_2() -> void:
-	if not cultist.is_stunned:
-		cultist_clone_2.boss_phase_in(_determine_spawn_point(spawn_points, "three"))
-
 
 func _Cultist_cleansed(cleansed_count: int) -> void:
-	if cleansed_count == 1:
+	if cleansed_count == 2:
 		cultist_clone.boss_phase_in(_determine_spawn_point(spawn_points, "two"))
-
-	elif cleansed_count == 2:
-		cultist_clone.boss_phase_in(_determine_spawn_point(spawn_points, "two"))
-		cultist_clone_2.boss_phase_in(_determine_spawn_point(spawn_points, "three"))
 
 	if cleansed_count >= 3:
 		cultist.set_to_idle()
 		cultist_clone.queue_free()
-		cultist_clone_2.queue_free()
 		play_cutscene("servant_ending")
 
 

@@ -676,14 +676,10 @@ position = Vector2( 451.75, 448.253 )
 [node name="Cultists" parent="." instance=ExtResource( 3 )]
 position = Vector2( 225, 207 )
 SaoirseNode = NodePath("../Saoirse")
+is_boss = true
 
 [node name="CultistsClone" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, -530.616 )
-SaoirseNode = NodePath("../Saoirse")
-is_clone = true
-
-[node name="CultistsClone2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 480.33, -515.397 )
 SaoirseNode = NodePath("../Saoirse")
 is_clone = true
 

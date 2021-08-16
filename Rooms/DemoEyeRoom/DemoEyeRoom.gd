@@ -23,6 +23,7 @@ func _ready() -> void:
 		doomed_rat.queue_free()
 		cutscene_camera.current = true
 		cutscene_camera.zoom = Vector2(1.6, 1.6)
+		cutscene_camera.position = Vector2(437, 300)
 		$DemonEye.patrol()
 
 

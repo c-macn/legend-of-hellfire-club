@@ -175,8 +175,8 @@ tracks/1/keys = {
 "args": [ "default" ],
 "method": "play_animation"
 }, {
-"args": [ "idle_walk_forward" ],
-"method": "play_animation"
+"args": [  ],
+"method": "set_forward_frame"
 } ]
 }
 tracks/2/type = "method"
@@ -282,13 +282,13 @@ position = Vector2( 484.547, -168.857 )
 texture = ExtResource( 3 )
 
 [node name="Saoirse" parent="." instance=ExtResource( 5 )]
-position = Vector2( 331.126, 215.756 )
+position = Vector2( 331.126, -158.024 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Saoirse"]
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 331.126, 215.756 )
+position = Vector2( 331.126, -158.024 )
 current = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -297,4 +297,4 @@ anims/good_ending = SubResource( 8 )
 anims/pre_puzzle = SubResource( 9 )
 
 [node name="Cultists" parent="." instance=ExtResource( 9 )]
-position = Vector2( 239.084, 585.925 )
+position = Vector2( 239.084, -341.229 )

@@ -34,6 +34,9 @@
     "the_head_3": {
       "value": "You look like a bit of a piss head, have you seen my Ma and Da? They work here"
     },
+    "the_head_end": {
+      "value": "I better find where those card pieces got to, maybe it'll help to get my Ma and Da back from this fella, surely they can't be dead..."
+    },
     "the_card_grab": {
       "value": "Oh you mean this card.....",
       "next": "what_the"
@@ -286,18 +289,22 @@
       "value": "Say hello to Ma and Da for me..."
     }
   },
-  "man": {
+  "yeats": {
     "portrait": "res://Characters/Cultist/WB_Portrait.png",
     "the_end": {
-      "value": "Who I am matters not. But you! little one, have made a grave mistake.",
+      "value": "Worry not. I am a member of the Hermetic Order of the Golden Dawn and I am offering you a branch of friendship. You can call me Yeats",
       "next": "the_end_1"
     },
     "the_end_1": {
-      "value": "Only a fool would make a bargin with the devil and now I welcome you to Hell...",
+      "value": "I have taken some considerable risks to aid you and have had to deal with a rather unsavory character by the name of Crowley, you are in Hell now little one.",
       "next": "the_end_2"
     },
     "the_end_2": {
-      "value": "I shall be your guide through this realm and I will help you find your Ma and Da. Come now, we must make haste"
+      "value": "I shall be your guide through this realm and I will help you find your Ma and Da.",
+      "next": "the_end_3"
+    },
+    "the_end_3": {
+      "value": "Come now we must make haste.."
     }
   }
 }

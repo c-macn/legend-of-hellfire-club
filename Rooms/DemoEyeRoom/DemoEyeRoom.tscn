@@ -386,7 +386,7 @@ card_piece_texture = ExtResource( 10 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 pause_mode = 2
-position = Vector2( 437.827, 450 )
+position = Vector2( 437.827, 400 )
 current = true
 limit_smoothed = true
 smoothing_enabled = true

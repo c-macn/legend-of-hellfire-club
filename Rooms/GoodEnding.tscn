@@ -32,7 +32,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0.3 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "man", "the_end" ],
+"args": [ "yeats", "the_end" ],
 "method": "init_dialouge"
 } ]
 }
