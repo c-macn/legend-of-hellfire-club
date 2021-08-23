@@ -10,7 +10,8 @@ onready var tween := $DevilCard/Tween
 func _ready() -> void:
 	var has_met_cultist = GameState.get_has_met_cultist()
 	var has_brandy_or_shot = GameState.get_has_brandy() or GameState.get_has_blessed_shot()
-	hide_player_ui(has_met_cultist, has_brandy_or_shot)
+#	hide_player_ui(has_met_cultist, has_brandy_or_shot)
+	hide_player_ui(false, false)
 	$SceneTransition.connect("transition_started", self, "_trigger_dialouge")
 
 
@@ -51,3 +52,7 @@ func hide_player_ui(hide_panel = false, hide_brandy = false) -> void:
 func _trigger_dialouge() -> void:
 	if GameState._current_scene == GameConstants.SCENES.BOSS_BATTLE:
 		$DialogContainer.on_DialogReceived("saoirse", "pre_boss")
+
+
+func _on_Button_pressed():
+	get_tree().reload_scene_from_path("res://Rooms/MainRoom/MainRoom.tscn")
